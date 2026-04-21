@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BigID AI How-To Guides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f1fb;
+  --card: #ffffff;
+  --border: #e3ddf2;
+  --border2: #ccc5e8;
+  --text: #18112e;
+  --muted: #5e5480;
+  --faint: #9b90be;
+  --grad: linear-gradient(110deg, #7c3aed 0%, #db2777 52%, #f97316 100%);
+  --purple: #6d28d9;
+  --pink: #db2777;
+  --orange: #f97316;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  height: 54px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  position: sticky; top: 0; z-index: 100;
+}
+.header-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.header-logomark {
+  width: 26px; height: 26px; border-radius: 6px;
+  background: var(--grad);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; font-size: 12px; color: white;
+}
+.header-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; font-size: 15px; letter-spacing: -0.02em;
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.header-nav { display: flex; align-items: center; gap: 6px; }
+.nav-pill {
+  font-size: 12px; padding: 4px 12px; border-radius: 20px;
+  border: 1px solid var(--border); background: #fff;
+  color: var(--muted); text-decoration: none;
+  transition: all 0.14s; white-space: nowrap;
+}
+.nav-pill:hover { border-color: var(--purple); color: var(--purple); }
+.nav-pill.active { background: var(--purple); border-color: var(--purple); color: #fff; }
+
+/* ── HERO ── */
+.hero {
+  padding: 56px 48px 48px;
+  text-align: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--pink); font-weight: 600;
+  padding: 3px 12px; border-radius: 20px;
+  background: rgba(219,39,119,0.07); border: 1px solid rgba(219,39,119,0.2);
+  margin-bottom: 18px;
+}
+.hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; font-size: clamp(32px, 5vw, 52px);
+  letter-spacing: -0.035em; line-height: 1.06;
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 14px;
+}
+.hero-sub {
+  font-size: 16px; color: var(--muted); max-width: 480px; margin: 0 auto 24px; line-height: 1.6;
+}
+.grad-bar { width: 48px; height: 3px; background: var(--grad); border-radius: 3px; margin: 0 auto; }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  background: #fff; border-bottom: 1px solid var(--border);
+  padding: 12px 48px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  position: sticky; top: 54px; z-index: 90;
+}
+.filter-lbl {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--faint); margin-right: 4px;
+}
+.filter-pill {
+  font-size: 12px; padding: 4px 12px; border-radius: 20px;
+  border: 1px solid var(--border); background: #fff;
+  color: var(--muted); cursor: pointer; transition: all 0.14s;
+  font-family: 'DM Sans', sans-serif; user-select: none;
+}
+.filter-pill:hover { border-color: var(--purple); color: var(--purple); }
+.filter-pill.on { background: var(--purple); border-color: var(--purple); color: #fff; }
+
+/* ── MAIN ── */
+.main {
+  padding: 40px 48px 80px;
+  max-width: 1200px; margin: 0 auto;
+}
+
+/* ── SECTION ── */
+.guide-section { margin-bottom: 48px; }
+.section-header {
+  display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px;
+}
+.section-title-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; font-size: 16px; letter-spacing: -0.01em;
+  color: var(--text);
+}
+.section-count {
+  font-size: 11px; padding: 2px 8px; border-radius: 20px;
+  background: #fff; border: 1px solid var(--border); color: var(--faint);
+}
+.section-divider {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+}
+.section-divider::before {
+  content: ''; display: block; width: 28px; height: 2px;
+  background: var(--grad); border-radius: 2px; flex-shrink: 0;
+}
+
+/* ── GUIDE CARDS ── */
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.guide-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px 22px;
+  text-decoration: none; display: block;
+  transition: border-color 0.14s, box-shadow 0.14s, transform 0.14s;
+  position: relative; overflow: hidden;
+  animation: fadeUp 0.22s ease both;
+}
+.guide-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad); opacity: 0; transition: opacity 0.14s;
+}
+.guide-card:hover {
+  border-color: var(--border2);
+  box-shadow: 0 4px 20px rgba(109,40,217,0.08);
+  transform: translateY(-1px);
+}
+.guide-card:hover::before { opacity: 1; }
+.card-top {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+}
+.card-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 2px 8px; border-radius: 4px;
+  border: 1px solid;
+}
+.tag-claude   { background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.25); color: #5b21b6; }
+.tag-chatgpt  { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.25); color: #065f46; }
+.tag-gemini   { background: rgba(37,99,235,0.08);  border-color: rgba(37,99,235,0.25);  color: #1e40af; }
+.tag-all      { background: rgba(219,39,119,0.07); border-color: rgba(219,39,119,0.2);  color: #9d174d; }
+.tag-sales    { background: rgba(109,40,217,0.07); border-color: rgba(109,40,217,0.2);  color: #5b21b6; }
+.tag-ops      { background: rgba(249,115,22,0.07); border-color: rgba(249,115,22,0.2);  color: #9a3412; }
+.card-num {
+  font-size: 11px; color: var(--faint); margin-left: auto;
+}
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 14px; letter-spacing: -0.01em;
+  color: var(--text); line-height: 1.35; margin-bottom: 6px;
+}
+.card-desc {
+  font-size: 12.5px; color: var(--faint); line-height: 1.55; margin-bottom: 14px;
+}
+.card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-meta {
+  display: flex; gap: 5px; flex-wrap: wrap;
+}
+.card-badge {
+  font-size: 10px; padding: 2px 7px; border-radius: 20px;
+  background: #f4f1fb; color: var(--muted); border: 1px solid var(--border);
+}
+.card-arrow {
+  font-size: 12px; color: var(--faint);
+  transition: color 0.14s, transform 0.14s;
+  flex-shrink: 0;
+}
+.guide-card:hover .card-arrow { color: var(--purple); transform: translateX(2px); }
+
+/* ── EMPTY STATE ── */
+.empty {
+  grid-column: 1/-1; padding: 48px; text-align: center;
+  color: var(--faint); font-size: 14px;
+  border: 1px dashed var(--border); border-radius: 14px;
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  border-top: 1px solid var(--border); padding: 24px 48px;
+  background: #fff; display: flex; justify-content: space-between; align-items: center;
+}
+.footer-l { font-size: 12px; color: var(--faint); }
+.footer-l strong {
+  background: var(--grad); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600;
+}
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+@media (max-width: 768px) {
+  .site-header, .hero, .main, .site-footer, .filter-bar { padding-left: 20px; padding-right: 20px; }
+  .guides-grid { grid-template-columns: 1fr; }
+  .hero-title { font-size: clamp(28px, 8vw, 40px); }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="header-brand" href="bigid-ai-accelerator.html">
+    <div class="header-logomark">B</div>
+    <span class="header-title">BigID AI Accelerator</span>
+  </a>
+  <nav class="header-nav">
+    <a class="nav-pill" href="bigid-ai-accelerator.html">← Tool Guide</a>
+    <a class="nav-pill active" href="#">How-To Guides</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <p class="hero-eyebrow">BigID AI Accelerator Program</p>
+  <h1 class="hero-title">How-To Guides</h1>
+  <p class="hero-sub">Step-by-step playbooks for getting real work done with AI — with prompts, examples, and zero fluff.</p>
+  <div class="grad-bar"></div>
+</div>
+
+<div class="filter-bar">
+  <span class="filter-lbl">Filter</span>
+  <button class="filter-pill on" data-filter="all">All guides</button>
+  <button class="filter-pill" data-filter="claude">Claude</button>
+  <button class="filter-pill" data-filter="chatgpt">ChatGPT</button>
+  <button class="filter-pill" data-filter="gemini">Gemini</button>
+  <button class="filter-pill" data-filter="sales">Sales</button>
+  <button class="filter-pill" data-filter="ops">Reports &amp; Analysis</button>
+</div>
+
+<main class="main" id="main"></main>
+
+<footer class="site-footer">
+  <p class="footer-l">Built by <strong>BigID Marketing</strong> · Guides update as we learn</p>
+  <p style="font-size:12px;color:var(--faint)">Have a guide to add? Ping #ai-tools in Slack.</p>
+</footer>
+
+<script>
+const GUIDES = [
+  // ── Getting Started with Claude
+  {
+    section: 'Getting started with Claude',
+    tool: 'claude',
+    tag: 'Claude', tagClass: 'tag-claude',
+    title: 'Polish and Format a Presentation',
+    desc: 'Sharpen content, tighten structure, and calibrate messaging for any audience. Includes audience framing, narrative arc, proof points, and a full review loop.',
+    badges: ['Content', 'Strategy'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.0#heading=h.z8b32v6pv9nv',
+    num: '01'
+  },
+  {
+    section: 'Getting started with Claude',
+    tool: 'claude',
+    tag: 'Claude', tagClass: 'tag-claude',
+    title: 'Build a Branded Slide Deck with the PPTX Skill',
+    desc: 'Generate a fully branded BigID .pptx file from a prompt. Correct fonts, colors, logo placement, and layouts — all automatic.',
+    badges: ['Slides', 'Design'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.f59ouv4uvisy#heading=h.tuwrtyri9nxq',
+    num: '02'
+  },
+  {
+    section: 'Getting started with Claude',
+    tool: 'claude',
+    tag: 'Claude', tagClass: 'tag-claude',
+    title: 'Create a Branded PDF',
+    desc: 'Two PDF skills — standard formatter and dark header — for every document from one-pagers to executive proposals.',
+    badges: ['Documents', 'Design'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.sar5o84dai40#heading=h.tek25025pgk8',
+    num: '03'
+  },
+  {
+    section: 'Getting started with Claude',
+    tool: 'claude',
+    tag: 'Claude', tagClass: 'tag-claude',
+    title: 'Chat, Projects, and Cowork — What\'s Best for Each',
+    desc: 'Know which Claude mode to reach for and when — one-off tasks vs. persistent workspaces vs. autonomous file work. With BigID examples throughout.',
+    badges: ['Setup', 'Workflow'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.3iwrpk9spln6',
+    num: '04'
+  },
+  {
+    section: 'Getting started with Claude',
+    tool: 'all',
+    tag: 'All tools', tagClass: 'tag-all',
+    title: 'When to Use Claude vs ChatGPT vs Gemini',
+    desc: 'The decision rules for all three — including Notebook LM, code interpreter, and custom GPTs. Side-by-side comparison with a task-by-task guide.',
+    badges: ['Strategy', 'Setup'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.e8g86dkx3iv1#heading=h.3evwg4a8we9u',
+    num: '05'
+  },
+
+  // ── Know Your Accounts
+  {
+    section: 'Know your accounts',
+    tool: 'sales',
+    tag: 'Sales', tagClass: 'tag-sales',
+    title: 'Pre-Call Research in 60 Seconds',
+    desc: 'Pull a complete one-page brief before any call using Salesforce, Gmail, Calendar, and web search. Covers discovery, follow-up, executive meetings, and QBRs.',
+    badges: ['Research', 'Salesforce'],
+    url: 'LINK_PRECALL',
+    num: '06'
+  },
+  {
+    section: 'Know your accounts',
+    tool: 'sales',
+    tag: 'Sales', tagClass: 'tag-sales',
+    title: 'Build a Target Account List',
+    desc: 'ICP-scored, signal-rich, research-backed lists from scratch. Covers buying signals, Salesforce coverage checks, and how to keep the list current.',
+    badges: ['Prospecting', 'Salesforce'],
+    url: 'LINK_TARGET_ACCOUNT',
+    num: '07'
+  },
+  {
+    section: 'Know your accounts',
+    tool: 'sales',
+    tag: 'Sales', tagClass: 'tag-sales',
+    title: 'Compare a List to RevIC ICP Fit',
+    desc: 'Cross-reference any registration or target list against Salesforce RevIC ICP scores. High fits first, open opportunities flagged, net-new prospects surfaced.',
+    badges: ['ICP', 'Salesforce'],
+    url: 'LINK_ICP_COMPARE',
+    num: '08'
+  },
+
+  // ── Work Your Pipeline
+  {
+    section: 'Work your pipeline',
+    tool: 'sales',
+    tag: 'Sales', tagClass: 'tag-sales',
+    title: 'Deal Analysis via Salesforce MCP',
+    desc: 'Pull a complete deal brief in one prompt — stage, activity history, MEDDPICC, risk flags, and a recommended next action. For pipeline reviews, pre-call prep, and quiet deals.',
+    badges: ['Pipeline', 'Salesforce'],
+    url: 'LINK_DEAL_ANALYSIS',
+    num: '09'
+  },
+  {
+    section: 'Work your pipeline',
+    tool: 'sales',
+    tag: 'Sales', tagClass: 'tag-sales',
+    title: 'Stage 0 Cleanup for My Region',
+    desc: 'Surface every stale, untouched, or miscategorized deal in Qualification. Triage into advance, re-engage, or close out — using BigID\'s real loss reasons and MEDDPICC fields.',
+    badges: ['Pipeline', 'Hygiene'],
+    url: 'LINK_STAGE0',
+    num: '10'
+  },
+  {
+    section: 'Work your pipeline',
+    tool: 'sales',
+    tag: 'Sales', tagClass: 'tag-sales',
+    title: 'Forecast Scrub',
+    desc: 'Four tests for every Commit deal: close date, activity, MEDDPICC, next step. Walk into any forecast call with a number you can defend. Includes a weekly micro-scrub.',
+    badges: ['Forecast', 'Pipeline'],
+    url: 'LINK_FORECAST_SCRUB',
+    num: '11'
+  },
+
+  // ── Reports & Analysis — Track Your Pipeline
+  {
+    section: 'Reports & analysis',
+    tool: 'ops',
+    tag: 'Reports & Analysis', tagClass: 'tag-ops',
+    title: 'Weekly Pipeline Movement Report',
+    desc: 'What came in, advanced, closed won, closed lost, and slipped — every Monday in five minutes. Includes rep-level breakdown, loss pattern analysis, and a shareable Slack format.',
+    badges: ['Weekly', 'Pipeline'],
+    url: 'LINK_WEEKLY_PIPELINE',
+    num: '12'
+  },
+  {
+    section: 'Reports & analysis',
+    tool: 'ops',
+    tag: 'Reports & Analysis', tagClass: 'tag-ops',
+    title: 'Forecast Accuracy Tracker',
+    desc: 'Compare called vs. closed, build your personal close rate by forecast category, and understand win rate by persona, industry, and competitor.',
+    badges: ['Forecast', 'Win Rate'],
+    url: 'LINK_FORECAST_ACCURACY',
+    num: '13'
+  },
+  {
+    section: 'Reports & analysis',
+    tool: 'ops',
+    tag: 'Reports & Analysis', tagClass: 'tag-ops',
+    title: 'Pipeline Coverage Analysis',
+    desc: 'Weighted pipeline vs. quota — by stage, rep, and region. Includes coverage gap analysis, stress-testing scenarios, and a weekly coverage scorecard.',
+    badges: ['Coverage', 'Quota'],
+    url: 'LINK_PIPELINE_COVERAGE',
+    num: '14'
+  },
+  {
+    section: 'Reports & analysis',
+    tool: 'ops',
+    tag: 'Reports & Analysis', tagClass: 'tag-ops',
+    title: 'Territory Health Snapshot',
+    desc: 'Complete one-pull view of any BigID territory — pipeline, stage mix, closed won, activity health, rep breakdown, and a one-paragraph verdict. Built for QBRs and leadership updates.',
+    badges: ['Territory', 'QBR'],
+    url: 'LINK_TERRITORY_HEALTH',
+    num: '15'
+  },
+  {
+    section: 'Reports & analysis',
+    tool: 'ops',
+    tag: 'Reports & Analysis', tagClass: 'tag-ops',
+    title: 'Account Penetration Report',
+    desc: '87% of BigID\'s High ICP accounts have no active pipeline. This guide shows you how to find the whitespace, prioritize it by industry and signal, and build a penetration plan.',
+    badges: ['Whitespace', 'ICP'],
+    url: 'LINK_ACCOUNT_PENETRATION',
+    num: '16'
+  },
+  {
+    section: 'Reports & analysis',
+    tool: 'ops',
+    tag: 'Reports & Analysis', tagClass: 'tag-ops',
+    title: 'Monday Morning Pipeline Brief',
+    desc: 'Five prompts, five minutes, every Monday. Last week\'s results, this week\'s committed deals, slipped deals, top three priorities, and your expected close number.',
+    badges: ['Weekly', 'Automation'],
+    url: 'LINK_MONDAY_BRIEF',
+    num: '17'
+  },
+  {
+    section: 'Reports & analysis',
+    tool: 'ops',
+    tag: 'Reports & Analysis', tagClass: 'tag-ops',
+    title: 'End of Quarter Deal Status Sweep',
+    desc: 'Close, push, or drop — a systematic review of every deal closing this quarter. Four-week cadence, daily close week prompts, and how to manage the push list cleanly.',
+    badges: ['Quarter-end', 'Forecast'],
+    url: 'LINK_EOQ_SWEEP',
+    num: '18'
+  },
+];
+
+const SECTIONS_ORDER = [
+  'Getting started with Claude',
+  'Know your accounts',
+  'Work your pipeline',
+  'Reports & analysis',
+];
+
+const SECTION_DESCS = {
+  'Getting started with Claude': 'Foundational guides for formatting, building, and choosing the right tool.',
+  'Know your accounts': 'Research and intelligence workflows — before any call, list, or campaign.',
+  'Work your pipeline': 'Day-to-day deal management, pipeline hygiene, and forecast discipline.',
+  'Reports & analysis': 'Weekly and quarterly reporting that runs in minutes, not hours.',
+};
+
+let activeFilter = 'all';
+
+function toolMatch(guide, filter) {
+  if (filter === 'all') return true;
+  if (filter === 'claude')  return guide.tool === 'claude' || guide.tool === 'all';
+  if (filter === 'chatgpt') return guide.tool === 'chatgpt' || guide.tool === 'all';
+  if (filter === 'gemini')  return guide.tool === 'gemini' || guide.tool === 'all';
+  if (filter === 'sales')   return guide.tool === 'sales';
+  if (filter === 'ops')     return guide.tool === 'ops';
+  return true;
+}
+
+function render() {
+  const main = document.getElementById('main');
+  const filtered = GUIDES.filter(g => toolMatch(g, activeFilter));
+
+  if (!filtered.length) {
+    main.innerHTML = '<div class="empty">No guides match that filter — try another.</div>';
+    return;
+  }
+
+  // Group by section
+  const grouped = {};
+  SECTIONS_ORDER.forEach(s => { grouped[s] = []; });
+  filtered.forEach(g => {
+    if (grouped[g.section]) grouped[g.section].push(g);
+  });
+
+  main.innerHTML = SECTIONS_ORDER
+    .filter(s => grouped[s].length > 0)
+    .map(section => {
+      const cards = grouped[section].map((g, i) => `
+        <a class="guide-card" href="${g.url}" target="_blank" style="animation-delay:${i * 0.04}s">
+          <div class="card-top">
+            <span class="card-tag ${g.tagClass}">${g.tag}</span>
+            <span class="card-num">${g.num}</span>
+          </div>
+          <p class="card-title">${g.title}</p>
+          <p class="card-desc">${g.desc}</p>
+          <div class="card-footer">
+            <div class="card-meta">
+              ${g.badges.map(b => `<span class="card-badge">${b}</span>`).join('')}
+            </div>
+            <span class="card-arrow">→</span>
+          </div>
+        </a>
+      `).join('');
+
+      return `
+        <div class="guide-section">
+          <div class="section-header">
+            <div class="section-divider">
+              <span class="section-title-text">${section}</span>
+            </div>
+            <span class="section-count">${grouped[section].length} guide${grouped[section].length !== 1 ? 's' : ''}</span>
+          </div>
+          <p style="font-size:13px;color:var(--faint);margin-bottom:18px;margin-top:-8px">${SECTION_DESCS[section]}</p>
+          <div class="guides-grid">${cards}</div>
+        </div>
+      `;
+    }).join('');
+}
+
+document.querySelectorAll('.filter-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('on'));
+    pill.classList.add('on');
+    activeFilter = pill.dataset.filter;
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>
