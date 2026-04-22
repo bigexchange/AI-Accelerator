@@ -763,7 +763,7 @@ body {
 
 <div class="hero">
   <h1 class="hero-title">BigID AI Accelerator</h1>
-  <p class="hero-sub">Three tools, one program. Personalize by department or action, or search for a guide below.</p>
+  <p class="hero-sub">Tools, use cases, and guidance to move faster with AI.</p>
   <div class="grad-bar" style="margin-bottom:20px"></div>
   <!-- SEARCH BAR -->
   <div class="search-wrap">
@@ -928,8 +928,10 @@ const TOOLS = [
     bigidResources: {
       label: 'BigID GPT',
       items: [
-        { title: 'Email GPT', desc: 'Pre-loaded with BigID voice, tone guidelines, and email templates for every use case.', url: 'LINK_EMAIL_GPT' },
-        { title: 'CMO Lens GPT', desc: 'Marketing strategy, messaging, and campaign ideation through the BigID lens.', url: 'LINK_CMO_LENS_GPT' },
+        { title: 'Eugene, the Email Engagement Engine', desc: 'Writes high-converting emails in BigID voice — campaigns, sequences, outreach, and one-offs.', url: 'https://chatgpt.com/g/g-691c8dd92d3081918a39f8cc63ab93ab-eugene-the-email-engagement-engine' },
+        { title: 'Fiona, the Follow-Up Friend', desc: 'Drafts sharp, timely follow-up messages so nothing falls through the cracks.', url: 'https://chatgpt.com/g/g-691c93aec8f4819184fef45a5e220413-fiona-the-follow-up-friend' },
+        { title: 'SarAI — CMO Lens', desc: 'Run any message, campaign, or strategy through Sarah\'s CMO perspective before it goes out.', url: 'https://chatgpt.com/g/g-68d2de949384819182425c40d5b4c609-sarai' },
+        { title: 'A.R.T. — AMA Recap Toolkit', desc: 'Turns AMA sessions and recordings into clean, structured recaps ready to share.', url: 'https://chatgpt.com/g/g-68d6aa6058008191ad385f4c2b6e12ad-a-r-t-ama-recap-toolkit' },
       ]
     },
     overview: {
@@ -1483,7 +1485,7 @@ function renderGuides() {
   el.innerHTML = `
     <div class="guides-section-header">
       <span class="guides-section-title">How-To Guides</span>
-      <span class="guides-section-sub">Step-by-step playbooks — with real prompts, real Salesforce data, and real life relevance.</span>
+      <span class="guides-section-sub">Step-by-step playbooks — with real prompts, real Salesforce data, and real world scenarios.</span>
     </div>
     ${SECTIONS_ORDER.map(section => {
       const cards = grouped[section];
