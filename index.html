@@ -49,11 +49,7 @@ body {
   top: 0;
   z-index: 100;
 }
-.header-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.header-brand { display: flex; align-items: center; gap: 10px; }
 .header-logomark {
   width: 26px; height: 26px;
   border-radius: 6px;
@@ -82,33 +78,126 @@ body {
 /* ── HERO ── */
 .hero {
   text-align: center;
-  padding: 52px 40px 44px;
+  padding: 48px 40px 36px;
 }
 .hero-title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: clamp(36px, 5vw, 58px);
+  font-size: clamp(32px, 4.5vw, 52px);
   letter-spacing: -0.035em;
   line-height: 1.06;
   background: var(--grad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .hero-sub {
-  font-size: 16px; color: var(--muted);
-  max-width: 440px; margin: 0 auto 22px;
-  line-height: 1.6;
+  font-size: 15px; color: var(--muted);
+  max-width: 480px; margin: 0 auto 20px;
+  line-height: 1.65;
 }
 .grad-bar {
-  width: 64px; height: 3px;
+  width: 56px; height: 3px;
   background: var(--grad);
   border-radius: 3px;
   margin: 0 auto;
 }
 
-/* ── THREE COLUMNS ── */
+/* ── PERSONALIZE BAR ── */
+.personalize-wrap {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 40px 40px;
+}
+.personalize-bar {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 24px 18px;
+  box-shadow: 0 1px 4px rgba(80,50,120,0.05), 0 4px 16px rgba(80,50,120,0.04);
+}
+.personalize-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.personalize-icon {
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  background: var(--grad);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; flex-shrink: 0;
+}
+.personalize-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 12px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--purple);
+}
+.personalize-hint {
+  font-size: 12px; color: var(--faint); margin-left: auto;
+}
+.filter-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.filter-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.filter-row-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--faint);
+  padding-top: 6px;
+  min-width: 48px;
+  white-space: nowrap;
+}
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.filter-pill {
+  font-size: 12px; padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+  user-select: none;
+  line-height: 1.4;
+}
+.filter-pill:hover { border-color: var(--purple); color: var(--purple); }
+.filter-pill.active {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: #fff;
+}
+.filter-pill.goal-active {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #fff;
+}
+.clear-btn {
+  font-size: 11px; color: var(--faint);
+  background: none; border: none;
+  cursor: pointer; padding: 5px 0;
+  text-decoration: underline;
+  font-family: 'DM Sans', sans-serif;
+  display: none;
+  margin-left: 8px;
+  align-self: center;
+}
+.clear-btn.visible { display: block; }
+
+/* ── COLUMNS ── */
 .columns {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 380px));
@@ -127,21 +216,20 @@ body {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 1px 4px rgba(80,50,120,0.06), 0 4px 16px rgba(80,50,120,0.04);
+  display: flex;
+  flex-direction: column;
 }
 
 /* Card header band */
 .card-header {
-  padding: 22px 22px 18px;
-  position: relative; overflow: hidden;
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
 }
-.card-header.ch-claude,
-.card-header.ch-chatgpt,
-.card-header.ch-gemini  { background: #ffffff; border-bottom: 1px solid var(--border); }
-.ch-glow { display: none; }
 .card-vendor {
   font-size: 10px; letter-spacing: 0.12em;
   text-transform: uppercase; font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .ch-claude .card-vendor  { color: #7c3aed; }
 .ch-chatgpt .card-vendor { color: #059669; }
@@ -150,148 +238,175 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800; font-size: 22px;
   letter-spacing: -0.01em;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 .ch-claude .card-name  { color: var(--claude-text); }
 .ch-chatgpt .card-name { color: var(--chatgpt-text); }
 .ch-gemini .card-name  { color: var(--gemini-text); }
-.card-tagline { font-size: 12px; line-height: 1.4; }
-.ch-claude .card-tagline  { color: #6d28d9; }
-.ch-chatgpt .card-tagline { color: #065f46; }
-.ch-gemini .card-tagline  { color: #1d4ed8; }
+.card-tagline { font-size: 11.5px; line-height: 1.4; color: var(--faint); }
 
-/* ── SECTION ── */
-.card-section { border-top: 1px solid var(--border); padding: 18px 22px; }
-.section-title {
-  font-family: 'Montserrat', sans-serif;
+/* ── TAB NAV ── */
+.tab-nav {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: #faf9fe;
+  padding: 0 6px;
+  gap: 0;
+}
+.tab-btn {
+  flex: 1;
+  padding: 11px 8px 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 500;
+  color: var(--faint);
+  background: none; border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+  position: relative;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: var(--purple); }
+.tab-btn.active {
+  color: var(--purple);
+  border-bottom-color: var(--purple);
+  font-weight: 600;
+}
+.tab-btn .foryou-dot {
+  display: none;
+  width: 6px; height: 6px;
+  background: var(--pink);
+  border-radius: 50%;
+  position: absolute;
+  top: 9px; right: 10px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+.tab-btn.has-content .foryou-dot { display: inline-block; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.8); }
+}
+
+/* ── TAB PANELS ── */
+.tab-panel { display: none; flex: 1; }
+.tab-panel.active { display: block; }
+
+/* Basics tab */
+.basics-section { padding: 18px 22px; border-bottom: 1px solid var(--border); }
+.basics-section:last-of-type { border-bottom: none; }
+.section-label {
   font-size: 10px; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
+  letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--purple);
   display: flex; align-items: center; gap: 7px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
-.section-title::before {
+.section-label::before {
   content: '';
-  display: block; width: 16px; height: 2px;
+  display: block; width: 14px; height: 2px;
   background: var(--grad); border-radius: 2px; flex-shrink: 0;
 }
-
-/* Overview */
-.avail-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12px; font-weight: 500;
-  color: #166534; background: #dcfce7;
-  border: 1px solid #bbf7d0;
-  padding: 4px 12px; border-radius: 20px; margin-bottom: 12px;
-}
-.avail-badge::before {
-  content: ''; width: 7px; height: 7px; border-radius: 50%;
-  background: #16a34a; flex-shrink: 0;
-}
-.overview-url {
-  font-size: 13px; color: var(--muted); margin-bottom: 10px;
-}
+.overview-url { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
 .overview-url a { color: var(--purple); text-decoration: none; font-weight: 500; }
 .overview-url a:hover { text-decoration: underline; }
-.overview-note { font-size: 12px; color: var(--faint); margin-bottom: 12px; font-style: italic; }
-.conn-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin-bottom: 7px; }
-.conn-pills { display: flex; flex-wrap: wrap; gap: 5px; }
+.overview-note { font-size: 11.5px; color: var(--faint); margin-bottom: 12px; font-style: italic; }
+.conn-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; }
+.conn-pills { display: flex; flex-wrap: wrap; gap: 6px; }
 .conn-pill {
-  font-size: 11px; padding: 3px 9px 3px 6px; border-radius: 20px;
+  font-size: 11px; padding: 4px 10px 4px 6px; border-radius: 20px;
   background: #f3f0fb; border: 1px solid var(--border2);
   color: var(--purple); white-space: nowrap;
-  display: inline-flex; align-items: center; gap: 5px;
+  display: inline-flex; align-items: center; gap: 6px;
 }
-.conn-pill img { width: 13px; height: 13px; border-radius: 2px; flex-shrink: 0; }
+.conn-pill img { width: 16px; height: 16px; border-radius: 3px; flex-shrink: 0; }
 
-/* Get started button */
-.get-started-section { border-top: 1px solid var(--border); padding: 18px 22px; }
-.get-started-btn {
-  width: 100%; padding: 11px 20px;
+/* BigID Resources */
+.bigid-resources { display: flex; flex-direction: column; gap: 7px; }
+.bigid-resource-card {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 12px;
+  background: linear-gradient(135deg, rgba(109,40,217,0.04) 0%, rgba(219,39,119,0.04) 100%);
+  border: 1px solid rgba(109,40,217,0.14);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color 0.14s, background 0.14s;
+}
+.bigid-resource-card:hover {
+  border-color: rgba(109,40,217,0.28);
+  background: linear-gradient(135deg, rgba(109,40,217,0.07) 0%, rgba(219,39,119,0.07) 100%);
+}
+.bigid-resource-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: white; background: var(--grad);
+  padding: 2px 7px; border-radius: 20px;
+  white-space: nowrap; flex-shrink: 0; margin-top: 1px;
+}
+.bigid-resource-text { flex: 1; min-width: 0; }
+.bigid-resource-title {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700; font-size: 13px; letter-spacing: 0.01em;
-  border-radius: 10px; border: none; cursor: pointer;
-  background: var(--grad); color: white;
-  transition: opacity 0.15s, transform 0.15s;
-  display: flex; align-items: center; justify-content: center; gap: 7px;
+  font-weight: 700; font-size: 12px;
+  color: var(--text); margin-bottom: 2px; letter-spacing: -0.01em;
 }
-.get-started-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-.get-started-btn::after { content: '→'; font-size: 15px; }
+.bigid-resource-desc { font-size: 11px; color: var(--faint); line-height: 1.4; }
+.bigid-resource-arrow { font-size: 11px; color: var(--faint); align-self: center; flex-shrink: 0; margin-left: 4px; }
 
-/* Modal */
-.modal-backdrop {
-  display: none; position: fixed; inset: 0;
-  background: rgba(15,5,30,0.55); z-index: 500;
-  align-items: center; justify-content: center; padding: 20px;
-}
-.modal-backdrop.open { display: flex; }
-.modal {
-  background: #fff; border-radius: 18px; max-width: 520px; width: 100%;
-  box-shadow: 0 20px 60px rgba(80,40,120,0.18);
-  overflow: hidden; animation: modalIn 0.2s ease;
-}
-.modal-head {
-  padding: 22px 26px 18px;
-}
-.modal-head.mh-claude  { background: var(--claude-bg); }
-.modal-head.mh-chatgpt { background: var(--chatgpt-bg); }
-.modal-head.mh-gemini  { background: var(--gemini-bg); }
-.modal-vendor { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
-.mh-claude .modal-vendor  { color: #7c3aed; }
-.mh-chatgpt .modal-vendor { color: #059669; }
-.mh-gemini .modal-vendor  { color: #2563eb; }
-.modal-tool-name { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; }
-.mh-claude .modal-tool-name  { color: var(--claude-text); }
-.mh-chatgpt .modal-tool-name { color: var(--chatgpt-text); }
-.mh-gemini .modal-tool-name  { color: var(--gemini-text); }
-.modal-sub { font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 2px; }
-.modal-body { padding: 22px 26px 26px; }
-.modal-steps { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-.modal-steps li { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--muted); line-height: 1.5; }
-.step-dot {
-  min-width: 24px; height: 24px; border-radius: 50%;
+.steps-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+.steps-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+.step-num {
+  min-width: 20px; height: 20px; border-radius: 50%;
   background: var(--grad); color: white;
-  font-size: 11px; font-weight: 700;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+  font-size: 10px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
 }
-.modal-launch-btn {
-  display: block; width: 100%; padding: 12px 20px; text-align: center;
-  background: var(--grad); color: white; border-radius: 10px; border: none;
-  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
-  cursor: pointer; text-decoration: none; margin-bottom: 10px;
-  transition: opacity 0.15s;
+.use-cases { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.use-cases li {
+  font-size: 12.5px; color: var(--muted);
+  padding-left: 14px; position: relative; line-height: 1.5;
 }
-.modal-launch-btn:hover { opacity: 0.88; }
-.modal-close-btn {
-  display: block; width: 100%; padding: 10px; text-align: center;
-  background: none; border: 1px solid var(--border); border-radius: 10px;
-  font-size: 13px; color: var(--muted); cursor: pointer; font-family: 'DM Sans', sans-serif;
+.use-cases li::before {
+  content: '·'; position: absolute; left: 2px;
+  color: var(--pink); font-size: 18px; line-height: 1.1;
+}
+
+.guides-links { display: flex; flex-direction: column; gap: 5px; }
+.view-all-guides {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 12px; letter-spacing: 0.01em;
+  color: var(--purple);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  text-decoration: none;
+  background: #faf9fe;
   transition: all 0.15s;
 }
-.modal-close-btn:hover { border-color: var(--border2); color: var(--text); }
-@keyframes modalIn { from { opacity: 0; transform: scale(0.96) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-
-
-/* Use cases */
-.use-case-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-.use-case-list li {
-  font-size: 13px; color: var(--muted);
-  background: #f7f4fd;
-  border-left: 2px solid var(--border2);
-  padding: 6px 10px 6px 12px;
-  border-radius: 0 6px 6px 0;
-  line-height: 1.45;
+.view-all-guides:hover {
+  background: var(--purple);
+  color: #fff;
+  border-color: var(--purple);
 }
+.view-all-guides span { font-size: 14px; }
+.guide-link {
+  font-size: 12px; color: var(--purple); text-decoration: none;
+  display: flex; align-items: center; gap: 5px;
+  padding: 6px 10px; border-radius: 7px;
+  border: 1px solid var(--border); background: #faf9fe;
+  transition: border-color 0.14s;
+}
+.guide-link:hover { border-color: var(--border2); }
+.guide-link span { margin-left: auto; color: var(--faint); font-size: 11px; }
 
-/* Try it out */
-.try-list { display: flex; flex-direction: column; gap: 8px; }
+/* Try It tab */
+.tryit-list { padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; }
 .try-item {
   border: 1px solid var(--border);
   border-radius: 10px; overflow: hidden;
 }
 .try-item-head {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 9px 12px; cursor: pointer;
+  padding: 10px 14px; cursor: pointer;
   background: #faf9fe;
   transition: background 0.15s;
   user-select: none;
@@ -304,46 +419,79 @@ body {
 }
 .try-chevron { font-size: 10px; color: var(--faint); transition: transform 0.2s; }
 .try-item.open .try-chevron { transform: rotate(180deg); }
-.try-body { display: none; padding: 10px 12px 12px; border-top: 1px solid var(--border); }
+.try-body { display: none; padding: 10px 14px 12px; border-top: 1px solid var(--border); }
 .try-item.open .try-body { display: block; }
 .try-prompt-text {
   font-size: 12px; color: var(--muted);
   font-style: italic; line-height: 1.6; margin-bottom: 9px;
 }
-.copy-btn {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: 11px; padding: 4px 12px; border-radius: 20px;
-  border: 1px solid rgba(109,40,217,0.3);
-  background: rgba(109,40,217,0.06);
-  color: var(--purple); cursor: pointer;
-  transition: all 0.15s; font-family: 'DM Sans', sans-serif;
-}
-.copy-btn:hover { background: rgba(109,40,217,0.12); border-color: rgba(109,40,217,0.5); }
-.copy-btn.copied { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.4); color: #059669; }
 
-/* By Role / By Goal */
-.selector-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
-.sel-pill {
-  font-size: 11px; padding: 3px 10px; border-radius: 20px;
+/* For You tab */
+.foryou-panel { padding: 18px 22px; }
+.foryou-empty {
+  text-align: center;
+  padding: 28px 16px 24px;
+}
+.foryou-empty-icon {
+  font-size: 28px; margin-bottom: 10px; opacity: 0.5;
+}
+.foryou-empty-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 13px;
+  color: var(--text); margin-bottom: 6px;
+}
+.foryou-empty-sub {
+  font-size: 12px; color: var(--faint); line-height: 1.5;
+  margin-bottom: 16px;
+}
+.foryou-inline-roles { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
+.foryou-inline-pill {
+  font-size: 11px; padding: 4px 12px;
+  border-radius: 20px;
   border: 1px solid var(--border);
   background: #fff; color: var(--muted);
   cursor: pointer; transition: all 0.15s;
   font-family: 'DM Sans', sans-serif;
-  user-select: none;
 }
-.sel-pill:hover { border-color: var(--purple); color: var(--purple); }
-.sel-pill.active { background: var(--purple); border-color: var(--purple); color: #fff; }
+.foryou-inline-pill:hover { border-color: var(--purple); color: var(--purple); }
 
-.role-content, .goal-content, .dept-content {
-  display: none;
-  background: #faf9fe;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  animation: fadeUp 0.18s ease;
+.foryou-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
 }
-.role-content.vis, .goal-content.vis, .dept-content.vis { display: block; }
-.content-tips { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-bottom: 11px; }
+.foryou-who {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 12px;
+  color: var(--text);
+}
+.foryou-who span {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.foryou-switch-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--faint); margin-bottom: 8px;
+}
+.foryou-goal-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+.foryou-goal-pill {
+  font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; border: 1px solid var(--border);
+  background: #fff; color: var(--muted);
+  cursor: pointer; transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.foryou-goal-pill:hover { border-color: var(--pink); color: var(--pink); }
+.foryou-goal-pill.active { background: var(--pink); border-color: var(--pink); color: #fff; }
+
+.foryou-divider {
+  height: 1px; background: var(--border);
+  margin: 14px 0;
+}
+
+.content-tips { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
 .content-tips li {
   font-size: 12.5px; color: var(--muted);
   padding-left: 14px; position: relative; line-height: 1.5;
@@ -363,27 +511,149 @@ body {
 }
 .content-prompt-text { font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.55; margin-bottom: 8px; }
 
-/* Footer */
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding: 24px 40px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: #fff;
+/* Copy button */
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; padding: 4px 12px; border-radius: 20px;
+  border: 1px solid rgba(109,40,217,0.3);
+  background: rgba(109,40,217,0.06);
+  color: var(--purple); cursor: pointer;
+  transition: all 0.15s; font-family: 'DM Sans', sans-serif;
 }
-.footer-l { font-size: 12px; color: var(--faint); }
-.footer-l strong { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; }
+.copy-btn:hover { background: rgba(109,40,217,0.12); border-color: rgba(109,40,217,0.5); }
+.copy-btn.copied { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.4); color: #059669; }
 
-@keyframes fadeUp { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+/* Card footer */
+.card-footer { border-top: 1px solid var(--border); padding: 16px 22px; }
+.launch-btn {
+  width: 100%; padding: 11px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 13px; letter-spacing: 0.01em;
+  border-radius: 10px; border: none; cursor: pointer;
+  background: var(--grad); color: white;
+  transition: opacity 0.15s, transform 0.15s;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  text-decoration: none;
+}
+.launch-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.launch-btn::after { content: '→'; font-size: 15px; }
+
+/* ── SEARCH BAR ── */
+.search-wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 20px 40px 0;
+  position: relative;
+}
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-icon {
+  position: absolute; left: 16px;
+  color: var(--faint); font-size: 15px;
+  pointer-events: none; z-index: 1;
+}
+.search-input {
+  width: 100%;
+  padding: 12px 44px 12px 44px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; color: var(--text);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-shadow: 0 1px 4px rgba(80,50,120,0.05);
+}
+.search-input::placeholder { color: var(--faint); }
+.search-input:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(109,40,217,0.08);
+}
+.search-clear {
+  position: absolute; right: 14px;
+  background: none; border: none; cursor: pointer;
+  color: var(--faint); font-size: 16px; line-height: 1;
+  display: none; padding: 4px;
+  transition: color 0.14s;
+}
+.search-clear:hover { color: var(--text); }
+.search-clear.visible { display: block; }
+.search-results {
+  display: none;
+  position: absolute;
+  left: 40px; right: 40px; top: calc(100% + 6px);
+  z-index: 200;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(80,50,120,0.14);
+  animation: fadeUp 0.15s ease;
+  text-align: left;
+}
+.search-results.visible { display: block; }
+.search-results-header {
+  padding: 10px 18px 8px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--faint);
+  border-bottom: 1px solid var(--border);
+}
+.search-result-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 18px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: #faf9fe; }
+.search-result-section {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--pink); white-space: nowrap;
+  margin-top: 2px; flex-shrink: 0; width: 130px;
+}
+.search-result-body { flex: 1; min-width: 0; }
+.search-result-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 13px;
+  color: var(--text); margin-bottom: 2px;
+  letter-spacing: -0.01em;
+}
+.search-result-desc {
+  font-size: 12px; color: var(--faint);
+  line-height: 1.45;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.search-result-arrow {
+  color: var(--faint); font-size: 13px;
+  align-self: center; flex-shrink: 0;
+  transition: color 0.14s;
+}
+.search-result-item:hover .search-result-arrow { color: var(--purple); }
+.search-no-results {
+  padding: 24px 18px;
+  text-align: center;
+  font-size: 13px; color: var(--faint);
+}
+@media (max-width: 720px) {
+  .search-wrap { padding: 0 20px 24px; }
+  .search-result-section { display: none; }
+}
 
 /* ── GUIDES SECTION ── */
 .guides-section {
-  padding: 56px 40px 72px;
+  padding: 48px 40px 72px;
   max-width: 1220px;
   margin: 0 auto;
 }
 .guides-section-header {
   display: flex; align-items: baseline; gap: 14px;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
   border-top: 1px solid var(--border);
   padding-top: 40px;
 }
@@ -396,20 +666,17 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.guides-section-sub {
-  font-size: 13px; color: var(--faint);
-}
-.guide-category { margin-bottom: 40px; }
+.guides-section-sub { font-size: 13px; color: var(--faint); }
+.guide-category { margin-bottom: 36px; }
 .guide-category-label {
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--purple);
   display: flex; align-items: center; gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .guide-category-label::before {
-  content: '';
-  display: block; width: 20px; height: 2px;
+  content: ''; display: block; width: 20px; height: 2px;
   background: var(--grad); border-radius: 2px;
 }
 .guide-cards {
@@ -418,28 +685,21 @@ body {
   gap: 10px;
 }
 .guide-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 18px;
-  text-decoration: none;
-  display: block;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 18px;
+  text-decoration: none; display: block;
   transition: border-color 0.14s, box-shadow 0.14s, transform 0.14s;
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
 .guide-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: var(--grad); opacity: 0;
-  transition: opacity 0.14s;
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad); opacity: 0; transition: opacity 0.14s;
 }
 .guide-card:hover { border-color: var(--border2); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(109,40,217,0.07); }
 .guide-card:hover::before { opacity: 1; }
 .guide-card-tool {
   font-size: 10px; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  margin-bottom: 6px;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;
 }
 .tc-claude  { color: #7c3aed; }
 .tc-chatgpt { color: #059669; }
@@ -453,21 +713,41 @@ body {
   color: var(--text); line-height: 1.35;
   margin-bottom: 5px; letter-spacing: -0.01em;
 }
-.guide-card-desc {
-  font-size: 12px; color: var(--faint); line-height: 1.5;
-}
+.guide-card-desc { font-size: 12px; color: var(--faint); line-height: 1.5; }
 .guide-card-arrow {
-  display: inline-block;
-  font-size: 12px; color: var(--faint);
+  display: inline-block; font-size: 12px; color: var(--faint);
   margin-top: 8px; transition: color 0.14s;
 }
 .guide-card:hover .guide-card-arrow { color: var(--purple); }
 
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: #fff;
+}
+.footer-l { font-size: 12px; color: var(--faint); }
+.footer-l strong { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in { animation: fadeUp 0.2s ease; }
+
 /* Responsive */
-@media (max-width: 960px) {
+@media (max-width: 1060px) {
+  .columns { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
   .columns { grid-template-columns: 1fr; padding: 0 20px 40px; }
   .guides-section { padding: 40px 20px 56px; }
   .site-header, .hero, .site-footer { padding-left: 20px; padding-right: 20px; }
+  .personalize-wrap { padding: 0 20px 32px; }
+  .filter-row { flex-direction: column; gap: 6px; }
+  .filter-row-label { padding-top: 0; }
 }
 </style>
 </head>
@@ -478,198 +758,96 @@ body {
     <div class="header-logomark">B</div>
     <span class="header-title">BigID AI Accelerator</span>
   </div>
-  <span class="header-tag">Internal · v1.0</span>
+  <span class="header-tag">Internal · v2.0</span>
 </header>
 
 <div class="hero">
   <h1 class="hero-title">BigID AI Accelerator</h1>
-  <p class="hero-sub">Your guide to Claude, ChatGPT, and Gemini — pick a tool, find your fit, and get moving.</p>
-  <div class="grad-bar"></div>
+  <p class="hero-sub">Three tools, one program. Personalize by department or action, or search for a guide below.</p>
+  <div class="grad-bar" style="margin-bottom:20px"></div>
+  <!-- SEARCH BAR -->
+  <div class="search-wrap">
+    <div class="search-box">
+      <span class="search-icon">⌕</span>
+      <input class="search-input" id="guideSearch" type="text" placeholder="I'm looking for…" autocomplete="off">
+      <button class="search-clear" id="searchClear">✕</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
 </div>
 
+<!-- PERSONALIZE BAR -->
+<div class="personalize-wrap">
+  <div class="personalize-bar">
+    <div class="personalize-header">
+      <div class="personalize-icon">✦</div>
+      <span class="personalize-label">Personalize your view</span>
+      <span class="personalize-hint">Pick one filter to unlock tailored tips and prompts across all three tools</span>
+      <button class="clear-btn" id="clearBtn">Clear</button>
+    </div>
+    <div class="filter-rows">
+      <div class="filter-row">
+        <span class="filter-row-label">Dept</span>
+        <div class="filter-pills" id="deptPills">
+          <button class="filter-pill" data-type="dept" data-value="Marketing">Marketing</button>
+          <button class="filter-pill" data-type="dept" data-value="Sales">Sales</button>
+          <button class="filter-pill" data-type="dept" data-value="Engineering">Engineering</button>
+          <button class="filter-pill" data-type="dept" data-value="Customer Success">Customer Success</button>
+          <button class="filter-pill" data-type="dept" data-value="Product">Product</button>
+          <button class="filter-pill" data-type="dept" data-value="HR & People">HR &amp; People</button>
+          <button class="filter-pill" data-type="dept" data-value="Executive">Executive</button>
+          <button class="filter-pill" data-type="dept" data-value="Legal">Legal</button>
+        </div>
+      </div>
+      <div class="filter-row">
+        <span class="filter-row-label">Action</span>
+        <div class="filter-pills" id="actionPills">
+          <button class="filter-pill" data-type="action" data-value="Write & create">Write &amp; create</button>
+          <button class="filter-pill" data-type="action" data-value="Research & summarize">Research &amp; summarize</button>
+          <button class="filter-pill" data-type="action" data-value="Analyze data">Analyze data</button>
+          <button class="filter-pill" data-type="action" data-value="Meeting follow-up">Meeting follow-up</button>
+          <button class="filter-pill" data-type="action" data-value="Manage email">Manage email</button>
+          <button class="filter-pill" data-type="action" data-value="Build a custom GPT">Build a custom GPT</button>
+          <button class="filter-pill" data-type="action" data-value="Build in Slides">Build in Slides</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL CARDS -->
 <div class="columns" id="columns"></div>
 
-<div class="guides-section">
-  <div class="guides-section-header">
-    <span class="guides-section-title">How-To Guides</span>
-    <span class="guides-section-sub">Step-by-step playbooks — with real prompts, real Salesforce data, and zero fluff.</span>
-  </div>
+<!-- GUIDES -->
+<div class="guides-section" id="guidesSection"></div>
 
-  <!-- Getting Started with Claude -->
-  <div class="guide-category">
-    <p class="guide-category-label">Getting started with Claude</p>
-    <div class="guide-cards">
-      <a class="guide-card" href="LINK_CLAUDE_PRESENTATION" target="_blank">
-        <p class="guide-card-tool tc-claude">Claude</p>
-        <p class="guide-card-title">Polish and Format a Presentation</p>
-        <p class="guide-card-desc">Structure, sharpen, and calibrate any deck for any audience — with prompts throughout.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_CLAUDE_PPTX" target="_blank">
-        <p class="guide-card-tool tc-claude">Claude</p>
-        <p class="guide-card-title">Build a Branded Slide Deck with the PPTX Skill</p>
-        <p class="guide-card-desc">Generate fully branded BigID .pptx files from a prompt — correct fonts, colors, logos, layouts.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_CLAUDE_PDF" target="_blank">
-        <p class="guide-card-tool tc-claude">Claude</p>
-        <p class="guide-card-title">Create a Branded PDF</p>
-        <p class="guide-card-desc">Two skills — standard formatter and dark header — for every document from one-pagers to exec briefs.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_CLAUDE_CHAT_PROJECTS_COWORK" target="_blank">
-        <p class="guide-card-tool tc-claude">Claude</p>
-        <p class="guide-card-title">Chat, Projects, and Cowork — What's Best for Each</p>
-        <p class="guide-card-desc">Know which Claude mode to reach for and when — with BigID examples for all three.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_WHICH_TOOL" target="_blank">
-        <p class="guide-card-tool tc-all">All tools</p>
-        <p class="guide-card-title">When to Use Claude vs ChatGPT vs Gemini</p>
-        <p class="guide-card-desc">The decision rules — including Notebook LM, code interpreter, and custom GPTs.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Know Your Accounts -->
-  <div class="guide-category">
-    <p class="guide-category-label">Know your accounts</p>
-    <div class="guide-cards">
-      <a class="guide-card" href="LINK_PRECALL" target="_blank">
-        <p class="guide-card-tool tc-sales">Sales</p>
-        <p class="guide-card-title">Pre-Call Research in 60 Seconds</p>
-        <p class="guide-card-desc">Pull a complete one-page brief before any call using Salesforce, Gmail, Calendar, and web search.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_TARGET_ACCOUNT" target="_blank">
-        <p class="guide-card-tool tc-sales">Sales</p>
-        <p class="guide-card-title">Build a Target Account List</p>
-        <p class="guide-card-desc">ICP-scored, signal-rich, research-backed lists from scratch — and how to keep them current.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_ICP_COMPARE" target="_blank">
-        <p class="guide-card-tool tc-sales">Sales</p>
-        <p class="guide-card-title">Compare a List to RevIC ICP Fit</p>
-        <p class="guide-card-desc">Cross-reference any registration or target list against Salesforce ICP scores. High fits first, always.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Work Your Pipeline -->
-  <div class="guide-category">
-    <p class="guide-category-label">Work your pipeline</p>
-    <div class="guide-cards">
-      <a class="guide-card" href="LINK_DEAL_ANALYSIS" target="_blank">
-        <p class="guide-card-tool tc-sales">Sales</p>
-        <p class="guide-card-title">Deal Analysis via Salesforce MCP</p>
-        <p class="guide-card-desc">Pull a complete deal brief — stage, activity, MEDDPICC, risk flags, and recommended next action.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_STAGE0" target="_blank">
-        <p class="guide-card-tool tc-sales">Sales</p>
-        <p class="guide-card-title">Stage 0 Cleanup for My Region</p>
-        <p class="guide-card-desc">Surface stale deals, triage advance/re-engage/close out, and clean up your qualification stage fast.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_FORECAST_SCRUB" target="_blank">
-        <p class="guide-card-tool tc-sales">Sales</p>
-        <p class="guide-card-title">Forecast Scrub</p>
-        <p class="guide-card-desc">Four tests for every Commit deal — close date, activity, MEDDPICC, next step. Walk into any call with a number you can defend.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Reports & Analysis -->
-  <div class="guide-category">
-    <p class="guide-category-label">Reports &amp; analysis</p>
-    <div class="guide-cards">
-      <a class="guide-card" href="LINK_WEEKLY_PIPELINE" target="_blank">
-        <p class="guide-card-tool tc-ops">Reports &amp; Analysis</p>
-        <p class="guide-card-title">Weekly Pipeline Movement Report</p>
-        <p class="guide-card-desc">New pipeline, closed won, closed lost, stage advances, slips, and net change — in five minutes every Monday.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_FORECAST_ACCURACY" target="_blank">
-        <p class="guide-card-tool tc-ops">Reports &amp; Analysis</p>
-        <p class="guide-card-title">Forecast Accuracy Tracker</p>
-        <p class="guide-card-desc">Compare called vs. closed, build your personal close rate by category, and understand your win rate patterns.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_PIPELINE_COVERAGE" target="_blank">
-        <p class="guide-card-tool tc-ops">Reports &amp; Analysis</p>
-        <p class="guide-card-title">Pipeline Coverage Analysis</p>
-        <p class="guide-card-desc">Weighted pipeline vs. quota by rep, region, and segment — with gap analysis before it becomes a problem.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_TERRITORY_HEALTH" target="_blank">
-        <p class="guide-card-tool tc-ops">Reports &amp; Analysis</p>
-        <p class="guide-card-title">Territory Health Snapshot</p>
-        <p class="guide-card-desc">Complete one-pull view of any BigID territory — pipeline, activity, closed won, rep breakdown, and verdict.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_ACCOUNT_PENETRATION" target="_blank">
-        <p class="guide-card-tool tc-ops">Reports &amp; Analysis</p>
-        <p class="guide-card-title">Account Penetration Report</p>
-        <p class="guide-card-desc">87% of High ICP accounts have no active pipeline. This guide shows you where to find and prioritize the whitespace.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_MONDAY_BRIEF" target="_blank">
-        <p class="guide-card-tool tc-ops">Reports &amp; Analysis</p>
-        <p class="guide-card-title">Monday Morning Pipeline Brief</p>
-        <p class="guide-card-desc">Five prompts, five minutes, every Monday. Know your pipeline cold before your first call of the week.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-      <a class="guide-card" href="LINK_EOQ_SWEEP" target="_blank">
-        <p class="guide-card-tool tc-ops">Reports &amp; Analysis</p>
-        <p class="guide-card-title">End of Quarter Deal Status Sweep</p>
-        <p class="guide-card-desc">Close, push, or drop — a systematic review of every deal closing this quarter with a four-week cadence.</p>
-        <span class="guide-card-arrow">→ Open guide</span>
-      </a>
-    </div>
-  </div>
-</div>
+<footer class="site-footer">
   <p class="footer-l">Built by <strong>BigID Marketing</strong> · Guides update as we learn</p>
   <p style="font-size:12px;color:var(--faint)">Have a guide to add? Ping the team.</p>
 </footer>
 
 <script>
-// ── TO UPDATE "GET STARTED" LINKS ────────────────────────────────────────────
-// Find the three docsUrl lines below (one per tool) and replace the URL value
-// with your Google Doc link, e.g.: docsUrl: 'https://docs.google.com/document/d/YOUR_ID',
-// ─────────────────────────────────────────────────────────────────────────────
-
 const CONN_ICONS = {
-  'Google Drive':           'drive.google.com',
-  'Gmail':                  'mail.google.com',
-  'Google Calendar':        'calendar.google.com',
-  'Google Docs':            'docs.google.com',
-  'Google Sheets':          'sheets.google.com',
-  'Google Slides':          'slides.google.com',
-  'Google Meet':            'meet.google.com',
-  'Slack':                  'slack.com',
-  'Figma':                  'figma.com',
-  'HubSpot':                'hubspot.com',
-  'Salesforce':             'salesforce.com',
-  'BigID MCP':              'bigid.com',
-  'Atlassian':              'atlassian.com',
-  'BigQuery':               'cloud.google.com',
-  'DALL·E (image gen)':     'openai.com',
-  'Code interpreter':       'openai.com',
-  'Web browsing':           'openai.com',
-  'GPT Store plugins':      'openai.com',
-  'Microsoft 365 Copilot':  'microsoft.com',
+  'Google Drive': 'drive.google.com', 'Gmail': 'mail.google.com',
+  'Google Calendar': 'calendar.google.com', 'Google Docs': 'docs.google.com',
+  'Google Sheets': 'sheets.google.com', 'Google Slides': 'slides.google.com',
+  'Google Meet': 'meet.google.com', 'Slack': 'slack.com', 'Figma': 'figma.com',
+  'HubSpot': 'hubspot.com', 'Salesforce': 'salesforce.com', 'BigID MCP': 'bigid.com',
+  'Atlassian': 'atlassian.com', 'BigQuery': 'cloud.google.com',
+  'DALL·E (image gen)': 'openai.com', 'Code interpreter': 'openai.com',
+  'Web browsing': 'openai.com', 'GPT Store plugins': 'openai.com',
+  'Microsoft 365 Copilot': 'microsoft.com',
 };
 
 function connPill(name) {
   const domain = CONN_ICONS[name];
   const icon = domain
-    ? `<img src="https://www.google.com/s2/favicons?domain=${domain}&sz=32" width="13" height="13" alt="">`
+    ? `<img src="https://www.google.com/s2/favicons?domain=${domain}&sz=64" width="16" height="16" alt="" onerror="this.style.display='none'">`
     : '';
   return `<span class="conn-pill">${icon}${name}</span>`;
 }
+
+// ── TOOL DATA ──────────────────────────────────────────────────────────────
 
 const TOOLS = [
   {
@@ -677,13 +855,19 @@ const TOOLS = [
     tagline: 'Deep reasoning · long context · MCP-connected workflows',
     docsUrl: 'https://support.anthropic.com',
     guides: [
-      { title: 'Polish and Format a Presentation', url: 'LINK_CLAUDE_PRESENTATION' },
-      { title: 'Build a Branded Slide Deck', url: 'LINK_CLAUDE_PPTX' },
-      { title: 'Create a Branded PDF', url: 'LINK_CLAUDE_PDF' },
-      { title: 'Chat, Projects, and Cowork — What\'s Best for Each', url: 'LINK_CLAUDE_CHAT_PROJECTS_COWORK' },
+      { title: 'Polish and Format a Presentation', url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.0#heading=h.z8b32v6pv9nv' },
+      { title: 'Build a Branded Slide Deck', url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.f59ouv4uvisy#heading=h.tuwrtyri9nxq' },
+      { title: 'Create a Branded PDF', url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.sar5o84dai40#heading=h.tek25025pgk8' },
+      { title: 'Chat, Projects, and Cowork — What\'s Best for Each', url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.3iwrpk9spln6' },
     ],
+    bigidResources: {
+      label: 'BigID Skill',
+      items: [
+        { title: 'Slide Design Skill', desc: 'Generate fully branded BigID .pptx decks from a prompt — fonts, colors, logos, layouts.', url: 'LINK_CLAUDE_PPTX' },
+        { title: 'PDF Design Skill', desc: 'Two formatters: standard and dark-header — for one-pagers, briefs, and exec docs.', url: 'LINK_CLAUDE_PDF' },
+      ]
+    },
     overview: {
-      availability: 'Available to all BigID employees — Pro access included',
       url: 'https://claude.ai', urlLabel: 'claude.ai',
       note: 'Also available as a desktop and mobile app. Contact IT if you need access.',
       connections: ['Google Drive','Gmail','Google Calendar','Slack','Figma','HubSpot','Salesforce','BigID MCP','Atlassian','BigQuery']
@@ -692,7 +876,7 @@ const TOOLS = [
       'Go to claude.ai and sign in with your BigID work email',
       'Click the plug icon in the left sidebar to open the integrations panel',
       'Connect Google Drive, Gmail, and Slack — these unlock the most powerful workflows',
-      'Start a new conversation and try one of the prompts in the "Try it out" section below',
+      'Start a new conversation and try one of the prompts in the Try It tab',
       'Join #ai-tools in Slack to share what you build and learn from the team'
     ],
     useCases: [
@@ -705,16 +889,8 @@ const TOOLS = [
     tryIt: [
       { label: 'Research brief', prompt: 'Research [topic] and write a structured brief with a TLDR, key findings, and cited sources. Format it for an executive audience.' },
       { label: 'Campaign draft', prompt: 'Based on this brief [paste], write a 3-email nurture sequence for a [persona] audience. Keep the tone direct and human — no AI-sounding language.' },
-      { label: 'Meeting prep', prompt: 'I have a meeting with [Company] on [date]. Pull context from my calendar and email and write a one-page brief: attendees, background, goals, and 4 talking points.' }
-    ],
-    byDept: [
-      { dept: 'Marketing', tips: ['Draft campaign assets from a brief — upload to Drive and reference via MCP', 'Build a reusable prompt template for your brand voice', 'Use Projects to keep brand context persistent across all sessions'], prompt: 'Read the campaign brief at [link] and generate: a 3-email nurture sequence, a 600-word blog intro, and 5 LinkedIn posts. Match the voice in our brand guide at [link].' },
-      { dept: 'Sales', tips: ['Connect Salesforce via MCP to pull live account data into any prompt', 'Use Claude to personalize outreach at scale across your book of business', 'Prep for QBRs by pulling email + calendar context before every call'], prompt: 'Pull account details for [Company] from Salesforce and write a 3-email outreach sequence focused on our DSPM and data security positioning.' },
-      { dept: 'Engineering', tips: ['Paste full code — Claude handles large contexts and holds state across turns', 'Ask for refactoring, test generation, and inline docs in one shot', 'Use file uploads for larger codebases or multi-file context'], prompt: 'Review this [language] code for bugs, security issues, and performance. Provide a refactored version with comments and a basic set of unit tests.' },
-      { dept: 'Customer Success', tips: ['Connect Gmail + Calendar before every customer call for instant context synthesis', 'Draft QBR prep docs and account health summaries with one prompt', 'Summarize long threads before drafting a reply'], prompt: 'I have a QBR with [Customer] on [date]. Pull relevant context from email and calendar and write a briefing: account health, open issues, and renewal talking points.' },
-      { dept: 'Executive', tips: ['Synthesize briefing docs before board or investor meetings in minutes', 'Draft executive communications — all-hands memos, board updates, investor notes', 'Use Projects to persist context for ongoing strategic initiatives'], prompt: 'Summarize [document or thread] and write an executive summary for a board audience. Lead with the business impact and keep it under one page.' },
-      { dept: 'HR & People', tips: ['Write JDs that are specific and human — not templated job board boilerplate', 'Draft onboarding comms, offer letters, and rejection notes quickly', 'Use Projects to keep people ops templates and context persistent'], prompt: 'Write a job description for [role] focused on [key skills]. Make it specific and aspirational. Also write a shorter version for LinkedIn.' },
-      { dept: 'Legal', tips: ['Upload regulation PDFs and ask for plain-English summaries with key obligations', 'Compare obligations across jurisdictions — GDPR vs CCPA vs EU AI Act — in one prompt', 'Draft initial policy language for legal team review'], prompt: 'Summarize [regulation] for a data security company. What are our key obligations, deadlines, and recommended actions? Keep it under two pages.' }
+      { label: 'Meeting prep', prompt: 'I have a meeting with [Company] on [date]. Pull context from my calendar and email and write a one-page brief: attendees, background, goals, and 4 talking points.' },
+      { label: 'Prospect research', prompt: 'Research [Company] for an enterprise sales call. Include overview, recent news, likely tech stack, data security pain points, and 4 tailored talking points.' }
     ],
     byRole: [
       { role: 'VP / RVP', tips: ['Connect Gmail + Calendar for full context synthesis before board prep or investor calls', 'Synthesize strategic memos, all-hands content, and investor updates in minutes', 'Use Projects to maintain persistent context for ongoing strategic initiatives'], prompt: 'I have [meeting/presentation] with [audience] on [date]. Pull context from my calendar and email and write a one-page briefing: background, key points, and 3 talking points.' },
@@ -729,6 +905,16 @@ const TOOLS = [
       { goal: 'Analyze data', tips: ['Upload files directly — Claude reads CSVs, PDFs, and spreadsheets', 'Ask specific questions rather than just "analyze this"', 'Request charts or structured summary tables as output'], prompt: 'Analyze this [data file]. Tell me: the top trends, any anomalies worth flagging, and your 3 most important takeaways. Suggest a visualization for the key finding.' },
       { goal: 'Prepare for meetings', tips: ['Connect Gmail + Calendar + Drive for full context synthesis', 'Ask for a one-page brief format with talking points', 'Ask Claude to pre-write follow-up email templates before the call'], prompt: 'I have a meeting with [person/company] on [date]. Pull context from my email and calendar. Write a brief: attendees, background, goals, and 4 talking points.' },
       { goal: 'Automate workflows', tips: ['Enable all relevant MCP connectors in the tools panel first', 'Describe your workflow end-to-end in plain English', 'Ask Claude to confirm before any write or send actions'], prompt: 'When I share [input], please: (1) pull [data] from [tool], (2) draft [output] and save to [location], (3) notify [person/channel] with a summary.' }
+    ],
+    byDept: [
+      { dept: 'Marketing', tips: ['Draft campaign assets from a brief — upload to Drive and reference via MCP', 'Build a reusable prompt template for your brand voice', 'Use Projects to keep brand context persistent across all sessions'], prompt: 'Read the campaign brief at [link] and generate: a 3-email nurture sequence, a 600-word blog intro, and 5 LinkedIn posts. Match the voice in our brand guide at [link].' },
+      { dept: 'Sales', tips: ['Connect Salesforce via MCP to pull live account data into any prompt', 'Use Claude to personalize outreach at scale across your book of business', 'Prep for QBRs by pulling email + calendar context before every call'], prompt: 'Pull account details for [Company] from Salesforce and write a 3-email outreach sequence focused on our DSPM and data security positioning.' },
+      { dept: 'Engineering', tips: ['Paste full code — Claude handles large contexts and holds state across turns', 'Ask for refactoring, test generation, and inline docs in one shot', 'Use file uploads for larger codebases or multi-file context'], prompt: 'Review this [language] code for bugs, security issues, and performance. Provide a refactored version with comments and a basic set of unit tests.' },
+      { dept: 'Customer Success', tips: ['Connect Gmail + Calendar before every customer call for instant context synthesis', 'Draft QBR prep docs and account health summaries with one prompt', 'Summarize long threads before drafting a reply'], prompt: 'I have a QBR with [Customer] on [date]. Pull relevant context from email and calendar and write a briefing: account health, open issues, and renewal talking points.' },
+      { dept: 'Product', tips: ['Use Claude to synthesize PRD feedback from comment threads in Docs', 'Draft roadmap narratives and feature specs from rough bullet points', 'Ask for structured comparison tables when evaluating options'], prompt: 'Given this feature request list [paste], prioritize by impact vs effort and build a 2x2 matrix. Flag the top 3 items to tackle first and explain your reasoning.' },
+      { dept: 'HR & People', tips: ['Write JDs that are specific and human — not templated job board boilerplate', 'Draft onboarding comms, offer letters, and rejection notes quickly', 'Use Projects to keep people ops templates and context persistent'], prompt: 'Write a job description for [role] focused on [key skills]. Make it specific and aspirational. Also write a shorter version for LinkedIn.' },
+      { dept: 'Executive', tips: ['Synthesize briefing docs before board or investor meetings in minutes', 'Draft executive communications — all-hands memos, board updates, investor notes', 'Use Projects to persist context for ongoing strategic initiatives'], prompt: 'Summarize [document or thread] and write an executive summary for a board audience. Lead with the business impact and keep it under one page.' },
+      { dept: 'Legal', tips: ['Upload regulation PDFs and ask for plain-English summaries with key obligations', 'Compare obligations across jurisdictions — GDPR vs CCPA vs EU AI Act — in one prompt', 'Draft initial policy language for legal team review'], prompt: 'Summarize [regulation] for a data security company. What are our key obligations, deadlines, and recommended actions? Keep it under two pages.' }
     ]
   },
 
@@ -739,8 +925,14 @@ const TOOLS = [
     guides: [
       { title: 'When to Use Claude vs ChatGPT vs Gemini', url: 'LINK_WHICH_TOOL' },
     ],
+    bigidResources: {
+      label: 'BigID GPT',
+      items: [
+        { title: 'Email GPT', desc: 'Pre-loaded with BigID voice, tone guidelines, and email templates for every use case.', url: 'LINK_EMAIL_GPT' },
+        { title: 'CMO Lens GPT', desc: 'Marketing strategy, messaging, and campaign ideation through the BigID lens.', url: 'LINK_CMO_LENS_GPT' },
+      ]
+    },
     overview: {
-      availability: 'Available to all BigID employees — Plus access included',
       url: 'https://chat.openai.com', urlLabel: 'chat.openai.com',
       note: 'Also available as a desktop and mobile app. Contact IT if you need access.',
       connections: ['DALL·E (image gen)','Code interpreter','Web browsing','GPT Store plugins','Microsoft 365 Copilot']
@@ -760,16 +952,8 @@ const TOOLS = [
     ],
     tryIt: [
       { label: 'Data analysis', prompt: 'Analyze this CSV of pipeline data. Show: total by stage, win rate by segment, top 5 deals by value, and a 6-month trend chart.' },
-      { label: 'Prospect research', prompt: 'Research [Company] for an enterprise sales call. Include overview, recent news, likely tech stack, data security pain points, and 4 tailored talking points.' }
-    ],
-    byDept: [
-      { dept: 'Marketing', tips: ['Build a Marketing GPT with brand voice docs baked in as knowledge', 'Use code interpreter to analyze campaign performance CSVs without needing Excel', 'Use web browsing to research competitors or trending topics in real time'], prompt: 'Research recent coverage of [topic/competitor] and write a competitive brief: what they\'re doing, what\'s resonating, and where we have a clear differentiator.' },
-      { dept: 'Sales', tips: ['Enable web browsing to research prospects and news in real time before any call', 'Build a Sales Enablement GPT with your pitch deck and objection handling baked in', 'Use code interpreter to analyze your pipeline CSV for deal reviews and forecasting'], prompt: 'Research [Company] for an enterprise sales call. Include background, recent news, probable tech stack, key pain points, and 4 tailored talking points for a data security pitch.' },
-      { dept: 'Engineering', tips: ['Use code interpreter to run and test Python snippets directly in chat', 'Upload multi-file codebases as a zip and ask for architecture reviews', 'Ask for production-ready code with error handling, comments, and tests in one shot'], prompt: 'Review this code for issues, refactor with inline comments, add error handling, and write unit tests for the core functions.' },
-      { dept: 'Customer Success', tips: ['Use code interpreter to analyze account health CSVs and identify churn risk', 'Enable browsing to pull recent news about a customer before a call', 'Build a CS GPT with your playbooks and common customer questions as knowledge'], prompt: 'Analyze this account health CSV. Flag accounts at risk of churn based on: low usage, open tickets, no recent contact. Summarize the top 3 I should prioritize this week.' },
-      { dept: 'Product', tips: ['Use code interpreter to prototype simple data analyses or logic checks', 'Build a Product GPT with your PRDs and user research baked in as knowledge', 'Use browsing to research competitive feature gaps in real time'], prompt: 'Given this feature request list [paste], prioritize by impact vs effort and build a 2x2 matrix. Flag the top 3 items to tackle first and explain your reasoning.' },
-      { dept: 'HR & People', tips: ['Build a Recruiting GPT with JD templates and screening criteria as knowledge', 'Use code interpreter to analyze engagement survey data from an uploaded CSV', 'Use browsing to research market compensation benchmarks in real time'], prompt: 'Analyze this engagement survey CSV. What are the top 3 themes in the feedback? Flag any responses that suggest urgent issues and recommend follow-up actions.' },
-      { dept: 'Executive', tips: ['Use code interpreter to turn board deck data into clean charts instantly', 'Build a custom Executive GPT with company context and key metrics baked in', 'Use browsing for real-time competitive and market research before key decisions'], prompt: 'Analyze this data and create a clean chart showing [metric] over [time period]. Write a 3-sentence exec commentary on what the trend means and what action it suggests.' }
+      { label: 'Custom GPT prompt', prompt: '(GPT builder) You are a BigID [team] expert. You know [what it knows]. When asked [typical request], respond by [how to respond]. Always [key behavior]. Never [what to avoid].' },
+      { label: 'Prospect research', prompt: 'Research [Company] for an enterprise sales call. Include background, recent news, probable tech stack, key pain points, and 4 tailored talking points for a data security pitch.' }
     ],
     byRole: [
       { role: 'VP / RVP', tips: ['Use code interpreter to turn raw data files into clean charts for board or leadership decks', 'Build an Executive GPT with your company\'s context and key metrics baked in', 'Use browsing to quickly research competitors or market shifts before key decisions'], prompt: 'Analyze this data file and create 3 clean charts for a leadership presentation: [metric 1], [metric 2], [metric 3]. Write one sentence of commentary per chart.' },
@@ -783,6 +967,15 @@ const TOOLS = [
       { goal: 'Research & summarize', tips: ['Enable browsing for current information beyond the training cutoff', 'Ask for a structured output: TLDR, context, key findings, sources', 'Paste a URL and ask for a summary of a specific article'], prompt: 'Search for recent coverage of [topic]. Write a structured brief: TLDR (3 sentences), key developments, notable sources, and any open questions or conflicting views.' },
       { goal: 'Build a custom GPT', tips: ['Upload your best internal docs as the GPT\'s knowledge base', 'Write a detailed system prompt: who it is, what it knows, how it should respond', 'Test with edge cases before sharing the link with your team'], prompt: '(GPT builder) You are a BigID [team] expert. You know [what it knows]. When asked [typical request], respond by [how to respond]. Always [key behavior]. Never [what to avoid].' },
       { goal: 'Write & create', tips: ['Paste a writing sample to anchor the voice and style before asking for content', 'Ask for a rough draft first, then iterate — faster than trying to perfect in one shot', 'ChatGPT handles a very wide range of formats and tones well'], prompt: 'Write [content type] about [topic] for [audience]. Match this voice (paste sample). Keep it [tone]. Approximately [length]. Avoid jargon and AI-sounding language.' }
+    ],
+    byDept: [
+      { dept: 'Marketing', tips: ['Build a Marketing GPT with brand voice docs baked in as knowledge', 'Use code interpreter to analyze campaign performance CSVs without needing Excel', 'Use web browsing to research competitors or trending topics in real time'], prompt: 'Research recent coverage of [topic/competitor] and write a competitive brief: what they\'re doing, what\'s resonating, and where we have a clear differentiator.' },
+      { dept: 'Sales', tips: ['Enable web browsing to research prospects and news in real time before any call', 'Build a Sales Enablement GPT with your pitch deck and objection handling baked in', 'Use code interpreter to analyze your pipeline CSV for deal reviews and forecasting'], prompt: 'Research [Company] for an enterprise sales call. Include background, recent news, probable tech stack, key pain points, and 4 tailored talking points for a data security pitch.' },
+      { dept: 'Engineering', tips: ['Use code interpreter to run and test Python snippets directly in chat', 'Upload multi-file codebases as a zip and ask for architecture reviews', 'Ask for production-ready code with error handling, comments, and tests in one shot'], prompt: 'Review this code for issues, refactor with inline comments, add error handling, and write unit tests for the core functions.' },
+      { dept: 'Customer Success', tips: ['Use code interpreter to analyze account health CSVs and identify churn risk', 'Enable browsing to pull recent news about a customer before a call', 'Build a CS GPT with your playbooks and common customer questions as knowledge'], prompt: 'Analyze this account health CSV. Flag accounts at risk of churn based on: low usage, open tickets, no recent contact. Summarize the top 3 I should prioritize this week.' },
+      { dept: 'Product', tips: ['Use code interpreter to prototype simple data analyses or logic checks', 'Build a Product GPT with your PRDs and user research baked in as knowledge', 'Use browsing to research competitive feature gaps in real time'], prompt: 'Given this feature request list [paste], prioritize by impact vs effort and build a 2x2 matrix. Flag the top 3 items to tackle first and explain your reasoning.' },
+      { dept: 'HR & People', tips: ['Build a Recruiting GPT with JD templates and screening criteria as knowledge', 'Use code interpreter to analyze engagement survey data from an uploaded CSV', 'Use browsing to research market compensation benchmarks in real time'], prompt: 'Analyze this engagement survey CSV. What are the top 3 themes in the feedback? Flag any responses that suggest urgent issues and recommend follow-up actions.' },
+      { dept: 'Executive', tips: ['Use code interpreter to turn board deck data into clean charts instantly', 'Build a custom Executive GPT with company context and key metrics baked in', 'Use browsing for real-time competitive and market research before key decisions'], prompt: 'Analyze this data and create a clean chart showing [metric] over [time period]. Write a 3-sentence exec commentary on what the trend means and what action it suggests.' }
     ]
   },
 
@@ -794,7 +987,6 @@ const TOOLS = [
       { title: 'When to Use Claude vs ChatGPT vs Gemini', url: 'LINK_WHICH_TOOL' },
     ],
     overview: {
-      availability: 'Available to all BigID employees via Google Workspace',
       url: 'https://gemini.google.com', urlLabel: 'gemini.google.com',
       note: 'Also accessible via the ✦ icon inside Gmail, Docs, Sheets, Slides, and Meet.',
       connections: ['Gmail','Google Docs','Google Sheets','Google Drive','Google Meet','Google Calendar','Google Slides']
@@ -818,17 +1010,8 @@ const TOOLS = [
       { label: 'Docs rewrite', prompt: '(In Docs sidebar) Make this section more concise and direct. Lead with the business impact, not the background. Use active voice.' },
       { label: 'Sheets analysis', prompt: '(In Sheets sidebar) Analyze this pipeline data: which segments have the highest win rate? What is the average deal size by region? Flag rows with a past-due close date.' }
     ],
-    byDept: [
-      { dept: 'Marketing', tips: ['Use Gemini in Docs to write and refine content without copy-pasting anywhere', 'Summarize brief threads and approval chains in Gmail before responding', 'Use Gemini in Slides to generate first-draft content from a brief or Google Doc'], prompt: '(In Docs sidebar) Rewrite this section for an external audience. More compelling and concise. Lead with the benefit, not the feature. Match our brand voice.' },
-      { dept: 'Sales', tips: ['Summarize long email chains with prospects before responding or prepping for a call', 'Use Gemini in Sheets to analyze pipeline data exported from Salesforce', 'Use Meet transcription + Gemini for instant call summaries with action items'], prompt: 'Summarize my recent email thread with [contact] at [Company]. What were the main points, what did we agree on, and what do I need to follow up on?' },
-      { dept: 'Engineering', tips: ['Use Gemini in Sheets to write and debug complex formulas fast', 'Summarize long doc comment threads in Google Docs spec reviews', 'Use Meet for technical design review transcription and decision capture'], prompt: '(In Sheets) Write a formula that [does X] using columns [A, B, C]. Explain each part and flag any edge cases or errors I should test.' },
-      { dept: 'Customer Success', tips: ['Summarize Meet recordings before writing follow-up emails to customers', 'Use Gemini in Docs to draft QBR prep materials directly from your notes', 'Summarize email threads before renewal or escalation calls'], prompt: 'Summarize my Google Meet with [customer] on [date]. List: key decisions, action items by owner, unresolved issues. Draft a follow-up email I can send today.' },
-      { dept: 'Product', tips: ['Use Gemini in Docs to synthesize PRD feedback from a long comment thread', 'Use Sheets + Gemini to analyze user research data or survey exports', 'Summarize design review Meets to capture decisions and open questions'], prompt: '(In Docs) Summarize the feedback in the comments on this PRD. Group by theme, flag conflicting input, and suggest a prioritized list of revisions.' },
-      { dept: 'HR & People', tips: ['Use Gemini in Docs to draft JDs and people comms from a short brief', 'Summarize interview debrief threads in Gmail quickly before decisions', 'Use Meet transcription to capture structured notes from panel interviews'], prompt: '(In Docs) Expand this JD outline into a full job description. Make it specific and aspirational — no generic language. Tone: direct, human, not corporate.' },
-      { dept: 'Executive', tips: ['Use Gemini in Gmail to triage and summarize high-priority threads daily', 'Summarize board or leadership recordings and extract decisions made', 'Use Gemini in Slides to generate exec presentations from a brief or document'], prompt: 'Summarize my Gmail threads flagged as high priority from [time period]. What are the 5 things I most need to respond to or act on today?' }
-    ],
     byRole: [
-      { role: 'VP / RVP', tips: ['Triage and summarize high-priority Gmail threads each morning before your day starts', 'Summarize board or leadership meeting recordings and extract decisions', 'Use Gemini in Slides to generate exec presentation structures from a doc or brief'], prompt: 'Summarize my Gmail threads from the past [time period] flagged as high priority. What are the top 5 things I need to respond to or act on today?' },
+      { role: 'VP / RVP', tips: ['Use Gemini in Gmail to triage and summarize high-priority threads daily', 'Summarize board or leadership recordings and extract decisions made', 'Use Gemini in Slides to generate exec presentations from a brief or document'], prompt: 'Summarize my Gmail threads flagged as high priority from [time period]. What are the 5 things I most need to respond to or act on today?' },
       { role: 'Director', tips: ['Summarize lengthy approval chains and cross-functional email threads before responding', 'Use Meet + Gemini to capture structured notes from cross-functional meetings', 'Use Gemini in Docs to draft updates and communications from a rough outline'], prompt: 'Summarize the last 2 weeks of email with [team/person] about [project]. What decisions were made, what is still open, and what do I owe them?' },
       { role: 'Manager', tips: ['Use Meet transcription + Gemini to auto-generate team meeting summaries and action items', 'Summarize your team\'s recent threads before 1:1s or performance reviews', 'Use Gemini in Docs to draft 1:1 agendas from a few bullet points'], prompt: '(In Docs) Draft a 1:1 agenda for my meeting with [name] based on these notes: [notes]. Include 3 discussion topics, any open action items, and one coaching question.' },
       { role: 'Individual Contributor', tips: ['Use the Docs sidebar to write and refine without leaving your workflow', 'Summarize long threads before responding so you never miss context', 'Use Gemini in Sheets to analyze data without needing formula expertise'], prompt: '(In Docs sidebar) I\'ve written a rough draft below. Make it more concise and direct. Remove filler and passive voice. Keep the key point front and center.' },
@@ -840,66 +1023,95 @@ const TOOLS = [
       { goal: 'Analyze in Sheets', tips: ['Ask questions in plain English — Gemini writes the formula for you', '"Flag rows where X is true" for fast conditional analysis', '"Summarize this spreadsheet" gives a plain-language overview of the whole dataset'], prompt: '(In Sheets) Analyze this data and tell me: [question 1], [question 2]. Write formulas for any calculations needed. Flag outliers or rows that need attention.' },
       { goal: 'Meeting follow-up', tips: ['Enable Meet transcription before the call — you cannot retroactively transcribe', 'Ask for action items sorted by owner to skip the "what did we decide" thread', 'Ask Gemini to draft individual follow-up emails per attendee with their specific items'], prompt: 'Summarize my Google Meet from [date] with [attendees]. List: decisions made, action items by owner, unresolved questions. Draft a follow-up email for all attendees.' },
       { goal: 'Build in Slides', tips: ['Paste a doc or brief into Gemini and ask it to create a slide structure', 'Ask for speaker notes alongside each slide for a complete, ready-to-present deck', '"Create a slide about X with 3 bullets and a speaker note" is a reliable format'], prompt: 'Based on this brief [paste], create a 5-slide presentation structure. For each slide: title, 3 bullet points, and a speaker note. Audience: [audience]. Goal: [goal].' }
+    ],
+    byDept: [
+      { dept: 'Marketing', tips: ['Use Gemini in Docs to write and refine content without copy-pasting anywhere', 'Summarize brief threads and approval chains in Gmail before responding', 'Use Gemini in Slides to generate first-draft content from a brief or Google Doc'], prompt: '(In Docs sidebar) Rewrite this section for an external audience. More compelling and concise. Lead with the benefit, not the feature. Match our brand voice.' },
+      { dept: 'Sales', tips: ['Summarize long email chains with prospects before responding or prepping for a call', 'Use Gemini in Sheets to analyze pipeline data exported from Salesforce', 'Use Meet transcription + Gemini for instant call summaries with action items'], prompt: 'Summarize my recent email thread with [contact] at [Company]. What were the main points, what did we agree on, and what do I need to follow up on?' },
+      { dept: 'Engineering', tips: ['Use Gemini in Sheets to write and debug complex formulas fast', 'Summarize long doc comment threads in Google Docs spec reviews', 'Use Meet for technical design review transcription and decision capture'], prompt: '(In Sheets) Write a formula that [does X] using columns [A, B, C]. Explain each part and flag any edge cases or errors I should test.' },
+      { dept: 'Customer Success', tips: ['Summarize Meet recordings before writing follow-up emails to customers', 'Use Gemini in Docs to draft QBR prep materials directly from your notes', 'Summarize email threads before renewal or escalation calls'], prompt: 'Summarize my Google Meet with [customer] on [date]. List: key decisions, action items by owner, unresolved issues. Draft a follow-up email I can send today.' },
+      { dept: 'Product', tips: ['Use Gemini in Docs to synthesize PRD feedback from a long comment thread', 'Use Sheets + Gemini to analyze user research data or survey exports', 'Summarize design review Meets to capture decisions and open questions'], prompt: '(In Docs) Summarize the feedback in the comments on this PRD. Group by theme, flag conflicting input, and suggest a prioritized list of revisions.' },
+      { dept: 'HR & People', tips: ['Use Gemini in Docs to draft JDs and people comms from a short brief', 'Summarize interview debrief threads in Gmail quickly before decisions', 'Use Meet transcription to capture structured notes from panel interviews'], prompt: '(In Docs) Expand this JD outline into a full job description. Make it specific and aspirational — no generic language. Tone: direct, human, not corporate.' },
+      { dept: 'Executive', tips: ['Use Gemini in Gmail to triage and summarize high-priority threads daily', 'Summarize board or leadership recordings and extract decisions made', 'Use Gemini in Slides to generate exec presentations from a brief or document'], prompt: 'Summarize my Gmail threads flagged as high priority from [time period]. What are the 5 things I most need to respond to or act on today?' }
     ]
   }
 ];
 
+// ── ACTION MAP — maps global action labels to per-tool goal keys ────────────
+const ACTION_MAP = {
+  'Write & create':       { claude: 'Write & create',      chatgpt: 'Write & create',     gemini: 'Write in Docs'     },
+  'Research & summarize': { claude: 'Research & summarize', chatgpt: 'Research & summarize', gemini: null              },
+  'Analyze data':         { claude: 'Analyze data',         chatgpt: 'Analyze data',        gemini: 'Analyze in Sheets' },
+  'Meeting follow-up':    { claude: 'Prepare for meetings', chatgpt: null,                  gemini: 'Meeting follow-up' },
+  'Manage email':         { claude: null,                   chatgpt: null,                  gemini: 'Manage email'      },
+  'Build a custom GPT':   { claude: 'Automate workflows',   chatgpt: 'Build a custom GPT',  gemini: null               },
+  'Build in Slides':      { claude: null,                   chatgpt: null,                  gemini: 'Build in Slides'   },
+};
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+let activeFilter = { type: null, value: null };
+
+// ── RENDER ─────────────────────────────────────────────────────────────────
 function render() {
-  const container = document.getElementById('columns');
-  container.innerHTML = TOOLS.map(tool => buildColumn(tool)).join('');
-  bindEvents();
+  document.getElementById('columns').innerHTML = TOOLS.map(buildCard).join('');
+  bindCardEvents();
 }
 
-function buildColumn(t) {
+function buildCard(t) {
   return `
-  <div class="tool-card">
+  <div class="tool-card" id="card-${t.key}">
     <div class="card-header ${t.headerCls}">
-      <div class="ch-glow"></div>
       <p class="card-vendor">${t.vendor}</p>
       <p class="card-name">${t.name}</p>
       <p class="card-tagline">${t.tagline}</p>
     </div>
 
-    <div class="card-section">
-      <p class="section-title">Overview</p>
-      <p class="overview-url">Access at <a href="${t.overview.url}" target="_blank">${t.overview.urlLabel}</a></p>
-      <p class="overview-note">${t.overview.note}</p>
-      <p class="conn-label">Available connections</p>
-      <div class="conn-pills">${t.overview.connections.map(c => connPill(c)).join('')}</div>
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tool="${t.key}" data-tab="basics">Basics</button>
+      <button class="tab-btn" data-tool="${t.key}" data-tab="tryit">Try It</button>
+      <button class="tab-btn" data-tool="${t.key}" data-tab="foryou">For You <span class="foryou-dot"></span></button>
+    </div>
+
+    <!-- BASICS TAB -->
+    <div class="tab-panel active" id="panel-${t.key}-basics">
+      <div class="basics-section">
+        <p class="section-label">Access</p>
+        <p class="overview-url">Open at <a href="${t.overview.url}" target="_blank">${t.overview.urlLabel}</a></p>
+        <p class="overview-note">${t.overview.note}</p>
+        <p class="conn-label">Available connections</p>
+        <div class="conn-pills">${t.overview.connections.map(connPill).join('')}</div>
+      </div>
+      <div class="basics-section">
+        <p class="section-label">Best for</p>
+        <ul class="use-cases">
+          ${t.useCases.map(u => `<li>${u}</li>`).join('')}
+        </ul>
+      </div>
       ${t.guides && t.guides.length ? `
-      <p class="conn-label" style="margin-top:14px">Guides</p>
-      <div style="display:flex;flex-direction:column;gap:5px">
-        ${t.guides.map(g => `<a href="${g.url}" target="_blank" style="font-size:12px;color:var(--purple);text-decoration:none;display:flex;align-items:center;gap:5px;padding:5px 8px;border-radius:6px;border:1px solid var(--border);background:#faf9fe;transition:border-color 0.14s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">${g.title} <span style="margin-left:auto;color:var(--faint);font-size:11px">→</span></a>`).join('')}
+      <div class="basics-section">
+        <a class="view-all-guides" href="#guidesSection" onclick="document.getElementById('guidesSection').scrollIntoView({behavior:'smooth'});return false;">
+          View all how-to guides <span>↓</span>
+        </a>
+      </div>` : ''}
+      ${t.bigidResources ? `
+      <div class="basics-section">
+        <p class="section-label">Custom Builds for BigID</p>
+        <div class="bigid-resources">
+          ${t.bigidResources.items.map(r => `
+          <a class="bigid-resource-card" href="${r.url}" target="_blank">
+            <span class="bigid-resource-badge">${t.bigidResources.label}</span>
+            <div class="bigid-resource-text">
+              <p class="bigid-resource-title">${r.title}</p>
+              <p class="bigid-resource-desc">${r.desc}</p>
+            </div>
+            <span class="bigid-resource-arrow">→</span>
+          </a>`).join('')}
+        </div>
       </div>` : ''}
     </div>
 
-    <div class="card-section">
-      <p class="section-title">By Department</p>
-      <div class="selector-pills">
-        ${t.byDept.map(r => `<button class="sel-pill" data-tool="${t.key}" data-type="dept" data-val="${r.dept}">${r.dept}</button>`).join('')}
-      </div>
-      <div class="dept-content" id="dept-${t.key}"></div>
-    </div>
-
-    <div class="card-section">
-      <p class="section-title">By Role</p>
-      <div class="selector-pills">
-        ${t.byRole.map(r => `<button class="sel-pill" data-tool="${t.key}" data-type="role" data-val="${r.role}">${r.role}</button>`).join('')}
-      </div>
-      <div class="role-content" id="role-${t.key}"></div>
-    </div>
-
-    <div class="card-section">
-      <p class="section-title">By Goal</p>
-      <div class="selector-pills">
-        ${t.byGoal.map(g => `<button class="sel-pill" data-tool="${t.key}" data-type="goal" data-val="${g.goal}">${g.goal}</button>`).join('')}
-      </div>
-      <div class="goal-content" id="goal-${t.key}"></div>
-    </div>
-
-    <div class="card-section">
-      <p class="section-title">Try it out</p>
-      <div class="try-list">
+    <!-- TRY IT TAB -->
+    <div class="tab-panel" id="panel-${t.key}-tryit">
+      <div class="tryit-list">
         ${t.tryIt.map((p, i) => `
           <div class="try-item" data-try="${t.key}-${i}">
             <div class="try-item-head">
@@ -915,33 +1127,144 @@ function buildColumn(t) {
       </div>
     </div>
 
-    <div class="get-started-section">
-      <a class="get-started-btn" href="${t.docsUrl}" target="_blank">Get started with ${t.name}</a>
+    <!-- FOR YOU TAB -->
+    <div class="tab-panel" id="panel-${t.key}-foryou">
+      ${buildForYouPanel(t, null, null)}
+    </div>
+
+    <div class="card-footer">
+      <a class="launch-btn" href="${t.docsUrl}" target="_blank">Open ${t.name}</a>
     </div>
   </div>`;
 }
 
-function buildContentBlock(item, promptField) {
+function buildForYouPanel(t, filterType, filterValue) {
+  if (!filterType || !filterValue) {
+    return `
+    <div class="foryou-panel">
+      <div class="foryou-empty">
+        <div class="foryou-empty-icon">✦</div>
+        <p class="foryou-empty-title">Pick a filter to personalize</p>
+        <p class="foryou-empty-sub">Choose a Department or Action above to get tips and starter prompts tailored to how you work — in ${t.name} specifically.</p>
+      </div>
+    </div>`;
+  }
+
+  let item = null;
+  let labelDisplay = filterValue;
+  let noMatchMsg = null;
+
+  if (filterType === 'role') {
+    item = t.byRole.find(r => r.role === filterValue);
+    labelDisplay = filterValue === 'Individual Contributor' ? 'IC' : filterValue;
+  } else if (filterType === 'dept') {
+    item = t.byDept ? t.byDept.find(d => d.dept === filterValue) : null;
+    if (!item) noMatchMsg = `No department-specific tips for <strong>${filterValue}</strong> in ${t.name} yet.`;
+  } else if (filterType === 'action') {
+    const mapping = ACTION_MAP[filterValue];
+    const mappedGoal = mapping ? mapping[t.key] : null;
+    item = mappedGoal ? t.byGoal.find(g => g.goal === mappedGoal) : null;
+    if (!item) noMatchMsg = `${t.name} doesn't have specific tips for <strong>${filterValue}</strong> — try one of its goals below.`;
+  }
+
+  if (!item) {
+    return `
+    <div class="foryou-panel">
+      <div class="foryou-empty">
+        <div class="foryou-empty-icon" style="font-size:20px">—</div>
+        <p class="foryou-empty-title" style="font-size:12px;font-weight:500;color:var(--muted)">${noMatchMsg || 'No content found.'}</p>
+        <div class="foryou-divider" style="margin:16px 0 12px"></div>
+        <p class="foryou-switch-label" style="text-align:left">Try one of ${t.name}'s goals</p>
+        <div class="foryou-goal-pills" id="goal-pills-${t.key}" style="justify-content:flex-start">
+          ${t.byGoal.map(g => `<button class="foryou-goal-pill" data-tool="${t.key}" data-goal="${g.goal}">${g.goal}</button>`).join('')}
+        </div>
+        <div id="goal-content-${t.key}"></div>
+      </div>
+    </div>`;
+  }
+
   return `
-    <ul class="content-tips">${item.tips.map(t => `<li>${t}</li>`).join('')}</ul>
+  <div class="foryou-panel">
+    <div class="foryou-header">
+      <p class="foryou-who">For <span>${labelDisplay}</span> in ${t.name}</p>
+    </div>
+    <ul class="content-tips">
+      ${item.tips.map(tip => `<li>${tip}</li>`).join('')}
+    </ul>
     <div class="content-prompt-box">
       <p class="content-prompt-label">Starter prompt</p>
-      <p class="content-prompt-text">${item[promptField]}</p>
-      <button class="copy-btn" data-prompt="${encodeURIComponent(item[promptField])}">Copy prompt</button>
-    </div>`;
+      <p class="content-prompt-text">${item.prompt}</p>
+      <button class="copy-btn" data-prompt="${encodeURIComponent(item.prompt)}">Copy prompt</button>
+    </div>
+  </div>`;
 }
 
-function bindEvents() {
-  // Try it out toggles
-  document.querySelectorAll('.try-item-head').forEach(head => {
-    head.addEventListener('click', () => {
-      const item = head.closest('.try-item');
-      item.classList.toggle('open');
+function buildGoalContent(t, goalName) {
+  const item = t.byGoal.find(g => g.goal === goalName);
+  if (!item) return '';
+  return `
+  <ul class="content-tips animate-in">
+    ${item.tips.map(tip => `<li>${tip}</li>`).join('')}
+  </ul>
+  <div class="content-prompt-box animate-in">
+    <p class="content-prompt-label">Starter prompt</p>
+    <p class="content-prompt-text">${item.prompt}</p>
+    <button class="copy-btn" data-prompt="${encodeURIComponent(item.prompt)}">Copy prompt</button>
+  </div>`;
+}
+
+// ── BIND EVENTS ─────────────────────────────────────────────────────────────
+function bindCardEvents() {
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const { tool, tab } = btn.dataset;
+      document.querySelectorAll(`[data-tool="${tool}"].tab-btn`).forEach(b => b.classList.remove('active'));
+      document.querySelectorAll(`#card-${tool} .tab-panel`).forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(`panel-${tool}-${tab}`).classList.add('active');
     });
   });
 
-  // Copy buttons
-  document.querySelectorAll('.copy-btn').forEach(btn => {
+  // Try it accordions
+  document.querySelectorAll('.try-item-head').forEach(head => {
+    head.addEventListener('click', () => head.closest('.try-item').classList.toggle('open'));
+  });
+
+  bindInlinePills();
+  bindGoalPills();
+  bindCopyButtons(document);
+}
+
+function bindInlinePills() {
+  document.querySelectorAll('.foryou-inline-pill').forEach(pill => {
+    pill.addEventListener('click', () => setFilter(pill.dataset.type, pill.dataset.value));
+  });
+}
+
+function bindGoalPills() {
+  document.querySelectorAll('.foryou-goal-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      const { tool, goal } = pill.dataset;
+      const toolData = TOOLS.find(t => t.key === tool);
+      const container = document.getElementById(`goal-content-${tool}`);
+      const pillGroup = document.getElementById(`goal-pills-${tool}`);
+      const isActive = pill.classList.contains('active');
+
+      pillGroup.querySelectorAll('.foryou-goal-pill').forEach(p => p.classList.remove('active'));
+      if (isActive) {
+        container.innerHTML = '';
+      } else {
+        pill.classList.add('active');
+        container.innerHTML = buildGoalContent(toolData, goal);
+        bindCopyButtons(container);
+      }
+    });
+  });
+}
+
+function bindCopyButtons(scope) {
+  (scope.querySelectorAll ? scope : document).querySelectorAll('.copy-btn').forEach(btn => {
     btn.addEventListener('click', e => {
       e.stopPropagation();
       const text = decodeURIComponent(btn.dataset.prompt);
@@ -952,51 +1275,287 @@ function bindEvents() {
       }).catch(() => { btn.textContent = 'Copy failed'; setTimeout(() => btn.textContent = 'Copy prompt', 1500); });
     });
   });
-
-  // Role / Goal pills
-  document.querySelectorAll('.sel-pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      const { tool, type, val } = pill.dataset;
-      const contentEl = document.getElementById(`${type}-${tool}`);
-      const siblingPills = pill.closest('.selector-pills').querySelectorAll('.sel-pill');
-
-      const isActive = pill.classList.contains('active');
-      siblingPills.forEach(p => p.classList.remove('active'));
-      contentEl.classList.remove('vis');
-
-      if (!isActive) {
-        pill.classList.add('active');
-        const toolData = TOOLS.find(t => t.key === tool);
-        let item, promptField;
-        if (type === 'dept') {
-          item = toolData.byDept.find(r => r.dept === val);
-        } else if (type === 'role') {
-          item = toolData.byRole.find(r => r.role === val);
-        } else {
-          item = toolData.byGoal.find(g => g.goal === val);
-        }
-        if (item) {
-          contentEl.innerHTML = buildContentBlock(item, promptField);
-          contentEl.classList.add('vis');
-          // Re-bind copy buttons in new content
-          contentEl.querySelectorAll('.copy-btn').forEach(btn => {
-            btn.addEventListener('click', e => {
-              e.stopPropagation();
-              const text = decodeURIComponent(btn.dataset.prompt);
-              navigator.clipboard.writeText(text).then(() => {
-                btn.textContent = '✓ Copied!';
-                btn.classList.add('copied');
-                setTimeout(() => { btn.textContent = 'Copy prompt'; btn.classList.remove('copied'); }, 1600);
-              });
-            });
-          });
-        }
-      }
-    });
-  });
 }
 
+// ── GLOBAL FILTER ───────────────────────────────────────────────────────────
+function setFilter(type, value) {
+  activeFilter = { type, value };
+
+  // Clear all pill groups, then activate the right one
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll(`.filter-pill[data-type="${type}"][data-value="${value}"]`)
+    .forEach(p => p.classList.add('active'));
+
+  document.getElementById('clearBtn').classList.add('visible');
+
+  // Update all For You panels + auto-switch to For You tab
+  TOOLS.forEach(t => {
+    const panel = document.getElementById(`panel-${t.key}-foryou`);
+    panel.innerHTML = buildForYouPanel(t, type, value);
+
+    const forYouBtn = document.querySelector(`[data-tool="${t.key}"][data-tab="foryou"]`);
+    forYouBtn.classList.add('has-content');
+
+    document.querySelectorAll(`[data-tool="${t.key}"].tab-btn`).forEach(b => b.classList.remove('active'));
+    document.querySelectorAll(`#card-${t.key} .tab-panel`).forEach(p => p.classList.remove('active'));
+    forYouBtn.classList.add('active');
+    panel.classList.add('active');
+
+    bindCopyButtons(panel);
+    bindGoalPills();
+  });
+
+  bindInlinePills();
+}
+
+function clearFilters() {
+  activeFilter = { type: null, value: null };
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  document.getElementById('clearBtn').classList.remove('visible');
+
+  TOOLS.forEach(t => {
+    const panel = document.getElementById(`panel-${t.key}-foryou`);
+    panel.innerHTML = buildForYouPanel(t, null, null);
+    const forYouBtn = document.querySelector(`[data-tool="${t.key}"][data-tab="foryou"]`);
+    forYouBtn.classList.remove('has-content');
+
+    document.querySelectorAll(`[data-tool="${t.key}"].tab-btn`).forEach(b => b.classList.remove('active'));
+    document.querySelectorAll(`#card-${t.key} .tab-panel`).forEach(p => p.classList.remove('active'));
+    document.querySelector(`[data-tool="${t.key}"][data-tab="basics"]`).classList.add('active');
+    document.getElementById(`panel-${t.key}-basics`).classList.add('active');
+  });
+
+  bindInlinePills();
+}
+
+// ── INIT ────────────────────────────────────────────────────────────────────
+document.getElementById('clearBtn').addEventListener('click', clearFilters);
+
+document.querySelectorAll('.filter-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    const { type, value } = pill.dataset;
+    const isActive = pill.classList.contains('active');
+    if (isActive) {
+      clearFilters();
+    } else {
+      setFilter(type, value);
+    }
+  });
+});
+
+// ── GUIDES DATA ─────────────────────────────────────────────────────────────
+const GUIDES = [
+  // Quickstart
+  { section: 'Quickstart guide to AI', tool: 'all', tag: 'All tools', tagClass: 'tc-all',
+    title: 'The AI User\'s Field Guide',
+    desc: 'How to actually change how you work with AI — mindset, what AI is good and bad at, prompting, and the overconfidence problem nobody talks about.',
+    badges: ['Mindset', 'Prompting', 'Essentials'],
+    url: 'https://docs.google.com/document/d/1i_cWCyCPwAzT2w5UkOlAvLfRhtgi_a2N_scHlSouGd8/edit?tab=t.0#heading=h.cg152llfffqy' },
+  { section: 'Quickstart guide to AI', tool: 'all', tag: 'All tools', tagClass: 'tc-all',
+    title: 'No Fluff: Navigating the Blueprint for AI Tells',
+    desc: 'How to spot AI-generated content before it spots you. The em dash epidemic, the wall-of-shame verbs, and how to fix every one of them.',
+    badges: ['Writing', 'Quality', 'Voice'],
+    url: 'https://docs.google.com/document/d/1i_cWCyCPwAzT2w5UkOlAvLfRhtgi_a2N_scHlSouGd8/edit?tab=t.1yntv37b0ikw#heading=h.tnyig254fvc' },
+  { section: 'Quickstart guide to AI', tool: 'all', tag: 'All tools', tagClass: 'tc-all',
+    title: 'AI vs AI: When to Use Claude, ChatGPT, or Gemini',
+    desc: 'The decision rules for all three — with a decision tree, side-by-side table, and what most people get wrong.',
+    badges: ['Strategy', 'Setup', 'Decision guide'],
+    url: 'https://docs.google.com/document/d/1i_cWCyCPwAzT2w5UkOlAvLfRhtgi_a2N_scHlSouGd8/edit?tab=t.b596xn5jb9d0' },
+  // Getting started with Claude
+  { section: 'Getting started with Claude', tool: 'claude', tag: 'Claude', tagClass: 'tc-claude',
+    title: 'Polish and Format a Presentation',
+    desc: 'Sharpen content, tighten structure, and calibrate messaging for any audience.',
+    badges: ['Content', 'Strategy'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.0#heading=h.z8b32v6pv9nv' },
+  { section: 'Getting started with Claude', tool: 'claude', tag: 'Claude', tagClass: 'tc-claude',
+    title: 'Build a Branded Slide Deck with the PPTX Skill',
+    desc: 'Generate a fully branded BigID .pptx file from a prompt — correct fonts, colors, logo placement, and layouts.',
+    badges: ['Slides', 'Design'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.f59ouv4uvisy#heading=h.tuwrtyri9nxq' },
+  { section: 'Getting started with Claude', tool: 'claude', tag: 'Claude', tagClass: 'tc-claude',
+    title: 'Create a Branded PDF',
+    desc: 'Two PDF skills — standard formatter and dark header — for every document from one-pagers to executive proposals.',
+    badges: ['Documents', 'Design'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.sar5o84dai40#heading=h.tek25025pgk8' },
+  { section: 'Getting started with Claude', tool: 'claude', tag: 'Claude', tagClass: 'tc-claude',
+    title: 'Chat, Projects, and Cowork — What\'s Best for Each',
+    desc: 'Know which Claude mode to reach for and when — one-off tasks vs. persistent workspaces vs. autonomous file work.',
+    badges: ['Setup', 'Workflow'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.3iwrpk9spln6' },
+  { section: 'Getting started with Claude', tool: 'all', tag: 'All tools', tagClass: 'tc-all',
+    title: 'When to Use Claude vs ChatGPT vs Gemini',
+    desc: 'The decision rules — including Notebook LM, code interpreter, and custom GPTs.',
+    badges: ['Strategy', 'Decision guide'],
+    url: 'https://docs.google.com/document/d/1i_cWCyCPwAzT2w5UkOlAvLfRhtgi_a2N_scHlSouGd8/edit?tab=t.b596xn5jb9d0' },
+  // Know your accounts
+  { section: 'Know your accounts', tool: 'sales', tag: 'Sales', tagClass: 'tc-sales',
+    title: 'Pre-Call Research in 60 Seconds',
+    desc: 'Pull a complete one-page brief before any call using Salesforce, Gmail, Calendar, and web search.',
+    badges: ['Research', 'Salesforce'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.s8oc1u7c2o6a#heading=h.solkjvwrar9c' },
+  { section: 'Know your accounts', tool: 'sales', tag: 'Sales', tagClass: 'tc-sales',
+    title: 'Build a Target Account List',
+    desc: 'ICP-scored, signal-rich, research-backed lists from scratch — and how to keep them current.',
+    badges: ['Prospecting', 'Salesforce'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.pnpg8r1amjug#heading=h.etm902lbk0u4' },
+  { section: 'Know your accounts', tool: 'sales', tag: 'Sales', tagClass: 'tc-sales',
+    title: 'Compare a List to RevIC ICP Fit',
+    desc: 'Cross-reference any registration or target list against Salesforce ICP scores. High fits first, always.',
+    badges: ['ICP', 'Salesforce'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.2vmqj2t9s2nn#heading=h.l5l7q9fcbmvm' },
+  // Work your pipeline
+  { section: 'Work your pipeline', tool: 'sales', tag: 'Sales', tagClass: 'tc-sales',
+    title: 'Deal Analysis via Salesforce MCP',
+    desc: 'Pull a complete deal brief — stage, activity, MEDDPICC, risk flags, and a recommended next action.',
+    badges: ['Pipeline', 'Salesforce'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.eti8zeycj87d#heading=h.mbvt81x1inwy' },
+  { section: 'Work your pipeline', tool: 'sales', tag: 'Sales', tagClass: 'tc-sales',
+    title: 'Stage 0 Cleanup for My Region',
+    desc: 'Surface stale, untouched, or miscategorized deals. Triage into advance, re-engage, or close out.',
+    badges: ['Pipeline', 'Hygiene'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.yoricmdjhkso#heading=h.rckm6896icx1' },
+  { section: 'Work your pipeline', tool: 'sales', tag: 'Sales', tagClass: 'tc-sales',
+    title: 'Forecast Scrub',
+    desc: 'Four tests for every Commit deal: close date, activity, MEDDPICC, next step. Walk into any forecast call with a number you can defend.',
+    badges: ['Forecast', 'Pipeline'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.ttv73fyzny6s#heading=h.jmuaxdd6imjp' },
+  // Reports & analysis
+  { section: 'Reports & analysis', tool: 'ops', tag: 'Reports & Analysis', tagClass: 'tc-ops',
+    title: 'Weekly Pipeline Movement Report',
+    desc: 'What came in, advanced, closed won, closed lost, and slipped — every Monday in five minutes.',
+    badges: ['Weekly', 'Pipeline'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.cbhcio4b82m5#heading=h.hm8z4cz5evxr' },
+  { section: 'Reports & analysis', tool: 'ops', tag: 'Reports & Analysis', tagClass: 'tc-ops',
+    title: 'Forecast Accuracy Tracker',
+    desc: 'Compare called vs. closed, build your personal close rate by forecast category, and understand win rate patterns.',
+    badges: ['Forecast', 'Win Rate'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.yvk3ain3l1tx#heading=h.mljo9fb7w2co' },
+  { section: 'Reports & analysis', tool: 'ops', tag: 'Reports & Analysis', tagClass: 'tc-ops',
+    title: 'Pipeline Coverage Analysis',
+    desc: 'Weighted pipeline vs. quota by stage, rep, and region — with coverage gap analysis.',
+    badges: ['Coverage', 'Quota'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.rb4mf7y94fuo#heading=h.wyw2ovsc2ike' },
+  { section: 'Reports & analysis', tool: 'ops', tag: 'Reports & Analysis', tagClass: 'tc-ops',
+    title: 'Territory Health Snapshot',
+    desc: 'Complete one-pull view of any BigID territory — pipeline, stage mix, closed won, activity health, and a one-paragraph verdict.',
+    badges: ['Territory', 'QBR'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.lpjsz9w56v7v#heading=h.2bxrsp85a4t1' },
+  { section: 'Reports & analysis', tool: 'ops', tag: 'Reports & Analysis', tagClass: 'tc-ops',
+    title: 'Account Penetration Report',
+    desc: '87% of High ICP accounts have no active pipeline. Find the whitespace, prioritize by signal, and build a penetration plan.',
+    badges: ['Whitespace', 'ICP'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.xlifdf4o7bdy#heading=h.jghobriwhje1' },
+  { section: 'Reports & analysis', tool: 'ops', tag: 'Reports & Analysis', tagClass: 'tc-ops',
+    title: 'Monday Morning Pipeline Brief',
+    desc: 'Five prompts, five minutes, every Monday. Last week\'s results, committed deals, slipped deals, and your expected close number.',
+    badges: ['Weekly', 'Automation'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.tqnq7a3lpgfn#heading=h.a6ulhcl9os66' },
+  { section: 'Reports & analysis', tool: 'ops', tag: 'Reports & Analysis', tagClass: 'tc-ops',
+    title: 'End of Quarter Deal Status Sweep',
+    desc: 'Close, push, or drop — a systematic review of every deal closing this quarter. Four-week cadence, daily close week prompts.',
+    badges: ['Quarter-end', 'Forecast'],
+    url: 'https://docs.google.com/document/d/1VdUVpl-cGXMS293jadVMkre49joQglEuwEfjCprk2Do/edit?tab=t.7hrq8f9gburk' },
+];
+
+const SECTIONS_ORDER = [
+  'Quickstart guide to AI',
+  'Getting started with Claude',
+  'Know your accounts',
+  'Work your pipeline',
+  'Reports & analysis',
+];
+
+const SECTION_DESCS = {
+  'Quickstart guide to AI': 'Start here. Everything you need to actually change how you work — mindset, tools, and prompting.',
+  'Getting started with Claude': 'Foundational guides for formatting, building, and choosing the right tool.',
+  'Know your accounts': 'Research and intelligence workflows — before any call, list, or campaign.',
+  'Work your pipeline': 'Day-to-day deal management, pipeline hygiene, and forecast discipline.',
+  'Reports & analysis': 'Weekly and quarterly reporting that runs in minutes, not hours.',
+};
+
+// ── RENDER GUIDES ────────────────────────────────────────────────────────────
+function renderGuides() {
+  const el = document.getElementById('guidesSection');
+  const grouped = {};
+  SECTIONS_ORDER.forEach(s => { grouped[s] = []; });
+  GUIDES.forEach(g => { if (grouped[g.section]) grouped[g.section].push(g); });
+
+  el.innerHTML = `
+    <div class="guides-section-header">
+      <span class="guides-section-title">How-To Guides</span>
+      <span class="guides-section-sub">Step-by-step playbooks — with real prompts, real Salesforce data, and real life relevance.</span>
+    </div>
+    ${SECTIONS_ORDER.map(section => {
+      const cards = grouped[section];
+      if (!cards.length) return '';
+      return `
+        <div class="guide-category">
+          <p class="guide-category-label">${section}</p>
+          <p style="font-size:12px;color:var(--faint);margin-bottom:14px;margin-top:-6px">${SECTION_DESCS[section]}</p>
+          <div class="guide-cards">
+            ${cards.map(g => `
+              <a class="guide-card" href="${g.url}" target="_blank">
+                <p class="guide-card-tool ${g.tagClass}">${g.tag}</p>
+                <p class="guide-card-title">${g.title}</p>
+                <p class="guide-card-desc">${g.desc}</p>
+                <span class="guide-card-arrow">→ Open guide</span>
+              </a>`).join('')}
+          </div>
+        </div>`;
+    }).join('')}`;
+}
+
+// ── SEARCH ───────────────────────────────────────────────────────────────────
+const searchInput = document.getElementById('guideSearch');
+const searchClear = document.getElementById('searchClear');
+const searchResults = document.getElementById('searchResults');
+
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  searchClear.classList.toggle('visible', q.length > 0);
+
+  if (!q) {
+    searchResults.classList.remove('visible');
+    searchResults.innerHTML = '';
+    return;
+  }
+
+  const matches = GUIDES.filter(g =>
+    g.title.toLowerCase().includes(q) ||
+    g.desc.toLowerCase().includes(q) ||
+    g.section.toLowerCase().includes(q) ||
+    g.badges.some(b => b.toLowerCase().includes(q)) ||
+    g.tag.toLowerCase().includes(q)
+  ).slice(0, 8);
+
+  if (!matches.length) {
+    searchResults.innerHTML = '<p class="search-no-results">No guides match that — try different keywords.</p>';
+  } else {
+    searchResults.innerHTML = `
+      <p class="search-results-header">${matches.length} guide${matches.length !== 1 ? 's' : ''} found</p>
+      ${matches.map(g => `
+        <a class="search-result-item" href="${g.url}" target="_blank">
+          <span class="search-result-section">${g.section}</span>
+          <div class="search-result-body">
+            <p class="search-result-title">${g.title}</p>
+            <p class="search-result-desc">${g.desc}</p>
+          </div>
+          <span class="search-result-arrow">→</span>
+        </a>`).join('')}`;
+  }
+  searchResults.classList.add('visible');
+});
+
+searchClear.addEventListener('click', () => {
+  searchInput.value = '';
+  searchClear.classList.remove('visible');
+  searchResults.classList.remove('visible');
+  searchResults.innerHTML = '';
+  searchInput.focus();
+});
+
 render();
+renderGuides();
 </script>
 </body>
 </html>
