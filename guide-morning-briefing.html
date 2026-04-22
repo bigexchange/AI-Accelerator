@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Morning Briefing — BigID AI Accelerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #F8F9FB;
+    --white:   #FFFFFF;
+    --border:  #E5E7EB;
+    --text:    #2D2C31;
+    --muted:   #666666;
+    --faint:   #9CA3AF;
+    --purple:  #8735FF;
+    --pink:    #FF3592;
+    --orange:  #FF6B35;
+    --grad:    linear-gradient(90deg,  #8735FF 0%, #FF3592 46%, #FF6B35 100%);
+    --grad110: linear-gradient(110deg, #8735FF 0%, #FF3592 52%, #FF6B35 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Open Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.65; padding-bottom: 8px; }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .topbar-logo { display: flex; align-items: center; }
+  .topbar-logo img { height: 38px; width: auto; display: block; }
+  .topbar-nav {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11.5px; font-weight: 500;
+    color: var(--faint);
+  }
+  .topbar-nav a { color: var(--faint); text-decoration: none; transition: color .15s; }
+  .topbar-nav a:hover { color: var(--purple); }
+  .topbar-nav .sep { opacity: .45; font-size: 13px; }
+  .topbar-nav .current { color: var(--muted); font-weight: 600; }
+
+  /* ── HERO ── */
+  .hero { background: var(--white); border-bottom: 1px solid var(--border); padding: 52px 40px 44px; }
+  .hero-inner { max-width: 780px; margin: 0 auto; }
+
+  .tag-row { display: flex; gap: 7px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px; border: 1px solid;
+  }
+  .tag-cowork   { color: var(--purple); border-color: #8735ff35; background: #8735ff0c; }
+  .tag-calendar { color: #1d4ed8;       border-color: #1d4ed835; background: #1d4ed80c; }
+  .tag-gmail    { color: #b91c1c;       border-color: #b91c1c35; background: #b91c1c0c; }
+  .tag-slack    { color: #047857;       border-color: #04785735; background: #0478570c; }
+  .tag-claude   { color: var(--purple); border-color: #8735ff35; background: #8735ff0c; }
+  .tag-setup    { color: #047857;       border-color: #04785735; background: #0478570c; }
+  .tag-content  { color: #92400e;       border-color: #92400e35; background: #92400e0c; }
+  .tag-design   { color: #1d4ed8;       border-color: #1d4ed835; background: #1d4ed80c; }
+  .tag-all      { color: var(--pink);   border-color: #FF359235; background: #FF35920c; }
+  .tag-strategy { color: #92400e;       border-color: #92400e35; background: #92400e0c; }
+
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 3.8vw, 42px);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin-bottom: 16px;
+    background: var(--grad110);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .lead { font-size: 15px; color: var(--muted); max-width: 580px; line-height: 1.75; margin-bottom: 28px; }
+  .outcome-box {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--bg); border: 1px solid var(--border);
+    border-left: 3px solid var(--purple);
+    border-radius: 10px; padding: 15px 20px; max-width: 600px;
+  }
+  .outcome-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .outcome-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 4px;
+  }
+  .outcome-text { font-size: 13px; color: var(--text); }
+
+  /* ── MAIN ── */
+  .main { max-width: 780px; margin: 0 auto; padding: 40px 40px 80px; }
+
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 15px;
+    letter-spacing: -0.01em; color: var(--text);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h2::before {
+    content: ''; display: block;
+    width: 20px; height: 3px;
+    background: var(--grad); border-radius: 2px; flex-shrink: 0;
+  }
+
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 14px;
+    letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 7px;
+  }
+
+  p { color: var(--muted); font-size: 13.5px; margin-bottom: 10px; }
+
+  /* ── PREREQS ── */
+  .prereq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+    gap: 9px; margin: 14px 0 36px;
+  }
+  .prereq-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 9px; padding: 11px 14px;
+    display: flex; align-items: center; gap: 9px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px; font-weight: 600; color: var(--text);
+  }
+  .prereq-icon { font-size: 15px; }
+
+  /* ── STEPS ── */
+  .step { display: grid; grid-template-columns: 36px 1fr; gap: 16px; margin-bottom: 36px; }
+  .step-num {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--grad110);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; font-weight: 700; color: #fff;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .step-body h3 { font-size: 14.5px; margin-bottom: 7px; }
+  .step-body p { font-size: 13.5px; }
+
+  /* ── PROMPT BLOCK ── */
+  .prompt-block {
+    background: var(--white); border: 1px solid var(--border);
+    border-left: 3px solid var(--purple);
+    border-radius: 9px; padding: 14px 18px; margin: 10px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 12.5px; line-height: 1.8;
+    color: var(--text); position: relative;
+  }
+  .plabel {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 9px; display: block;
+  }
+  .copy-btn {
+    position: absolute; top: 11px; right: 11px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 5px; color: var(--muted);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px; font-weight: 600;
+    padding: 3px 8px; cursor: pointer; transition: all .15s;
+  }
+  .copy-btn:hover { background: var(--purple); color: #fff; border-color: var(--purple); }
+
+  /* ── CALLOUTS ── */
+  .callout {
+    border-radius: 9px; padding: 13px 17px; margin: 12px 0;
+    font-size: 13px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .callout-tip  { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+  .callout-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .callout-pink { background: #fff0f7; border: 1px solid #fbb6d7; color: #9d174d; border-left: 2.5px solid var(--pink); }
+  .callout-icon { font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+  .callout strong {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    display: block; margin-bottom: 3px; opacity: 0.8;
+  }
+
+  /* ── SCHEDULE BOX ── */
+  .schedule-box {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px; margin: 12px 0;
+  }
+  .schedule-box-head {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11.5px; font-weight: 700;
+    color: var(--orange); margin-bottom: 9px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .schedule-box p { font-size: 13px; margin-bottom: 10px; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
+
+  /* ── GUIDE NAV ── */
+  .guide-nav {
+    display: flex; justify-content: space-between; gap: 12px;
+    margin-top: 56px; padding-top: 28px;
+    border-top: 1px solid var(--border); flex-wrap: wrap;
+  }
+  .nav-card {
+    flex: 1; min-width: 180px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 18px;
+    text-decoration: none; color: var(--text);
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .nav-card:hover { border-color: var(--purple); box-shadow: 0 2px 14px rgba(135,53,255,.09); }
+  .nav-direction {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--faint); margin-bottom: 5px;
+  }
+  .nav-title { font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 600; color: var(--text); }
+  .nav-card.next { text-align: right; }
+
+  /* ── GRADIENT FOOTER BAR ── */
+  .grad-bar { height: 4px; background: var(--grad); margin-top: 60px; }
+
+  @media (max-width: 640px) {
+    .topbar { padding: 0 20px; }
+    .hero   { padding: 36px 20px 32px; }
+    .main   { padding: 32px 20px 60px; }
+    .topbar-nav .current { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-logo">
+    <img src="bigid-logo.png" alt="BigID" style="height:40px;width:auto;">
+  </div>
+  <nav class="topbar-nav">
+    <a href="how-to-guides.html">All guides</a>
+    <span class="sep">/</span>
+    <span class="current">Build your morning briefing</span>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="tag-row">
+      <span class="tag tag-cowork">Cowork</span>
+      <span class="tag tag-calendar">Google Calendar</span>
+      <span class="tag tag-gmail">Gmail</span>
+      <span class="tag tag-slack">Slack</span>
+    </div>
+    <h1>Build your morning briefing</h1>
+    <p class="lead">Connect Calendar, Gmail, and Slack so Cowork generates a daily digest every morning — today's meetings, relevant emails, and key Slack updates, all in one place before you start your day.</p>
+    <div class="outcome-box">
+      <span class="outcome-icon">✨</span>
+      <div>
+        <div class="outcome-label">What you'll have</div>
+        <div class="outcome-text">A daily brief — your schedule, priority emails, and Slack highlights — generated automatically and waiting in your Cowork folder each morning.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="main">
+
+  <h2>What you'll need</h2>
+  <div class="prereq-grid">
+    <div class="prereq-card"><span class="prereq-icon">🖥️</span>Claude Desktop</div>
+    <div class="prereq-card"><span class="prereq-icon">📅</span>Google Calendar</div>
+    <div class="prereq-card"><span class="prereq-icon">📧</span>Gmail connector</div>
+    <div class="prereq-card"><span class="prereq-icon">💬</span>Slack connector</div>
+    <div class="prereq-card"><span class="prereq-icon">📁</span>A Cowork folder</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>Connect your tools</h3>
+      <p>In Cowork, click the briefcase icon in the sidebar → go to <strong>Connectors</strong> → add Google Calendar, Gmail, and Slack. Each will ask you to sign in — do all three before continuing.</p>
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <div><strong>Tip</strong>If the connectors show green checkmarks but don't seem to work, toggle each off, wait 5 seconds, then toggle back on. Known quirk.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>Run your first briefing manually</h3>
+      <p>Test it before scheduling. Paste this prompt directly into Cowork, see what comes back, and tweak the format to your liking.</p>
+      <div class="prompt-block">
+        <span class="plabel">Paste into Cowork</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Good morning! Please create my daily briefing for today. Pull together:
+
+1. CALENDAR — List all meetings today with times, attendees, and any location or video link.
+
+2. EMAIL — Summarize any emails from the last 18 hours that need my attention. Flag anything time-sensitive or requiring a response today.
+
+3. SLACK — Check for any unread messages or mentions from the last 18 hours. Highlight anything that needs a reply or looks urgent.
+
+Format as a clean daily brief with clear sections. Save as "morning-brief-[today's date].md" in my Cowork folder.</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>Customize the output</h3>
+      <p>Run it once and see what you get. Common tweaks people make:</p>
+      <ul style="color:var(--muted);font-size:13.5px;padding-left:18px;line-height:2.2;margin-bottom:12px;">
+        <li>Add a "Today's priorities" section at the top</li>
+        <li>Filter emails to specific senders or subjects</li>
+        <li>Limit Slack to specific channels — <code style="font-family:'DM Mono';font-size:12px;color:var(--purple);">#leadership</code>, <code style="font-family:'DM Mono';font-size:12px;color:var(--purple);">#sales-team</code></li>
+        <li>Flag any meeting with no prep doc or agenda</li>
+      </ul>
+      <div class="prompt-block">
+        <span class="plabel">Customized version</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Good morning. Create my daily briefing and save as "morning-brief-[date].md".
+
+CALENDAR: All meetings today — time, attendees, video link. Flag any over 45 min with no agenda.
+
+EMAIL: Unread from the last 24 hours. Group by: (1) Needs response today (2) FYI only (3) Can wait. Skip newsletters.
+
+SLACK: Unread mentions and DMs from #leadership, #marketing, #sales-team. Summarize threads — don't list every message.
+
+TOP 3: End with a "Top 3 priorities" section based on everything above. Keep it under 5 minutes to read.</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h3>Schedule it to run automatically</h3>
+      <p>Once you're happy with the output, use Cowork's <code style="font-family:'DM Mono';font-size:12px;color:var(--purple);">/schedule</code> command to run it every morning hands-free.</p>
+      <div class="schedule-box">
+        <div class="schedule-box-head">⏰ Using /schedule</div>
+        <p>Type <code style="font-family:'DM Mono';font-size:12px;color:var(--purple);">/schedule</code> at the start of your message, then describe the timing and the task:</p>
+        <div class="prompt-block" style="margin:0;">
+          <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+          <code>/schedule every weekday at 7:30am
+
+Run my morning briefing. Pull today's calendar events, unread emails from the last 18 hours, and unread Slack mentions from #leadership, #marketing, and #sales-team. Save as "morning-brief-[date].md" in my Cowork folder.</code>
+        </div>
+      </div>
+      <div class="callout callout-warn" style="margin-top:12px;">
+        <span class="callout-icon">⚠️</span>
+        <div><strong>Heads up</strong>Claude Desktop must be open and running for scheduled tasks to fire. It won't run if your laptop is closed or the app isn't active.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Pro tips</h2>
+  <div style="display:grid;gap:10px;margin-top:14px;">
+    <div class="callout callout-pink">
+      <span class="callout-icon">🧠</span>
+      <div><strong>Build a brain file</strong>Create a <code style="font-family:'DM Mono';font-size:12px;">preferences.md</code> in your Cowork folder that describes your role and how you want things formatted. Reference it in your prompt: <em>"Read preferences.md and format the brief accordingly."</em></div>
+    </div>
+    <div class="callout callout-pink">
+      <span class="callout-icon">📂</span>
+      <div><strong>Build a briefs archive</strong>Date-stamped filenames mean you build a searchable log of your days over time. Easy to look back when you need context on when something happened.</div>
+    </div>
+    <div class="callout callout-pink">
+      <span class="callout-icon">🔗</span>
+      <div><strong>Combine with meeting prep</strong>After your briefing generates, feed it into the "Prep for any meeting" guide to get a pre-brief for your first call automatically.</div>
+    </div>
+  </div>
+
+  <div class="guide-nav">
+    <a href="how-to-guides.html" class="nav-card">
+      <div class="nav-direction">← Back</div>
+      <div class="nav-title">All guides</div>
+    </a>
+    <a href="guide-meeting-prep.html" class="nav-card next">
+      <div class="nav-direction">Next →</div>
+      <div class="nav-title">Prep for any meeting in 30 seconds</div>
+    </a>
+  </div>
+
+</main>
+
+<div class="grad-bar"></div>
+
+</body>
+</html>

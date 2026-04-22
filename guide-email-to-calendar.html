@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turn an Email into a Calendar Event — BigID AI Accelerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F9FB;--white:#FFFFFF;--border:#E5E7EB;--text:#2D2C31;--muted:#666666;--faint:#9CA3AF;--purple:#8735FF;--pink:#FF3592;--orange:#FF6B35;--teal:#0891b2;--grad:linear-gradient(90deg,#8735FF 0%,#FF3592 46%,#FF6B35 100%);--grad110:linear-gradient(110deg,#8735FF 0%,#FF3592 52%,#FF6B35 100%);}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.65;padding-bottom:8px;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100;}
+.topbar-logo img{height:40px;width:auto;display:block;}
+.topbar-nav{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:500;color:var(--faint);}
+.topbar-nav a{color:var(--faint);text-decoration:none;transition:color .15s;}.topbar-nav a:hover{color:var(--purple);}
+.topbar-nav .sep{opacity:.45;}.topbar-nav .current{color:var(--muted);font-weight:600;}
+.hero{background:var(--white);border-bottom:1px solid var(--border);padding:52px 40px 44px;}
+.hero-inner{max-width:780px;margin:0 auto;}
+.tag-row{display:flex;gap:7px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid;}
+.tag-cowork{color:var(--purple);border-color:#8735ff35;background:#8735ff0c;}
+.tag-calendar{color:#1d4ed8;border-color:#1d4ed835;background:#1d4ed80c;}
+.tag-gmail{color:#b91c1c;border-color:#b91c1c35;background:#b91c1c0c;}
+h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,42px);letter-spacing:-.03em;line-height:1.08;margin-bottom:16px;background:var(--grad110);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.lead{font-size:15px;color:var(--muted);max-width:580px;line-height:1.75;margin-bottom:28px;}
+.outcome-box{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:10px;padding:15px 20px;max-width:620px;}
+.outcome-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.outcome-label{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--purple);margin-bottom:4px;}
+.outcome-text{font-size:13px;color:var(--text);}
+.main{max-width:780px;margin:0 auto;padding:40px 40px 80px;}
+h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+h2::before{content:'';display:block;width:20px;height:3px;background:var(--grad);border-radius:2px;flex-shrink:0;}
+h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.01em;color:var(--text);margin-bottom:7px;}
+p{color:var(--muted);font-size:13.5px;margin-bottom:10px;}
+.prereq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:9px;margin:14px 0 36px;}
+.prereq-card{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:11px 14px;display:flex;align-items:center;gap:9px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;color:var(--text);}
+.prereq-icon{font-size:15px;}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 32px;}
+.ba-card{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:14px 16px;}
+.ba-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px;}
+.ba-before .ba-label{color:#ef4444;}.ba-after .ba-label{color:#16a34a;}
+.ba-card p{font-size:12.5px;color:var(--muted);margin:0;line-height:1.7;}
+.step{display:grid;grid-template-columns:36px 1fr;gap:16px;margin-bottom:36px;}
+.step-num{width:34px;height:34px;border-radius:50%;background:var(--grad110);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
+.step-body h3{font-size:14.5px;margin-bottom:7px;}.step-body p{font-size:13.5px;}
+.prompt-block{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:9px;padding:14px 18px;margin:10px 0;font-family:'DM Mono',monospace;font-size:12.5px;line-height:1.8;color:var(--text);position:relative;}
+.plabel{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:9px;display:block;}
+.copy-btn{position:absolute;top:11px;right:11px;background:var(--bg);border:1px solid var(--border);border-radius:5px;color:var(--muted);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;padding:3px 8px;cursor:pointer;transition:all .15s;}
+.copy-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple);}
+.event-preview{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:14px 0;}
+.event-preview-head{padding:11px 16px;background:var(--bg);border-bottom:1px solid var(--border);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);}
+.event-field{display:flex;gap:14px;padding:10px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.event-field:last-child{border-bottom:none;}
+.event-key{font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);min-width:100px;padding-top:1px;}
+.event-val{color:var(--text);}
+.callout{border-radius:9px;padding:13px 17px;margin:12px 0;font-size:13px;display:flex;gap:10px;align-items:flex-start;}
+.callout-tip{background:#f0fdf4;border:1px solid #86efac;color:#166534;}
+.callout-warn{background:#fffbeb;border:1px solid #fcd34d;color:#92400e;}
+.callout-pink{background:#fff0f7;border:1px solid #fbb6d7;color:#9d174d;border-left:2.5px solid var(--pink);}
+.callout-icon{font-size:14px;flex-shrink:0;margin-top:2px;}
+.callout strong{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:.8;}
+.divider{border:none;border-top:1px solid var(--border);margin:44px 0;}
+.guide-nav{display:flex;justify-content:space-between;gap:12px;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.nav-card{flex:1;min-width:180px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s;}
+.nav-card:hover{border-color:var(--purple);box-shadow:0 2px 14px rgba(135,53,255,.09);}
+.nav-direction{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:5px;}
+.nav-title{font-family:'Montserrat',sans-serif;font-size:12.5px;font-weight:600;color:var(--text);}
+.nav-card.next{text-align:right;}
+.grad-bar{height:4px;background:var(--grad);margin-top:60px;}
+@media(max-width:640px){.topbar{padding:0 20px;}.hero{padding:36px 20px 32px;}.main{padding:32px 20px 60px;}.topbar-nav .current{display:none;}.ba-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-logo"><img src="bigid-logo.png" alt="BigID" style="height:40px;width:auto;"></div>
+  <nav class="topbar-nav"><a href="index.html">All guides</a><span class="sep">/</span><span class="current">Turn an email into a calendar event</span></nav>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="tag-row"><span class="tag tag-cowork">Cowork</span><span class="tag tag-gmail">Gmail</span><span class="tag tag-calendar">Google Calendar</span></div>
+    <h1>Turn an email into a calendar event</h1>
+    <p class="lead">Someone sends you scheduling details buried in a thread. Instead of copying times and links manually, point Cowork at the email and it creates the event with everything filled in.</p>
+    <div class="outcome-box"><span class="outcome-icon">📅</span><div><div class="outcome-label">What you'll have</div><div class="outcome-text">A fully populated Google Calendar event — title, time, attendees, video link, and description — created from an email in seconds. No copy-pasting.</div></div></div>
+  </div>
+</section>
+<main class="main">
+  <h2>What you'll need</h2>
+  <div class="prereq-grid">
+    <div class="prereq-card"><span class="prereq-icon">🖥️</span>Claude Desktop</div>
+    <div class="prereq-card"><span class="prereq-icon">📧</span>Gmail connector</div>
+    <div class="prereq-card"><span class="prereq-icon">📅</span>Google Calendar</div>
+  </div>
+
+  <div class="ba-grid">
+    <div class="ba-card ba-before"><div class="ba-label">😩 Without this</div><p>Read email → switch to Calendar → create event → paste title → find time → copy Zoom link → paste → add attendees one by one. 3+ minutes of switching tabs.</p></div>
+    <div class="ba-card ba-after"><div class="ba-label">✨ With Cowork</div><p>One prompt → Cowork reads the email, extracts every detail, and creates the event live in your Calendar. Under 30 seconds.</p></div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>Point Cowork at the email</h3>
+      <p>Describe the email by sender, subject, or topic. Cowork finds it, reads it, and creates the event.</p>
+      <div class="prompt-block">
+        <span class="plabel">Paste into Cowork</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Find the most recent email from [sender name or email] about [meeting topic / subject line]. Read it and create a Google Calendar event with all the details — title, date, time, video link or location, and attendees. Add the email body as the event description so I have context in the invite.</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>What Cowork fills in automatically</h3>
+      <p>Here's what a created event looks like after Cowork reads a scheduling email:</p>
+      <div class="event-preview">
+        <div class="event-preview-head">📅 Calendar event created</div>
+        <div class="event-field"><div class="event-key">Title</div><div class="event-val">Q2 Planning Sync — Sarah &amp; Marcus</div></div>
+        <div class="event-field"><div class="event-key">Date &amp; Time</div><div class="event-val">Thursday, April 24 · 2:00–3:00 PM ET</div></div>
+        <div class="event-field"><div class="event-key">Location</div><div class="event-val">https://zoom.us/j/98765432100 (extracted from email)</div></div>
+        <div class="event-field"><div class="event-key">Attendees</div><div class="event-val">sarah@company.com, marcus@partner.com</div></div>
+        <div class="event-field"><div class="event-key">Description</div><div class="event-val">Agenda: review Q2 targets, discuss resource allocation... (email body added as context)</div></div>
+      </div>
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <div><strong>It's live, not a draft</strong>Cowork creates the event directly in your Google Calendar via the connector — it appears within seconds. No confirmation screen needed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>For back-and-forth scheduling threads</h3>
+      <p>Sometimes the confirmed time is buried across a whole email chain. Cowork can read the full thread and pull the final agreed time.</p>
+      <div class="prompt-block">
+        <span class="plabel">For email threads</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Find the email thread with [name] about [topic]. Read the full thread and figure out the time we agreed on. Create the calendar event with the confirmed time, all attendees, and any video link mentioned. Use the thread subject as the event title and add a brief summary as the description.</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h3>Batch mode — catch up on a backlog</h3>
+      <p>Have a pile of scheduling emails you haven't calendared yet? Run this to catch up all at once.</p>
+      <div class="prompt-block">
+        <span class="plabel">Batch version</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Search my Gmail from the last 5 days for any emails that contain meeting requests, scheduling confirmations, or event invites I haven't added to my calendar yet. For each one you find, create the Google Calendar event with full details. List what you created at the end so I can review.</code>
+      </div>
+      <div class="callout callout-warn" style="margin-top:12px;">
+        <span class="callout-icon">⚠️</span>
+        <div><strong>Quick review recommended</strong>For batch mode, always scan your calendar after — Cowork might pick up automated confirmations or reminders that don't need a new event. A 10-second check saves confusion.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <h2>Pro tips</h2>
+  <div style="display:grid;gap:10px;margin-top:14px;">
+    <div class="callout callout-pink"><span class="callout-icon">🔄</span><div><strong>Combine with meeting prep</strong>After the event is created, immediately run the meeting prep guide on it. One prompt to create the event, one to get your brief — fully set up before you even reply to the email.</div></div>
+    <div class="callout callout-pink"><span class="callout-icon">📧</span><div><strong>Draft your reply too</strong>Add <em>"...and draft a reply confirming attendance and asking if there's anything I should bring."</em> It'll land in your Gmail drafts folder, ready to send.</div></div>
+    <div class="callout callout-pink"><span class="callout-icon">🕐</span><div><strong>Time zones are handled</strong>If the email mentions a time zone (e.g., "2pm PST"), Cowork converts it to your local time when creating the event. Double-check for cross-timezone meetings just in case.</div></div>
+  </div>
+
+  <div class="guide-nav">
+    <a href="guide-meeting-prep.html" class="nav-card"><div class="nav-direction">← Previous</div><div class="nav-title">Prep for any meeting in 30 seconds</div></a>
+    <a href="index.html" class="nav-card next"><div class="nav-direction">Back to</div><div class="nav-title">All guides</div></a>
+  </div>
+</main>
+<div class="grad-bar"></div>
+</body>
+</html>

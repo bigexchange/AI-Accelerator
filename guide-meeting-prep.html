@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prep for Any Meeting in 30 Seconds — BigID AI Accelerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F9FB;--white:#FFFFFF;--border:#E5E7EB;--text:#2D2C31;--muted:#666666;--faint:#9CA3AF;--purple:#8735FF;--pink:#FF3592;--orange:#FF6B35;--grad:linear-gradient(90deg,#8735FF 0%,#FF3592 46%,#FF6B35 100%);--grad110:linear-gradient(110deg,#8735FF 0%,#FF3592 52%,#FF6B35 100%);}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.65;padding-bottom:8px;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100;}
+.topbar-logo img{height:40px;width:auto;display:block;}
+.topbar-nav{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:500;color:var(--faint);}
+.topbar-nav a{color:var(--faint);text-decoration:none;transition:color .15s;}.topbar-nav a:hover{color:var(--purple);}
+.topbar-nav .sep{opacity:.45;font-size:13px;}.topbar-nav .current{color:var(--muted);font-weight:600;}
+.hero{background:var(--white);border-bottom:1px solid var(--border);padding:52px 40px 44px;}
+.hero-inner{max-width:780px;margin:0 auto;}
+.tag-row{display:flex;gap:7px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid;}
+.tag-cowork{color:var(--purple);border-color:#8735ff35;background:#8735ff0c;}
+.tag-calendar{color:#1d4ed8;border-color:#1d4ed835;background:#1d4ed80c;}
+.tag-gmail{color:#b91c1c;border-color:#b91c1c35;background:#b91c1c0c;}
+.tag-drive{color:#047857;border-color:#04785735;background:#0478570c;}
+h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,42px);letter-spacing:-.03em;line-height:1.08;margin-bottom:16px;background:var(--grad110);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.lead{font-size:15px;color:var(--muted);max-width:580px;line-height:1.75;margin-bottom:28px;}
+.outcome-box{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:10px;padding:15px 20px;max-width:620px;}
+.outcome-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.outcome-label{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--orange);margin-bottom:4px;}
+.outcome-text{font-size:13px;color:var(--text);}
+.main{max-width:780px;margin:0 auto;padding:40px 40px 80px;}
+h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+h2::before{content:'';display:block;width:20px;height:3px;background:var(--grad);border-radius:2px;flex-shrink:0;}
+h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.01em;color:var(--text);margin-bottom:7px;}
+p{color:var(--muted);font-size:13.5px;margin-bottom:10px;}
+.prereq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:9px;margin:14px 0 36px;}
+.prereq-card{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:11px 14px;display:flex;align-items:center;gap:9px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;color:var(--text);}
+.prereq-icon{font-size:15px;}
+.step{display:grid;grid-template-columns:36px 1fr;gap:16px;margin-bottom:36px;}
+.step-num{width:34px;height:34px;border-radius:50%;background:var(--grad110);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
+.step-body h3{font-size:14.5px;margin-bottom:7px;}.step-body p{font-size:13.5px;}
+.prompt-block{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:9px;padding:14px 18px;margin:10px 0;font-family:'DM Mono',monospace;font-size:12.5px;line-height:1.8;color:var(--text);position:relative;}
+.plabel{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:9px;display:block;}
+.copy-btn{position:absolute;top:11px;right:11px;background:var(--bg);border:1px solid var(--border);border-radius:5px;color:var(--muted);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;padding:3px 8px;cursor:pointer;transition:all .15s;}
+.copy-btn:hover{background:var(--orange);color:#fff;border-color:var(--orange);}
+.callout{border-radius:9px;padding:13px 17px;margin:12px 0;font-size:13px;display:flex;gap:10px;align-items:flex-start;}
+.callout-tip{background:#f0fdf4;border:1px solid #86efac;color:#166534;}
+.callout-warn{background:#fffbeb;border:1px solid #fcd34d;color:#92400e;}
+.callout-pink{background:#fff0f7;border:1px solid #fbb6d7;color:#9d174d;border-left:2.5px solid var(--pink);}
+.callout-info{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;}
+.callout-icon{font-size:14px;flex-shrink:0;margin-top:2px;}
+.callout strong{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:.8;}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 24px;}
+.ba-card{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:14px 16px;}
+.ba-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px;}
+.ba-before .ba-label{color:#ef4444;}.ba-after .ba-label{color:#16a34a;}
+.ba-card p{font-size:12.5px;color:var(--muted);margin:0;line-height:1.7;}
+.divider{border:none;border-top:1px solid var(--border);margin:44px 0;}
+.guide-nav{display:flex;justify-content:space-between;gap:12px;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.nav-card{flex:1;min-width:180px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s;}
+.nav-card:hover{border-color:var(--orange);box-shadow:0 2px 14px rgba(255,107,53,.09);}
+.nav-direction{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:5px;}
+.nav-title{font-family:'Montserrat',sans-serif;font-size:12.5px;font-weight:600;color:var(--text);}
+.nav-card.next{text-align:right;}
+.grad-bar{height:4px;background:var(--grad);margin-top:60px;}
+@media(max-width:640px){.topbar{padding:0 20px;}.hero{padding:36px 20px 32px;}.main{padding:32px 20px 60px;}.topbar-nav .current{display:none;}.ba-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-logo"><img src="bigid-logo.png" alt="BigID" style="height:40px;width:auto;"></div>
+  <nav class="topbar-nav"><a href="index.html">All guides</a><span class="sep">/</span><span class="current">Prep for any meeting in 30 seconds</span></nav>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="tag-row"><span class="tag tag-cowork">Cowork</span><span class="tag tag-calendar">Google Calendar</span><span class="tag tag-gmail">Gmail</span><span class="tag tag-drive">Google Drive</span></div>
+    <h1>Prep for any meeting in 30 seconds</h1>
+    <p class="lead">Tell Cowork which meeting you're prepping for. It pulls the calendar event, searches your emails and Drive for related context, and hands you a brief before you walk in.</p>
+    <div class="outcome-box"><span class="outcome-icon">📋</span><div><div class="outcome-label">What you'll have</div><div class="outcome-text">A one-page meeting brief: who's attending, what was discussed last time, relevant emails and docs, and suggested talking points — in about 30 seconds.</div></div></div>
+  </div>
+</section>
+<main class="main">
+  <h2>What you'll need</h2>
+  <div class="prereq-grid">
+    <div class="prereq-card"><span class="prereq-icon">🖥️</span>Claude Desktop</div>
+    <div class="prereq-card"><span class="prereq-icon">📅</span>Google Calendar</div>
+    <div class="prereq-card"><span class="prereq-icon">📧</span>Gmail connector</div>
+    <div class="prereq-card"><span class="prereq-icon">📁</span>Google Drive connector</div>
+  </div>
+
+  <div class="ba-grid">
+    <div class="ba-card ba-before"><div class="ba-label">😩 Without this</div><p>Read email → find the date → switch to Calendar → create event → paste title → add time → find the Zoom link → copy it → paste it → add attendees. 3+ minutes minimum.</p></div>
+    <div class="ba-card ba-after"><div class="ba-label">✨ With Cowork</div><p>One prompt → Cowork pulls the event, searches related emails and docs, and hands you a complete brief. Under 30 seconds.</p></div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>The basic prompt — works for any meeting</h3>
+      <p>Just tell Cowork the meeting name or who you're meeting with. It figures out the rest.</p>
+      <div class="prompt-block">
+        <span class="plabel">Paste into Cowork</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>I have a meeting with [name / company / meeting title] today. Please prep me.
+
+Pull the calendar event and get me:
+1. Who's attending and their titles/roles if available
+2. Any emails in my inbox related to this meeting or person from the last 30 days
+3. Any related documents in my Google Drive
+4. A 2–3 sentence summary of context — what this meeting is likely about
+5. 3 suggested talking points or questions I should come in with
+
+Save the brief as "meeting-prep-[name]-[date].md" in my Cowork folder.</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>For recurring meetings — 1:1s, weekly syncs</h3>
+      <p>If you have a standing meeting, Cowork can pull recent history so you're never starting cold.</p>
+      <div class="prompt-block">
+        <span class="plabel">Recurring meetings</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>I have my weekly [meeting name] in [X hours / this afternoon]. Prep me.
+
+Check my calendar for today's event. Then:
+1. Search my email and Drive for anything related to this team or project from the last 7 days
+2. Look for meeting notes or action items from our previous session
+3. Summarize what's likely on the agenda based on recent activity
+4. List any open action items I may need to report on
+5. Suggest 2–3 things I should bring up
+
+Save as "meeting-prep-[meeting name]-[date].md".</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>For external / customer / sales meetings</h3>
+      <p>When you're meeting with a prospect, customer, or external partner — a little extra context goes a long way.</p>
+      <div class="prompt-block">
+        <span class="plabel">External meetings</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>I'm meeting with [company name / contact name] today. Pull my prep brief.
+
+From my Calendar: event details, attendees, any notes in the invite.
+From my Gmail: all emails with this company or contact from the last 60 days — summarize what's been discussed and any open items.
+From my Drive: any proposals, decks, or notes related to this account.
+
+Also: what stage are we at? What was the last thing we agreed to?
+Talking points: what should I focus on based on the history?
+
+Save as "meeting-prep-[company]-[date].md".</code>
+      </div>
+      <div class="callout callout-info" style="margin-top:12px;">
+        <span class="callout-icon">ℹ️</span>
+        <div><strong>Drive connector note</strong>Google Drive connector is only available in private Projects in Cowork. If you don't have it connected, skip the Drive step — Calendar + Gmail alone still give you a solid brief.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h3>Auto-run before every external meeting</h3>
+      <p>Use <code style="font-family:'DM Mono';font-size:12px;color:var(--orange);">/schedule</code> to have Cowork prep you automatically every morning for any external calls that day.</p>
+      <div class="prompt-block">
+        <span class="plabel">Scheduled version</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>/schedule every weekday at 8:00am
+
+Look at my calendar for today. For each meeting with an external attendee (someone not at my company), create a brief meeting prep note. Pull any related emails from the last 30 days and summarize context, attendees, and 2–3 things I should know walking in.
+
+Save all briefs as "prep-[meeting name]-[date].md" in my Cowork folder.</code>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <h2>Pro tips</h2>
+  <div style="display:grid;gap:10px;margin-top:14px;">
+    <div class="callout callout-pink"><span class="callout-icon">⚡</span><div><strong>Make it even faster</strong>Save this as a Cowork Skill — a saved prompt you can trigger with a keyword. Name it something like <code style="font-family:'DM Mono';font-size:12px;">prep [meeting name]</code> so you can invoke it in two words.</div></div>
+    <div class="callout callout-pink"><span class="callout-icon">📝</span><div><strong>Close the loop after the meeting</strong>Drop your notes back into Cowork and ask it to extract action items and draft any follow-up emails. Prep brief and follow-up live together in your folder as a clean record.</div></div>
+    <div class="callout callout-warn"><span class="callout-icon">⚠️</span><div><strong>Thin on brand-new contacts</strong>If there's no email history or Drive docs for someone, the brief will be thin. The value really shows up with recurring contacts and ongoing relationships.</div></div>
+  </div>
+
+  <div class="guide-nav">
+    <a href="guide-morning-briefing.html" class="nav-card"><div class="nav-direction">← Previous</div><div class="nav-title">Build your morning briefing</div></a>
+    <a href="guide-email-to-calendar.html" class="nav-card next"><div class="nav-direction">Next →</div><div class="nav-title">Turn an email into a calendar event</div></a>
+  </div>
+</main>
+<div class="grad-bar"></div>
+</body>
+</html>

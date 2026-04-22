@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polish and Format a Presentation — BigID AI Accelerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F9FB;--white:#FFFFFF;--border:#E5E7EB;--text:#2D2C31;--muted:#666666;--faint:#9CA3AF;--purple:#8735FF;--pink:#FF3592;--orange:#FF6B35;--grad:linear-gradient(90deg,#8735FF 0%,#FF3592 46%,#FF6B35 100%);--grad110:linear-gradient(110deg,#8735FF 0%,#FF3592 52%,#FF6B35 100%);}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.65;padding-bottom:8px;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100;}
+.topbar-logo img{height:40px;width:auto;display:block;}
+.topbar-nav{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:500;color:var(--faint);}
+.topbar-nav a{color:var(--faint);text-decoration:none;}.topbar-nav a:hover{color:var(--purple);}
+.topbar-nav .sep{opacity:.45;}.topbar-nav .current{color:var(--muted);font-weight:600;}
+.hero{background:var(--white);border-bottom:1px solid var(--border);padding:52px 40px 44px;}
+.hero-inner,.main-inner{max-width:780px;margin:0 auto;}
+.tag-row{display:flex;gap:7px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid;}
+.tag-claude{color:var(--purple);border-color:#8735ff35;background:#8735ff0c;}
+.tag-content{color:#92400e;border-color:#92400e35;background:#92400e0c;}
+h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,42px);letter-spacing:-.03em;line-height:1.08;margin-bottom:16px;background:var(--grad110);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.lead{font-size:15px;color:var(--muted);max-width:580px;line-height:1.75;margin-bottom:28px;}
+.outcome-box{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:10px;padding:15px 20px;max-width:620px;}
+.outcome-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.outcome-label{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--purple);margin-bottom:4px;}
+.outcome-text{font-size:13px;color:var(--text);}
+.main{max-width:780px;margin:0 auto;padding:40px 40px 80px;}
+h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+h2::before{content:'';display:block;width:20px;height:3px;background:var(--grad);border-radius:2px;flex-shrink:0;}
+h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.01em;color:var(--text);margin-bottom:7px;}
+p{color:var(--muted);font-size:13.5px;margin-bottom:10px;}
+.step{display:grid;grid-template-columns:36px 1fr;gap:16px;margin-bottom:36px;}
+.step-num{width:34px;height:34px;border-radius:50%;background:var(--grad110);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
+.step-body h3{font-size:14.5px;margin-bottom:7px;}.step-body p{font-size:13.5px;}
+.prompt-block{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:9px;padding:14px 18px;margin:10px 0;font-family:'DM Mono',monospace;font-size:12.5px;line-height:1.8;color:var(--text);position:relative;}
+.plabel{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:9px;display:block;}
+.copy-btn{position:absolute;top:11px;right:11px;background:var(--bg);border:1px solid var(--border);border-radius:5px;color:var(--muted);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;padding:3px 8px;cursor:pointer;transition:all .15s;}
+.copy-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple);}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 16px;}
+.cmp{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:13px 15px;}
+.cmp-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px;}
+.cmp-good .cmp-label{color:#16a34a;}.cmp-bad .cmp-label{color:#ef4444;}
+.cmp p{font-size:12.5px;color:var(--muted);margin:0;font-family:'DM Mono',monospace;line-height:1.8;}
+.word-box{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:14px 16px;margin:12px 0;}
+.word-box-title{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;}
+.word-row{font-size:13px;color:var(--text);padding:6px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:baseline;}
+.word-row:last-child{border-bottom:none;}
+.word-bad{font-weight:700;color:#ef4444;min-width:120px;}
+.word-fix{color:var(--muted);}
+.callout{border-radius:9px;padding:13px 17px;margin:12px 0;font-size:13px;display:flex;gap:10px;align-items:flex-start;}
+.callout-tip{background:#f0fdf4;border:1px solid #86efac;color:#166534;}
+.callout-warn{background:#fffbeb;border:1px solid #fcd34d;color:#92400e;}
+.callout-pink{background:#fff0f7;border:1px solid #fbb6d7;color:#9d174d;border-left:2.5px solid var(--pink);}
+.callout-icon{font-size:14px;flex-shrink:0;margin-top:2px;}
+.callout strong{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:.8;}
+.divider{border:none;border-top:1px solid var(--border);margin:44px 0;}
+.guide-nav{display:flex;justify-content:space-between;gap:12px;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.nav-card{flex:1;min-width:180px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s;}
+.nav-card:hover{border-color:var(--purple);box-shadow:0 2px 14px rgba(135,53,255,.09);}
+.nav-direction{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:5px;}
+.nav-title{font-family:'Montserrat',sans-serif;font-size:12.5px;font-weight:600;color:var(--text);}
+.nav-card.next{text-align:right;}
+.grad-bar{height:4px;background:var(--grad);margin-top:60px;}
+@media(max-width:640px){.topbar{padding:0 20px;}.hero{padding:36px 20px 32px;}.main{padding:32px 20px 60px;}.topbar-nav .current{display:none;}.compare{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-logo"><img src="bigid-logo.png" alt="BigID" style="height:40px;width:auto;"></div>
+  <nav class="topbar-nav"><a href="index.html">All guides</a><span class="sep">/</span><span class="current">Polish and Format a Presentation</span></nav>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="tag-row"><span class="tag tag-claude">Claude</span><span class="tag tag-content">Content</span><span class="tag tag-content">Strategy</span></div>
+    <h1>Polish and Format a Presentation</h1>
+    <p class="lead">Sharpen content, tighten structure, and calibrate messaging for any audience — from a CISO roundtable to a board deck. Covers narrative, proof points, audience reframing, and the review loop.</p>
+    <div class="outcome-box"><span class="outcome-icon">🎯</span><div><div class="outcome-label">What you'll have</div><div class="outcome-text">A presentation with a clear narrative arc, audience-calibrated messaging, and language that sounds like BigID wrote it — not like AI generated it.</div></div></div>
+  </div>
+</section>
+<main class="main">
+  <div class="callout callout-warn" style="margin-bottom:32px;">
+    <span class="callout-icon">⚡</span>
+    <div><strong>Before you start</strong>Give Claude two things upfront: (1) context about BigID — paste a recent one-pager, press release, or your current messaging doc; (2) context about your audience — who's in the room, what they care about, what you want them to think when it's over.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>Start with your audience</h3>
+      <p>Before touching a slide, get this right. Everything else filters through it.</p>
+      <div class="prompt-block">
+        <span class="plabel">Audience framing</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>I'm building a presentation about BigID for [audience]. Here's who they are: [2–3 sentences — role, what they care about, what they know about us]. What are the 3–5 things this audience most needs to understand, and the one thing I want them to walk away believing?</code>
+      </div>
+      <div class="prompt-block">
+        <span class="plabel">Example</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>I'm building a presentation for Fortune 500 CISOs at a roundtable dinner. They're evaluating DSPM vendors, skeptical of pitches, and respond to specificity and peer evidence. What are the 3–5 things this audience most needs to understand, and the one thing I want them to walk away believing?</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>Build or audit the structure</h3>
+      <div class="prompt-block">
+        <span class="plabel">Starting from scratch</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>I'm building a [X]-slide presentation for [audience] about [topic]. Goal: [goal]. Help me create a clear narrative arc. For each slide give me: the title, the one thing it needs to communicate, and any supporting evidence it should include.</code>
+      </div>
+      <div class="prompt-block">
+        <span class="plabel">Auditing an existing deck</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Here's the structure of my BigID presentation [paste slide titles]. Audience: [describe]. Goal: [goal]. What's missing, redundant, in the wrong order, or where does the narrative break down?</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>Write the slide content</h3>
+      <div class="prompt-block">
+        <span class="plabel">Single slide</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Write the content for a slide titled "[title]." Audience: [describe]. The one thing this slide needs to communicate is [key message]. 3–4 bullets. Each bullet is one clear, specific sentence — no fluff, no passive voice.</code>
+      </div>
+      <div class="compare">
+        <div class="cmp cmp-good"><div class="cmp-label">✓ Good</div><p>— Built for compliance audits, not AI data exposure<br>— No visibility into unstructured data or shadow AI usage<br>— Can't see what your models are training on</p></div>
+        <div class="cmp cmp-bad"><div class="cmp-label">✗ Avoid</div><p>— "Organizations face many data security challenges"<br>— "BigID provides comprehensive data security solutions"<br>— "Leverage our robust platform to drive value"</p></div>
+      </div>
+      <div class="callout callout-tip"><span class="callout-icon">💡</span><div><strong>If Claude goes generic, push back</strong>Say: "These bullets are too vague. Make each one more specific. Replace any abstract claim with a concrete example, a number, or a named risk. Cut anything that could apply to any security vendor."</div></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h3>Calibrate tone by audience</h3>
+      <div class="prompt-block">
+        <span class="plabel">Three-audience reframe</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Here's the core message: [paste].
+
+Write three versions:
+— CISO: risk and control
+— CFO: cost and liability
+— Board: fiduciary responsibility and competitive risk
+
+For each, lead with what they care about most and translate any technical language into their frame of reference.</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h3>Polish the language</h3>
+      <div class="prompt-block">
+        <span class="plabel">Language pass</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Review this slide copy [paste]. Edit so that: every bullet leads with a business implication, no sentence uses passive voice, no bullet starts with "BigID" or "Our," and nothing reads like AI-generated marketing copy. Be direct. Cut filler.</code>
+      </div>
+      <div class="word-box">
+        <div class="word-box-title">Three words to cut every time</div>
+        <div class="word-row"><span class="word-bad">Comprehensive</span><span class="word-fix">→ say what it actually covers</span></div>
+        <div class="word-row"><span class="word-bad">Robust</span><span class="word-fix">→ say what it actually does</span></div>
+        <div class="word-row"><span class="word-bad">Leverages</span><span class="word-fix">→ use, power, or enable</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">6</div>
+    <div class="step-body">
+      <h3>Run the review loop</h3>
+      <div class="prompt-block">
+        <span class="plabel">Structural review</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Read this full presentation [paste]. Does the narrative build clearly? Where does it lose momentum? What's the single weakest slide?</code>
+      </div>
+      <div class="prompt-block">
+        <span class="plabel">Devil's advocate</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>You're a skeptical CISO in the room. Read this presentation and give me the 5 hardest objections you'd have. Then help me either address each one in the deck or prepare the presenter with responses.</code>
+      </div>
+      <div class="prompt-block">
+        <span class="plabel">Final pass</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Read this like you're the audience. What's the one thing that would make you sit up straighter? What's the one thing that would make you tune out? What question would you definitely ask at the end?</code>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <h2>Pro tips</h2>
+  <div style="display:grid;gap:10px;margin-top:14px;">
+    <div class="callout callout-pink"><span class="callout-icon">🎯</span><div><strong>Negative constraints work</strong>"No generic statements," "no bullets that start with BigID," "nothing that could apply to any vendor" — these make Claude's output dramatically better.</div></div>
+    <div class="callout callout-pink"><span class="callout-icon">🔀</span><div><strong>Ask for three alternatives</strong>Don't just ask Claude to "try again." Tell it exactly what didn't work — too formal, too vague, wrong audience — then ask for three alternatives.</div></div>
+    <div class="callout callout-pink"><span class="callout-icon">📑</span><div><strong>One section at a time</strong>Give Claude one section at a time to get detailed, useful feedback — not a surface-level skim of the whole deck at once.</div></div>
+  </div>
+
+  <div class="guide-nav">
+    <a href="index.html" class="nav-card"><div class="nav-direction">← Back</div><div class="nav-title">All guides</div></a>
+    <a href="guide-pptx-skill.html" class="nav-card next"><div class="nav-direction">Next →</div><div class="nav-title">Build a Branded Slide Deck</div></a>
+  </div>
+</main>
+<div class="grad-bar"></div>
+</body>
+</html>

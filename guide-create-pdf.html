@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create a Branded PDF — BigID AI Accelerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F9FB;--white:#FFFFFF;--border:#E5E7EB;--text:#2D2C31;--muted:#666666;--faint:#9CA3AF;--purple:#8735FF;--pink:#FF3592;--orange:#FF6B35;--grad:linear-gradient(90deg,#8735FF 0%,#FF3592 46%,#FF6B35 100%);--grad110:linear-gradient(110deg,#8735FF 0%,#FF3592 52%,#FF6B35 100%);}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.65;padding-bottom:8px;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100;}
+.topbar-logo img{height:40px;width:auto;display:block;}
+.topbar-nav{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:500;color:var(--faint);}
+.topbar-nav a{color:var(--faint);text-decoration:none;}.topbar-nav a:hover{color:var(--purple);}
+.topbar-nav .sep{opacity:.45;}.topbar-nav .current{color:var(--muted);font-weight:600;}
+.hero{background:var(--white);border-bottom:1px solid var(--border);padding:52px 40px 44px;}
+.hero-inner{max-width:780px;margin:0 auto;}
+.tag-row{display:flex;gap:7px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid;}
+.tag-claude{color:var(--purple);border-color:#8735ff35;background:#8735ff0c;}
+.tag-design{color:#1d4ed8;border-color:#1d4ed835;background:#1d4ed80c;}
+h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,42px);letter-spacing:-.03em;line-height:1.08;margin-bottom:16px;background:var(--grad110);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.lead{font-size:15px;color:var(--muted);max-width:580px;line-height:1.75;margin-bottom:28px;}
+.outcome-box{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:10px;padding:15px 20px;max-width:620px;}
+.outcome-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.outcome-label{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--purple);margin-bottom:4px;}
+.outcome-text{font-size:13px;color:var(--text);}
+.main{max-width:780px;margin:0 auto;padding:40px 40px 80px;}
+h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+h2::before{content:'';display:block;width:20px;height:3px;background:var(--grad);border-radius:2px;flex-shrink:0;}
+h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.01em;color:var(--text);margin-bottom:7px;}
+p{color:var(--muted);font-size:13.5px;margin-bottom:10px;}
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 32px;}
+.skill-card{background:var(--white);border:1px solid var(--border);border-radius:11px;overflow:hidden;}
+.skill-head{padding:16px 18px 12px;border-bottom:1px solid var(--border);background:var(--bg);}
+.skill-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;color:var(--text);margin-bottom:4px;}
+.skill-badge{display:inline-block;font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-bottom:8px;}
+.badge-std{background:#ede9fe;color:#6d28d9;}
+.badge-exec{background:#fce7f3;color:#9d174d;}
+.skill-desc{font-size:12.5px;color:var(--muted);}
+.skill-body{padding:14px 18px;}
+.skill-body ul{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
+.skill-body li{font-size:12.5px;color:var(--text);padding-left:15px;position:relative;line-height:1.5;}
+.skill-body li::before{content:'·';position:absolute;left:2px;font-size:18px;line-height:1.05;color:var(--purple);}
+.trigger-label{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:5px;}
+.skill-body p{font-size:12px;color:var(--muted);font-style:italic;margin:0;}
+.theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0 20px;}
+.theme-card{border-radius:9px;padding:13px 15px;border:1px solid;}
+.theme-charcoal{background:#2e2d32;border-color:#444450;}
+.theme-pearl{background:#f5f3ee;border-color:#d8d4cc;}
+.theme-lavender{background:#f0edf8;border-color:#d8d0ec;}
+.theme-name{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;margin-bottom:4px;}
+.theme-charcoal .theme-name{color:#e0e0f0;}
+.theme-pearl .theme-name{color:#5e5880;}
+.theme-lavender .theme-name{color:#6040a0;}
+.theme-desc{font-size:12px;}
+.theme-charcoal .theme-desc{color:#9090b0;}
+.theme-pearl .theme-desc,.theme-lavender .theme-desc{color:#888090;}
+.prompt-block{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:9px;padding:14px 18px;margin:10px 0;font-family:'DM Mono',monospace;font-size:12.5px;line-height:1.8;color:var(--text);position:relative;}
+.plabel{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:9px;display:block;}
+.copy-btn{position:absolute;top:11px;right:11px;background:var(--bg);border:1px solid var(--border);border-radius:5px;color:var(--muted);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;padding:3px 8px;cursor:pointer;transition:all .15s;}
+.copy-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple);}
+.always-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:9px;margin:14px 0;}
+.always-item{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:11px 14px;}
+.always-label{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:5px;}
+.always-val{font-size:13px;color:var(--text);}
+.callout{border-radius:9px;padding:13px 17px;margin:12px 0;font-size:13px;display:flex;gap:10px;align-items:flex-start;}
+.callout-pink{background:#fff0f7;border:1px solid #fbb6d7;color:#9d174d;border-left:2.5px solid var(--pink);}
+.callout-icon{font-size:14px;flex-shrink:0;margin-top:2px;}
+.callout strong{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:.8;}
+.divider{border:none;border-top:1px solid var(--border);margin:44px 0;}
+.guide-nav{display:flex;justify-content:space-between;gap:12px;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.nav-card{flex:1;min-width:180px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s;}
+.nav-card:hover{border-color:var(--purple);box-shadow:0 2px 14px rgba(135,53,255,.09);}
+.nav-direction{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:5px;}
+.nav-title{font-family:'Montserrat',sans-serif;font-size:12.5px;font-weight:600;color:var(--text);}
+.nav-card.next{text-align:right;}
+.grad-bar{height:4px;background:var(--grad);margin-top:60px;}
+@media(max-width:640px){.topbar{padding:0 20px;}.hero{padding:36px 20px 32px;}.main{padding:32px 20px 60px;}.topbar-nav .current{display:none;}.skill-grid{grid-template-columns:1fr;}.theme-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-logo"><img src="bigid-logo.png" alt="BigID" style="height:40px;width:auto;"></div>
+  <nav class="topbar-nav"><a href="index.html">All guides</a><span class="sep">/</span><span class="current">Create a Branded PDF</span></nav>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="tag-row"><span class="tag tag-claude">Claude</span><span class="tag tag-design">Documents</span><span class="tag tag-design">Design</span></div>
+    <h1>Create a Branded PDF</h1>
+    <p class="lead">Two PDF skills for every document — from clean one-pagers to executive proposals with a bold header. No design tools, no templates to manage. Paste your content, get a branded file.</p>
+    <div class="outcome-box"><span class="outcome-icon">📄</span><div><div class="outcome-label">What you'll have</div><div class="outcome-text">A downloadable BigID PDF — BD Megatoya fonts, the purple→pink→orange gradient, BigID logo, and a gradient footer on every page. Generated in minutes.</div></div></div>
+  </div>
+</section>
+<main class="main">
+  <h2>Two skills — pick the right one</h2>
+  <div class="skill-grid">
+    <div class="skill-card">
+      <div class="skill-head">
+        <span class="skill-badge badge-std">Standard</span>
+        <div class="skill-name">PDF Formatter</div>
+        <div class="skill-desc">Clean professional layout. Gradient title at the top, standard body below.</div>
+      </div>
+      <div class="skill-body">
+        <p style="font-style:normal;font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:7px;">Best for:</p>
+        <ul>
+          <li>Reports and competitive analyses</li>
+          <li>One-pagers and product briefs</li>
+          <li>Guides, whitepapers, internal memos</li>
+        </ul>
+        <div class="trigger-label">Trigger phrases</div>
+        <p>"Make me a branded BigID PDF" · "Format this as a BigID report" · "Turn this into a BigID one-pager"</p>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-head">
+        <span class="skill-badge badge-exec">Executive</span>
+        <div class="skill-name">Dark Header</div>
+        <div class="skill-desc">Bold color band across the top ~30% of page 1 with executive summary baked in.</div>
+      </div>
+      <div class="skill-body">
+        <p style="font-style:normal;font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:7px;">Best for:</p>
+        <ul>
+          <li>Executive summaries and C-suite proposals</li>
+          <li>Sales leave-behinds for senior stakeholders</li>
+          <li>Board-level reports and analyst briefs</li>
+        </ul>
+        <div class="trigger-label">Trigger phrases</div>
+        <p>"BigID PDF with a dark header" · "executive summary PDF" · "header band treatment"</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Skill 1: PDF Formatter</h2>
+  <div class="prompt-block">
+    <span class="plabel">Basic trigger</span>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+    <code>Create a branded BigID PDF of this content. Title: "[your title]"
+
+[paste your content here]</code>
+  </div>
+  <div class="prompt-block">
+    <span class="plabel">Competitive analysis</span>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+    <code>Create a branded BigID PDF of this competitive analysis. Title: "BigID vs. Cyera: A Direct Comparison."
+
+[paste content]</code>
+  </div>
+
+  <h2 style="margin-top:36px;">Skill 2: Dark Header</h2>
+  <p>Comes in three themes. Claude will ask which one you want — or specify it in your prompt.</p>
+  <div class="theme-grid">
+    <div class="theme-card theme-charcoal"><div class="theme-name">🖤 Charcoal</div><div class="theme-desc">Deep dark bg, white text. Executive, bold, high-stakes.</div></div>
+    <div class="theme-card theme-pearl"><div class="theme-name">🤍 Pearl</div><div class="theme-desc">Light grey bg, dark text. Clean, editorial, versatile.</div></div>
+    <div class="theme-card theme-lavender"><div class="theme-name">💜 Lavender</div><div class="theme-desc">Soft purple tint, dark text. Brand-forward, warm.</div></div>
+  </div>
+  <div class="prompt-block">
+    <span class="plabel">Executive summary — charcoal</span>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+    <code>Create a BigID executive summary PDF using the charcoal header. Title: "State of AI Data Risk 2026." Executive summary: [paste 2–3 sentences]. Then format the full report:
+
+[paste content]</code>
+  </div>
+  <div class="prompt-block">
+    <span class="plabel">Sales leave-behind — lavender</span>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+    <code>I need a leave-behind for a CISO meeting. Use the dark header skill — lavender theme. Title: "Why BigID for AI Security." Executive summary: [2 sentences].
+
+[your content sections]</code>
+  </div>
+
+  <hr class="divider">
+  <h2>What every PDF includes automatically</h2>
+  <div class="always-grid">
+    <div class="always-item"><div class="always-label">Font</div><div class="always-val">BD Megatoya — Regular, SemiBold, Bold</div></div>
+    <div class="always-item"><div class="always-label">Title</div><div class="always-val">Purple → pink → orange gradient</div></div>
+    <div class="always-item"><div class="always-label">Logo</div><div class="always-val">Correctly placed on page 1</div></div>
+    <div class="always-item"><div class="always-label">Footer</div><div class="always-val">Gradient bar + logo on every page</div></div>
+    <div class="always-item"><div class="always-label">Last page</div><div class="always-val">Standard BigID template page appended</div></div>
+  </div>
+  <p style="font-size:13px;margin-top:4px;">You never need to specify any of these — they're built in to both skills.</p>
+
+  <hr class="divider">
+  <h2>Pro tips</h2>
+  <div style="display:grid;gap:10px;margin-top:14px;">
+    <div class="callout callout-pink"><span class="callout-icon">📋</span><div><strong>Paste your content directly</strong>No need to pre-format. Raw text, section by section — Claude applies the correct styling automatically.</div></div>
+    <div class="callout callout-pink"><span class="callout-icon">🎯</span><div><strong>Give Claude your actual title</strong>"BigID vs. Purview: The 2026 DSPM Comparison" is infinitely better input than "competitive comparison."</div></div>
+    <div class="callout callout-pink"><span class="callout-icon">🏢</span><div><strong>When to use Dark Header vs. Formatter</strong>Going to C-level, in a proposal, or in a leadership meeting → Dark Header. Internal, functional, or operational → PDF Formatter.</div></div>
+  </div>
+
+  <div class="guide-nav">
+    <a href="guide-pptx-skill.html" class="nav-card"><div class="nav-direction">← Previous</div><div class="nav-title">Build a Branded Slide Deck</div></a>
+    <a href="guide-ai-vs-ai.html" class="nav-card next"><div class="nav-direction">Next →</div><div class="nav-title">When to Use Claude vs ChatGPT vs Gemini</div></a>
+  </div>
+</main>
+<div class="grad-bar"></div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When to Use Claude vs ChatGPT vs Gemini — BigID AI Accelerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F9FB;--white:#FFFFFF;--border:#E5E7EB;--text:#2D2C31;--muted:#666666;--faint:#9CA3AF;--purple:#8735FF;--pink:#FF3592;--orange:#FF6B35;--claude:#8735FF;--gemini:#1a73e8;--chatgpt:#10a37f;--grad:linear-gradient(90deg,#8735FF 0%,#FF3592 46%,#FF6B35 100%);--grad110:linear-gradient(110deg,#8735FF 0%,#FF3592 52%,#FF6B35 100%);}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.65;padding-bottom:8px;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100;}
+.topbar-logo img{height:40px;width:auto;display:block;}
+.topbar-nav{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:500;color:var(--faint);}
+.topbar-nav a{color:var(--faint);text-decoration:none;}.topbar-nav a:hover{color:var(--purple);}
+.topbar-nav .sep{opacity:.45;}.topbar-nav .current{color:var(--muted);font-weight:600;}
+.hero{background:var(--white);border-bottom:1px solid var(--border);padding:52px 40px 44px;}
+.hero-inner{max-width:780px;margin:0 auto;}
+.tag-row{display:flex;gap:7px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid;}
+.tag-all{color:var(--pink);border-color:#FF359235;background:#FF35920c;}
+.tag-strategy{color:#92400e;border-color:#92400e35;background:#92400e0c;}
+h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,42px);letter-spacing:-.03em;line-height:1.08;margin-bottom:16px;background:var(--grad110);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.lead{font-size:15px;color:var(--muted);max-width:580px;line-height:1.75;margin-bottom:28px;}
+.outcome-box{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:10px;padding:15px 20px;max-width:620px;}
+.outcome-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.outcome-label{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--purple);margin-bottom:4px;}
+.outcome-text{font-size:13px;color:var(--text);}
+.main{max-width:780px;margin:0 auto;padding:40px 40px 80px;}
+h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+h2::before{content:'';display:block;width:20px;height:3px;background:var(--grad);border-radius:2px;flex-shrink:0;}
+h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.01em;color:var(--text);margin-bottom:7px;}
+p{color:var(--muted);font-size:13.5px;margin-bottom:10px;}
+.summary-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:32px;}
+.ss{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:15px 17px;border-top:3px solid;}
+.ss-claude{border-top-color:var(--claude);}
+.ss-gemini{border-top-color:var(--gemini);}
+.ss-chatgpt{border-top-color:var(--chatgpt);}
+.ss-icon{font-size:20px;margin-bottom:7px;}
+.ss-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;margin-bottom:4px;color:var(--text);}
+.ss-rule{font-size:12px;color:var(--muted);line-height:1.55;}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px;}
+.tool-header{display:flex;align-items:flex-start;gap:14px;padding:17px 20px 13px;border-bottom:1px solid var(--border);background:var(--bg);}
+.tool-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;}
+.icon-claude {background:linear-gradient(135deg,#8735FF,#FF3592);}
+.icon-gemini {background:linear-gradient(135deg,#1a73e8,#34a853);}
+.icon-chatgpt{background:linear-gradient(135deg,#10a37f,#0d8f6f);}
+.tool-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;color:var(--text);margin-bottom:3px;}
+.tool-rule{font-size:12.5px;color:var(--muted);}
+.tool-badge{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-left:auto;flex-shrink:0;}
+.badge-claude {background:#ede9fe;color:#6d28d9;}
+.badge-gemini {background:#e8f0fe;color:#1558b0;}
+.badge-chatgpt{background:#d1fae5;color:#065f46;}
+.tool-body{padding:16px 20px;}
+.use-label{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin-bottom:8px;margin-top:14px;display:block;}
+.use-label:first-child{margin-top:0;}
+.use-item{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:11px 14px;margin-bottom:8px;}
+.use-item-title{font-family:'Montserrat',sans-serif;font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.use-item-desc{font-size:12.5px;color:var(--muted);line-height:1.6;}
+.use-item-prompt{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--purple);margin-top:6px;line-height:1.6;font-style:italic;}
+.tell{background:#faf5ff;border:1px solid #e9d5ff;border-radius:8px;padding:10px 14px;margin-top:12px;font-size:12.5px;color:#6b21a8;line-height:1.6;}
+.tell strong{font-family:'Montserrat',sans-serif;font-weight:700;}
+.table-wrap{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:14px 0;}
+.dt{width:100%;border-collapse:collapse;font-size:13px;}
+.dt th{font-family:'Montserrat',sans-serif;text-align:left;padding:9px 16px;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);border-bottom:1px solid var(--border);background:var(--bg);}
+.dt td{padding:10px 16px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.dt tr:last-child td{border-bottom:none;}
+.dt td:first-child{color:var(--text);}
+.dt tbody tr:hover{background:#faf5ff;}
+.pill{font-family:'Montserrat',sans-serif;display:inline-block;font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:20px;}
+.p-claude {background:#ede9fe;color:#6d28d9;}
+.p-gemini {background:#e8f0fe;color:#1558b0;}
+.p-chatgpt{background:#d1fae5;color:#065f46;}
+.p-gemini-nb{background:#e8f0fe;color:#1558b0;border:1px solid #bfdbfe;}
+.callout{border-radius:9px;padding:13px 17px;margin:12px 0;font-size:13px;display:flex;gap:10px;align-items:flex-start;}
+.callout-warn{background:#fffbeb;border:1px solid #fcd34d;color:#92400e;}
+.callout-icon{font-size:14px;flex-shrink:0;margin-top:2px;}
+.callout strong{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:.8;}
+.divider{border:none;border-top:1px solid var(--border);margin:44px 0;}
+.guide-nav{display:flex;justify-content:space-between;gap:12px;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.nav-card{flex:1;min-width:180px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s;}
+.nav-card:hover{border-color:var(--purple);box-shadow:0 2px 14px rgba(135,53,255,.09);}
+.nav-direction{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:5px;}
+.nav-title{font-family:'Montserrat',sans-serif;font-size:12.5px;font-weight:600;color:var(--text);}
+.nav-card.next{text-align:right;}
+.grad-bar{height:4px;background:var(--grad);margin-top:60px;}
+@media(max-width:640px){.topbar{padding:0 20px;}.hero{padding:36px 20px 32px;}.main{padding:32px 20px 60px;}.topbar-nav .current{display:none;}.summary-strip{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-logo"><img src="bigid-logo.png" alt="BigID" style="height:40px;width:auto;"></div>
+  <nav class="topbar-nav"><a href="index.html">All guides</a><span class="sep">/</span><span class="current">Claude vs ChatGPT vs Gemini</span></nav>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="tag-row"><span class="tag tag-all">All tools</span><span class="tag tag-strategy">Strategy</span><span class="tag tag-strategy">Decision guide</span></div>
+    <h1>When to Use Claude, ChatGPT, or Gemini</h1>
+    <p class="lead">All three are good. None of them is best at everything. The decision rules — with a side-by-side table and what most people get wrong.</p>
+    <div class="outcome-box"><span class="outcome-icon">🧭</span><div><div class="outcome-label">What you'll have</div><div class="outcome-text">A clear set of rules for which AI tool to reach for, so you stop defaulting to one tool for everything and start getting better results faster.</div></div></div>
+  </div>
+</section>
+<main class="main">
+
+  <div class="summary-strip">
+    <div class="ss ss-gemini"><div class="ss-icon">🔵</div><div class="ss-name">Gemini</div><div class="ss-rule">Already in your Google tools. Use it there.</div></div>
+    <div class="ss ss-claude"><div class="ss-icon">🟣</div><div class="ss-name">Claude</div><div class="ss-rule">Complex, long-form, connected, or high-stakes work.</div></div>
+    <div class="ss ss-chatgpt"><div class="ss-icon">🟢</div><div class="ss-name">ChatGPT</div><div class="ss-rule">Data analysis and reusable team tools.</div></div>
+  </div>
+
+  <!-- GEMINI -->
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-icon icon-gemini">G</div>
+      <div><div class="tool-name">Gemini</div><div class="tool-rule">Default rule: if you're already in a Google tool and the task takes under 5 minutes, don't open a new tab.</div></div>
+      <span class="tool-badge badge-gemini">Google Workspace</span>
+    </div>
+    <div class="tool-body">
+      <span class="use-label">Use when</span>
+      <div class="use-item"><div class="use-item-title">📧 You're in Gmail and need a fast summary</div><div class="use-item-desc">A 40-email thread, a back-and-forth with procurement, a customer escalation chain. Gemini reads it and gives you the TLDR without leaving your inbox.</div><div class="use-item-prompt">"Summarize my thread with [contact] about [subject]. What decisions were made, what's still open, and what do I owe them?"</div></div>
+      <div class="use-item"><div class="use-item-title">📝 You're in Google Docs and need to write or rewrite</div><div class="use-item-desc">The Gemini sidebar is right there. Ask it to make a section more concise, rewrite in active voice, or add a missing section — it edits in place.</div><div class="use-item-prompt">"Make this section more direct. Lead with the business impact. Cut anything that's filler."</div></div>
+      <div class="use-item"><div class="use-item-title">📊 You're in Google Sheets and need formulas or analysis</div><div class="use-item-desc">Ask what you need in plain English — it writes the formula. No Excel expertise required.</div><div class="use-item-prompt">"Which reps have the highest win rate this quarter? Flag any row where the close date has passed."</div></div>
+      <div class="use-item"><div class="use-item-title">🗒️ Notebook LM — researching a document collection</div><div class="use-item-desc">Upload competitive intel, customer transcripts, or analyst reports. Notebook LM builds a knowledge base you can chat with. Cites everything. Genuinely underused.</div><div class="use-item-prompt">BigID: upload competitive intel + ask "what are our strongest differentiators against Cyera?" · Upload customer call transcripts + ask "what pain points come up most?"</div></div>
+    </div>
+  </div>
+
+  <!-- CLAUDE -->
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-icon icon-claude">C</div>
+      <div><div class="tool-name">Claude</div><div class="tool-rule">Default rule: when quality, complexity, or connections to other tools matter — use Claude.</div></div>
+      <span class="tool-badge badge-claude">Complex · Connected · High-stakes</span>
+    </div>
+    <div class="tool-body">
+      <span class="use-label">Use when</span>
+      <div class="use-item"><div class="use-item-title">✍️ The output needs to be genuinely good</div><div class="use-item-desc">Not a rough draft you'll rewrite — something you'd actually send. A proposal, press release, executive brief, QBR deck. Claude produces output that sounds like a skilled human wrote it.</div></div>
+      <div class="use-item"><div class="use-item-title">🔌 You need to connect to Salesforce, Gmail, Drive, or Slack</div><div class="use-item-desc">With MCP connectors enabled, Claude can pull a Salesforce account, check your Gmail, look at your calendar, and search your Drive — all in one conversation.</div><div class="use-item-prompt">"I have a call with [Company] tomorrow. Pull context from Salesforce, check my recent emails with them, and write me a one-page prep brief."</div></div>
+      <div class="use-item"><div class="use-item-title">📚 The task is long, complex, or multi-part</div><div class="use-item-desc">Claude handles enormous context — a full RFP, a 50-page contract, a complete sales deck — and can work with all of it at once without losing the thread.</div></div>
+      <div class="use-item"><div class="use-item-title">🔁 You need consistent output across many sessions</div><div class="use-item-desc">Claude Projects let you bake in your instructions, voice, and documents. Every conversation starts from the same foundation — perfect for always-on brand voice or recurring analysis.</div></div>
+      <div class="use-item"><div class="use-item-title">🏷️ You need a branded BigID document</div><div class="use-item-desc">PDFs and slide decks with proper BigID branding. Gemini and ChatGPT will write the content but won't format it to BigID brand standards. Claude will.</div></div>
+    </div>
+  </div>
+
+  <!-- CHATGPT -->
+  <div class="tool-card">
+    <div class="tool-header">
+      <div class="tool-icon icon-chatgpt">AI</div>
+      <div><div class="tool-name">ChatGPT</div><div class="tool-rule">Default rule: you have a data file to analyze or a team tool to build and share.</div></div>
+      <span class="tool-badge badge-chatgpt">Data · Team tools</span>
+    </div>
+    <div class="tool-body">
+      <span class="use-label">Use when</span>
+      <div class="use-item"><div class="use-item-title">📈 You have a CSV or spreadsheet and need instant analysis</div><div class="use-item-desc">ChatGPT's code interpreter runs Python on your file in real time. Charts, pivot summaries, trend analysis — fastest path from raw data to insight.</div><div class="use-item-prompt">"Analyze this pipeline CSV. Show win rate by segment, top 10 deals by value, and a 6-month trend. Create a chart for each."</div></div>
+      <div class="use-item"><div class="use-item-title">🛠️ You want a reusable team tool with one shareable link</div><div class="use-item-desc">Custom GPTs are shareable as a standalone URL. Build a Sales Enablement GPT with your pitch deck, competitive positioning, and objection handling baked in. Share one link with your whole team.</div><div class="use-item-prompt">Good BigID GPTs: Sales Coach (pitch + rebuttals) · Content Writer (brand voice) · Proposal Generator (templates + pricing)</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <h2>The decision table</h2>
+  <div class="table-wrap">
+    <table class="dt">
+      <thead><tr><th>Situation</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td>Already in Gmail, Docs, Sheets, or Meet</td><td><span class="pill p-gemini">Gemini</span></td></tr>
+        <tr><td>Need to research or chat with a document collection</td><td><span class="pill p-gemini-nb">Notebook LM</span></td></tr>
+        <tr><td>Have a CSV or data file to analyze</td><td><span class="pill p-chatgpt">ChatGPT</span></td></tr>
+        <tr><td>Want a reusable team tool with one shareable link</td><td><span class="pill p-chatgpt">ChatGPT</span></td></tr>
+        <tr><td>Output going to a customer, leader, or branded document</td><td><span class="pill p-claude">Claude</span></td></tr>
+        <tr><td>Task requires Salesforce, HubSpot, Gmail, Slack, or Drive</td><td><span class="pill p-claude">Claude</span></td></tr>
+        <tr><td>Task is long, complex, or consequential</td><td><span class="pill p-claude">Claude</span></td></tr>
+        <tr><td>Need consistent output across many sessions</td><td><span class="pill p-claude">Claude Projects</span></td></tr>
+        <tr><td>Pre-call brief using Gmail + Calendar + Salesforce</td><td><span class="pill p-claude">Claude</span></td></tr>
+        <tr><td>Post-call summary from Google Meet</td><td><span class="pill p-gemini">Gemini</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+  <h2>What most people get wrong</h2>
+  <div style="display:grid;gap:10px;margin-top:14px;">
+    <div class="callout callout-warn"><span class="callout-icon">⚠️</span><div><strong>Using only one tool for everything</strong>The people who get the most done use all three for what each is actually best at. Claude users try to make it do everything. So do ChatGPT users. Don't.</div></div>
+    <div class="callout callout-warn"><span class="callout-icon">⚠️</span><div><strong>Not using Gemini in context</strong>Most people open gemini.google.com in a new tab when Gemini is already sitting in the sidebar of Gmail, Docs, and Sheets. The fastest version is the one already open next to your doc.</div></div>
+    <div class="callout callout-warn"><span class="callout-icon">⚠️</span><div><strong>Not using Notebook LM</strong>If you have a collection of documents you reference repeatedly — competitive intel, customer research, analyst reports — Notebook LM turns it into something you can talk to. Wildly underused.</div></div>
+    <div class="callout callout-warn"><span class="callout-icon">⚠️</span><div><strong>Not building a Claude Project for recurring work</strong>Every time you paste the same brand guide or competitive one-pager into a new Claude chat, you're doing unnecessary work. Build the Project once. Done.</div></div>
+  </div>
+
+  <div class="guide-nav">
+    <a href="guide-create-pdf.html" class="nav-card"><div class="nav-direction">← Previous</div><div class="nav-title">Create a Branded PDF</div></a>
+    <a href="index.html" class="nav-card next"><div class="nav-direction">Back to</div><div class="nav-title">All guides</div></a>
+  </div>
+</main>
+<div class="grad-bar"></div>
+</body>
+</html>

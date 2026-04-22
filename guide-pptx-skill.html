@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build a Branded Slide Deck — BigID AI Accelerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F9FB;--white:#FFFFFF;--border:#E5E7EB;--text:#2D2C31;--muted:#666666;--faint:#9CA3AF;--purple:#8735FF;--pink:#FF3592;--orange:#FF6B35;--grad:linear-gradient(90deg,#8735FF 0%,#FF3592 46%,#FF6B35 100%);--grad110:linear-gradient(110deg,#8735FF 0%,#FF3592 52%,#FF6B35 100%);}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.65;padding-bottom:8px;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100;}
+.topbar-logo img{height:40px;width:auto;display:block;}
+.topbar-nav{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:500;color:var(--faint);}
+.topbar-nav a{color:var(--faint);text-decoration:none;}.topbar-nav a:hover{color:var(--purple);}
+.topbar-nav .sep{opacity:.45;}.topbar-nav .current{color:var(--muted);font-weight:600;}
+.hero{background:var(--white);border-bottom:1px solid var(--border);padding:52px 40px 44px;}
+.hero-inner{max-width:780px;margin:0 auto;}
+.tag-row{display:flex;gap:7px;margin-bottom:20px;flex-wrap:wrap;}
+.tag{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid;}
+.tag-claude{color:var(--purple);border-color:#8735ff35;background:#8735ff0c;}
+.tag-design{color:#1d4ed8;border-color:#1d4ed835;background:#1d4ed80c;}
+h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,42px);letter-spacing:-.03em;line-height:1.08;margin-bottom:16px;background:var(--grad110);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.lead{font-size:15px;color:var(--muted);max-width:580px;line-height:1.75;margin-bottom:28px;}
+.outcome-box{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:10px;padding:15px 20px;max-width:620px;}
+.outcome-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.outcome-label{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--purple);margin-bottom:4px;}
+.outcome-text{font-size:13px;color:var(--text);}
+.main{max-width:780px;margin:0 auto;padding:40px 40px 80px;}
+h2{font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+h2::before{content:'';display:block;width:20px;height:3px;background:var(--grad);border-radius:2px;flex-shrink:0;}
+h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.01em;color:var(--text);margin-bottom:7px;}
+p{color:var(--muted);font-size:13.5px;margin-bottom:10px;}
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px;margin:14px 0 28px;}
+.brand-item{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:12px 14px;}
+.brand-item-label{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:5px;}
+.brand-item-val{font-size:13px;color:var(--text);}
+.step{display:grid;grid-template-columns:36px 1fr;gap:16px;margin-bottom:36px;}
+.step-num{width:34px;height:34px;border-radius:50%;background:var(--grad110);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
+.step-body h3{font-size:14.5px;margin-bottom:7px;}.step-body p{font-size:13.5px;}
+.prompt-block{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:9px;padding:14px 18px;margin:10px 0;font-family:'DM Mono',monospace;font-size:12.5px;line-height:1.8;color:var(--text);position:relative;}
+.plabel{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:9px;display:block;}
+.copy-btn{position:absolute;top:11px;right:11px;background:var(--bg);border:1px solid var(--border);border-radius:5px;color:var(--muted);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;padding:3px 8px;cursor:pointer;transition:all .15s;}
+.copy-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple);}
+.layout-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;background:var(--white);border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+.layout-table th{font-family:'Montserrat',sans-serif;text-align:left;padding:9px 14px;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);border-bottom:1px solid var(--border);background:var(--bg);}
+.layout-table td{padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+.layout-table tr:last-child td{border-bottom:none;}
+.layout-table td:first-child{color:var(--text);font-family:'Montserrat',sans-serif;font-weight:600;font-size:12.5px;}
+.layout-table td:last-child{color:var(--muted);}
+.callout{border-radius:9px;padding:13px 17px;margin:12px 0;font-size:13px;display:flex;gap:10px;align-items:flex-start;}
+.callout-warn{background:#fffbeb;border:1px solid #fcd34d;color:#92400e;}
+.callout-pink{background:#fff0f7;border:1px solid #fbb6d7;color:#9d174d;border-left:2.5px solid var(--pink);}
+.callout-icon{font-size:14px;flex-shrink:0;margin-top:2px;}
+.callout strong{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:.8;}
+.divider{border:none;border-top:1px solid var(--border);margin:44px 0;}
+.guide-nav{display:flex;justify-content:space-between;gap:12px;margin-top:56px;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.nav-card{flex:1;min-width:180px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s;}
+.nav-card:hover{border-color:var(--purple);box-shadow:0 2px 14px rgba(135,53,255,.09);}
+.nav-direction{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:5px;}
+.nav-title{font-family:'Montserrat',sans-serif;font-size:12.5px;font-weight:600;color:var(--text);}
+.nav-card.next{text-align:right;}
+.grad-bar{height:4px;background:var(--grad);margin-top:60px;}
+@media(max-width:640px){.topbar{padding:0 20px;}.hero{padding:36px 20px 32px;}.main{padding:32px 20px 60px;}.topbar-nav .current{display:none;}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-logo"><img src="bigid-logo.png" alt="BigID" style="height:40px;width:auto;"></div>
+  <nav class="topbar-nav"><a href="index.html">All guides</a><span class="sep">/</span><span class="current">Build a Branded Slide Deck</span></nav>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="tag-row"><span class="tag tag-claude">Claude</span><span class="tag tag-design">Slides</span><span class="tag tag-design">Design</span></div>
+    <h1>Build a Branded Slide Deck with the PPTX Skill</h1>
+    <p class="lead">Generate a fully branded BigID .pptx file from a prompt — correct fonts, colors, logo placement, and layouts, all automatic. Open it in Google Slides or PowerPoint and it's ready to present.</p>
+    <div class="outcome-box"><span class="outcome-icon">📊</span><div><div class="outcome-label">What you'll have</div><div class="outcome-text">A downloadable .pptx with BigID's gradient, Montserrat headlines, correct logo placement, and your content already in it — without touching PowerPoint until it's ready.</div></div></div>
+  </div>
+</section>
+<main class="main">
+  <h2>What every deck includes automatically</h2>
+  <div class="brand-grid">
+    <div class="brand-item"><div class="brand-item-label">Colors</div><div class="brand-item-val">Purple → pink → orange gradient, charcoal darks, off-white lights</div></div>
+    <div class="brand-item"><div class="brand-item-label">Fonts</div><div class="brand-item-val">Montserrat headlines, Open Sans body text</div></div>
+    <div class="brand-item"><div class="brand-item-label">Logo</div><div class="brand-item-val">White horizontal on dark slides, gray stacked icon on light slides</div></div>
+    <div class="brand-item"><div class="brand-item-label">Footer</div><div class="brand-item-val">Gradient bar flush to the bottom of every slide</div></div>
+    <div class="brand-item"><div class="brand-item-label">Output</div><div class="brand-item-val">.pptx — opens in Google Slides or PowerPoint</div></div>
+  </div>
+  <div class="callout callout-warn"><span class="callout-icon">⚠️</span><div><strong>LibreOffice note</strong>LibreOffice renders gradient text differently. Always verify final output in Google Slides or PowerPoint.</div></div>
+
+  <div class="step" style="margin-top:32px;">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>Trigger the skill — just ask</h3>
+      <p>You don't need to mention the skill by name. Any of these work:</p>
+      <div class="prompt-block">
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Build a 12-slide BigID sales deck for an enterprise call with a financial services CISO. Goal: get them to agree to a POC. Cover: the data security problem, why legacy tools fail, BigID's approach, key use cases, a customer spotlight, and a clear next step.</code>
+      </div>
+      <div class="prompt-block">
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>I have a presentation that needs BigID branding. Here's the content slide by slide [paste]. Format it correctly — don't change the content, just apply the right layout and brand.</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>Know your slide types</h3>
+      <p>Reference these names in your prompt and Claude picks the right layout automatically.</p>
+      <table class="layout-table">
+        <thead><tr><th>Layout name</th><th>Best for</th></tr></thead>
+        <tbody>
+          <tr><td>Cover slide</td><td>Title + subtitle, dark background — always slide 1</td></tr>
+          <tr><td>Stat card grid</td><td>4 metrics or numbers with pink outline cards</td></tr>
+          <tr><td>Left-bar list</td><td>3–4 items with colored left-bar labels</td></tr>
+          <tr><td>Customer spotlight</td><td>Logo, challenge/result bullets, outcome stats</td></tr>
+          <tr><td>Use case grid (3×2)</td><td>Six use cases with brand cell</td></tr>
+          <tr><td>Use case grid (4-column)</td><td>Four use cases in white outline cards</td></tr>
+          <tr><td>ROI / Proven at Scale</td><td>Hero metric + breakdown stat cards</td></tr>
+          <tr><td>Roadmap / timeline</td><td>Quarterly or phase-based innovation roadmap</td></tr>
+          <tr><td>Section divider</td><td>Dark slide to break between major sections</td></tr>
+        </tbody>
+      </table>
+      <div class="prompt-block">
+        <span class="plabel">Using layout names</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Build a 10-slide BigID deck:
+Slide 1: dark cover — "AI Runs on BigID"
+Slides 2–3: left-bar list for the problem and our approach
+Slide 4: stat card grid with four key metrics
+Slides 5–6: use case grid (3×2) with 6 use cases
+Slide 7: customer spotlight
+Slide 8: ROI / Proven at Scale
+Slide 9: roadmap
+Slide 10: dark closing slide with next steps</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>Give Claude your actual content</h3>
+      <p>Real stats and real titles always beat generated content for a presentation that's going anywhere real.</p>
+      <div class="prompt-block">
+        <span class="plabel">Stats + customer spotlight</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>On the ROI slide: 70% reduction in data discovery time, 94% policy automation rate, 3.2x faster audit response, $2.4M average annual value. Put $2.4M as the hero stat.
+
+Customer spotlight — global bank: Challenge: couldn't see what data AI models were training on. Solution: classified 2.3B records across 400+ sources. Outcome 1: reduced sensitive data exposure by 68%. Outcome 2: passed SOC 2 in 6 weeks instead of 6 months.</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h3>Iterate on what Claude builds</h3>
+      <div class="prompt-block">
+        <span class="plabel">Content change</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>On slide 4, change the headline to [new headline] and replace the third bullet with [new bullet].</code>
+      </div>
+      <div class="prompt-block">
+        <span class="plabel">Layout change</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Slide 6 has too much text for a stat card layout. Convert it to a left-bar list instead with 4 items.</code>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <h2>Pro tips</h2>
+  <div style="display:grid;gap:10px;margin-top:14px;">
+    <div class="callout callout-pink"><span class="callout-icon">🗂️</span><div><strong>Ask for the structure first</strong>Before generating slides, ask Claude to suggest a structure for your audience and goal. Review it, edit it, then ask Claude to build it. Easier to adjust an outline than a built deck.</div></div>
+    <div class="callout callout-pink"><span class="callout-icon">💾</span><div><strong>Save your prompt</strong>If you build a deck structure you like, save the prompt. Reuse it for the next deck and just swap the content — the brand and structure are already dialed in.</div></div>
+  </div>
+
+  <div class="guide-nav">
+    <a href="guide-polish-presentation.html" class="nav-card"><div class="nav-direction">← Previous</div><div class="nav-title">Polish and Format a Presentation</div></a>
+    <a href="guide-create-pdf.html" class="nav-card next"><div class="nav-direction">Next →</div><div class="nav-title">Create a Branded PDF</div></a>
+  </div>
+</main>
+<div class="grad-bar"></div>
+</body>
+</html>

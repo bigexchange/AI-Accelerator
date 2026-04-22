@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat, Projects, and Cowork — BigID AI Accelerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #F8F9FB;
+    --white:   #FFFFFF;
+    --border:  #E5E7EB;
+    --text:    #2D2C31;
+    --muted:   #666666;
+    --faint:   #9CA3AF;
+    --purple:  #8735FF;
+    --pink:    #FF3592;
+    --orange:  #FF6B35;
+    --grad:    linear-gradient(90deg,  #8735FF 0%, #FF3592 46%, #FF6B35 100%);
+    --grad110: linear-gradient(110deg, #8735FF 0%, #FF3592 52%, #FF6B35 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Open Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.65; padding-bottom: 8px; }
+
+  /* TOPBAR */
+  .topbar { background: var(--white); border-bottom: 1px solid var(--border); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; position: sticky; top: 0; z-index: 100; }
+  .topbar-logo img { height: 38px; width: auto; display: block; }
+  .topbar-nav { display: flex; align-items: center; gap: 8px; font-family: 'Montserrat', sans-serif; font-size: 11.5px; font-weight: 500; color: var(--faint); }
+  .topbar-nav a { color: var(--faint); text-decoration: none; transition: color .15s; }
+  .topbar-nav a:hover { color: var(--purple); }
+  .topbar-nav .sep { opacity: .45; font-size: 13px; }
+  .topbar-nav .current { color: var(--muted); font-weight: 600; }
+
+  /* HERO */
+  .hero { background: var(--white); border-bottom: 1px solid var(--border); padding: 52px 40px 44px; }
+  .hero-inner { max-width: 780px; margin: 0 auto; }
+  .tag-row { display: flex; gap: 7px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tag { font-family: 'Montserrat', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; border: 1px solid; }
+  .tag-claude { color: var(--purple); border-color: #8735ff35; background: #8735ff0c; }
+  .tag-setup  { color: #047857;       border-color: #04785735; background: #0478570c; }
+  h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(28px, 3.8vw, 42px); letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 16px; background: var(--grad110); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .lead { font-size: 15px; color: var(--muted); max-width: 580px; line-height: 1.75; margin-bottom: 28px; }
+  .outcome-box { display: flex; gap: 14px; align-items: flex-start; background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--purple); border-radius: 10px; padding: 15px 20px; max-width: 620px; }
+  .outcome-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .outcome-label { font-family: 'Montserrat', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--purple); margin-bottom: 4px; }
+  .outcome-text { font-size: 13px; color: var(--text); }
+
+  /* MAIN */
+  .main { max-width: 780px; margin: 0 auto; padding: 40px 40px 80px; }
+
+  h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  h2::before { content: ''; display: block; width: 20px; height: 3px; background: var(--grad); border-radius: 2px; flex-shrink: 0; }
+  h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: -0.01em; color: var(--text); margin-bottom: 7px; }
+  p { color: var(--muted); font-size: 13.5px; margin-bottom: 10px; }
+
+  /* SUMMARY STRIP */
+  .summary-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 32px; }
+  .sc { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; border-top: 3px solid; }
+  .sc-chat     { border-top-color: var(--purple); }
+  .sc-projects { border-top-color: var(--pink); }
+  .sc-cowork   { border-top-color: var(--orange); }
+  .sc-icon { font-size: 20px; margin-bottom: 8px; }
+  .sc-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13.5px; margin-bottom: 5px; color: var(--text); }
+  .sc-rule { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+  /* MODE CARDS */
+  .mode-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+  .mode-header { display: flex; align-items: flex-start; gap: 14px; padding: 18px 22px 14px; border-bottom: 1px solid var(--border); background: var(--bg); }
+  .mode-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .mode-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: var(--text); margin-bottom: 3px; }
+  .mode-tagline { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .mode-badge { font-family: 'Montserrat', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-left: auto; flex-shrink: 0; }
+  .badge-chat     { background: #ede9fe; color: #6d28d9; }
+  .badge-projects { background: #fce7f3; color: #9d174d; }
+  .badge-cowork   { background: #fff7ed; color: #c2410c; }
+  .mode-body { padding: 18px 22px 20px; }
+
+  .use-label { font-family: 'Montserrat', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px; margin-top: 16px; display: block; }
+  .use-label:first-child { margin-top: 0; }
+  .use-list { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-bottom: 4px; }
+  .use-list li { font-size: 13px; color: var(--text); padding-left: 16px; position: relative; line-height: 1.55; }
+  .use-list li::before { content: '·'; position: absolute; left: 2px; font-size: 20px; line-height: 1.05; color: var(--purple); }
+  .use-list.avoid li::before { color: #ef4444; }
+  .use-list.avoid li { color: var(--muted); }
+
+  /* PROJECT CARDS */
+  .project-grid { display: grid; gap: 9px; margin-top: 10px; margin-bottom: 4px; }
+  .project-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 15px; }
+  .project-card-title { font-family: 'Montserrat', sans-serif; font-size: 11.5px; font-weight: 700; color: var(--pink); margin-bottom: 5px; }
+  .project-card p { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+  /* TELL */
+  .mode-tell { background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 8px; padding: 11px 15px; margin-top: 14px; font-size: 12.5px; color: #6b21a8; line-height: 1.6; }
+  .mode-tell strong { font-family: 'Montserrat', sans-serif; font-weight: 700; }
+
+  /* PROMPT BLOCK */
+  .prompt-block { background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--purple); border-radius: 9px; padding: 13px 17px; margin: 10px 0; font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.8; color: var(--text); position: relative; }
+  .prompt-block.orange { border-left-color: var(--orange); }
+  .plabel { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); margin-bottom: 8px; display: block; }
+  .prompt-block.orange .plabel { color: var(--orange); }
+  .copy-btn { position: absolute; top: 10px; right: 10px; background: var(--white); border: 1px solid var(--border); border-radius: 5px; color: var(--muted); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; padding: 3px 8px; cursor: pointer; transition: all .15s; }
+  .copy-btn:hover { background: var(--purple); color: #fff; border-color: var(--purple); }
+
+  /* CALLOUTS */
+  .callout { border-radius: 9px; padding: 13px 17px; margin: 12px 0; font-size: 13px; display: flex; gap: 10px; align-items: flex-start; }
+  .callout-tip  { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+  .callout-icon { font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+  .callout strong { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; display: block; margin-bottom: 3px; opacity: .8; }
+
+  /* DECISION TABLE */
+  .table-wrap { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .decision-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .decision-table th { font-family: 'Montserrat', sans-serif; text-align: left; padding: 10px 16px; font-size: 9.5px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--faint); border-bottom: 1px solid var(--border); background: var(--bg); }
+  .decision-table td { padding: 11px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .decision-table tr:last-child td { border-bottom: none; }
+  .decision-table td:first-child { color: var(--text); }
+  .decision-table tbody tr:hover { background: #faf5ff; }
+  .mode-pill { font-family: 'Montserrat', sans-serif; display: inline-block; font-size: 10.5px; font-weight: 700; padding: 2px 9px; border-radius: 20px; }
+  .mp-chat     { background: #ede9fe; color: #6d28d9; }
+  .mp-projects { background: #fce7f3; color: #9d174d; }
+  .mp-cowork   { background: #fff7ed; color: #c2410c; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
+
+  /* GUIDE NAV */
+  .guide-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .nav-card { flex: 1; min-width: 180px; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; text-decoration: none; color: var(--text); transition: border-color .15s, box-shadow .15s; }
+  .nav-card:hover { border-color: var(--purple); box-shadow: 0 2px 14px rgba(135,53,255,.09); }
+  .nav-direction { font-family: 'Montserrat', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin-bottom: 5px; }
+  .nav-title { font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 600; color: var(--text); }
+  .nav-card.next { text-align: right; }
+
+  .grad-bar { height: 4px; background: var(--grad); margin-top: 60px; }
+
+  @media (max-width: 640px) {
+    .topbar { padding: 0 20px; }
+    .hero { padding: 36px 20px 32px; }
+    .main { padding: 32px 20px 60px; }
+    .summary-strip { grid-template-columns: 1fr; }
+    .topbar-nav .current { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-logo">
+    <img src="bigid-logo.png" alt="BigID" style="height:40px;width:auto;">
+  </div>
+  <nav class="topbar-nav">
+    <a href="how-to-guides.html">All guides</a>
+    <span class="sep">/</span>
+    <span class="current">Chat, Projects, and Cowork</span>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="tag-row">
+      <span class="tag tag-claude">Claude</span>
+      <span class="tag tag-setup">Setup</span>
+      <span class="tag tag-setup">Workflow</span>
+    </div>
+    <h1>Chat, Projects, and Cowork — What's Best for Each</h1>
+    <p class="lead">Claude isn't one thing — it's three different modes, each built for a different kind of work. Most people use Chat and call it a day. The people getting the most out of Claude know when to switch.</p>
+    <div class="outcome-box">
+      <span class="outcome-icon">🗺️</span>
+      <div>
+        <div class="outcome-label">What you'll have</div>
+        <div class="outcome-text">A clear mental model for which Claude mode to reach for — so you stop re-explaining yourself every session and start getting better outputs faster.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="main">
+
+  <div class="summary-strip">
+    <div class="sc sc-chat">
+      <div class="sc-icon">💬</div>
+      <div class="sc-name">Chat</div>
+      <div class="sc-rule">One-off tasks. All context in the prompt. Starts fresh every time.</div>
+    </div>
+    <div class="sc sc-projects">
+      <div class="sc-icon">📁</div>
+      <div class="sc-name">Projects</div>
+      <div class="sc-rule">Ongoing work. Persistent context, docs, and instructions baked in.</div>
+    </div>
+    <div class="sc sc-cowork">
+      <div class="sc-icon">🤖</div>
+      <div class="sc-name">Cowork</div>
+      <div class="sc-rule">Multi-step tasks on your actual files. Returns finished deliverables.</div>
+    </div>
+  </div>
+
+  <!-- CHAT -->
+  <div class="mode-card">
+    <div class="mode-header">
+      <div class="mode-icon">💬</div>
+      <div>
+        <div class="mode-name">Claude Chat</div>
+        <div class="mode-tagline">You type, Claude responds. Each conversation starts completely fresh.</div>
+      </div>
+      <span class="mode-badge badge-chat">Chat</span>
+    </div>
+    <div class="mode-body">
+      <span class="use-label">Best for</span>
+      <ul class="use-list">
+        <li>One-off tasks that don't need ongoing context</li>
+        <li>Quick drafts, edits, research, and analysis</li>
+        <li>Experimenting with prompts before committing to a workflow</li>
+      </ul>
+      <span class="use-label">Not great for</span>
+      <ul class="use-list avoid">
+        <li>Recurring work where you paste the same context every time</li>
+        <li>Tasks involving the same documents over and over</li>
+      </ul>
+      <span class="use-label">Example prompts</span>
+      <div class="prompt-block">
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Write a 3-email nurture sequence for a financial services CISO based on this brief [paste].</code>
+      </div>
+      <div class="prompt-block">
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>Draft a follow-up email to [contact] after today's call based on these notes [paste].</code>
+      </div>
+      <div class="mode-tell"><strong>The tell that Chat is right:</strong> you're giving Claude all the context it needs in the prompt itself, and you won't need to run this same task again next week.</div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="mode-card">
+    <div class="mode-header">
+      <div class="mode-icon">📁</div>
+      <div>
+        <div class="mode-name">Claude Projects</div>
+        <div class="mode-tagline">A persistent workspace. Your docs and instructions live here — Claude starts fully informed every time.</div>
+      </div>
+      <span class="mode-badge badge-projects">Projects</span>
+    </div>
+    <div class="mode-body">
+      <span class="use-label">Best for</span>
+      <ul class="use-list">
+        <li>Recurring work that always needs the same context</li>
+        <li>Anything where you keep pasting the same documents</li>
+        <li>Building a consistent voice across many pieces of content</li>
+        <li>Workflows to share so your whole team starts from the same place</li>
+      </ul>
+      <span class="use-label">How to set one up</span>
+      <ol style="color:var(--muted);font-size:13px;padding-left:18px;line-height:2.1;margin-bottom:14px;">
+        <li>Go to claude.ai → click <strong style="color:var(--text);">Projects</strong> in the left sidebar</li>
+        <li>Click <strong style="color:var(--text);">New Project</strong> and name it</li>
+        <li>Add <strong style="color:var(--text);">custom instructions</strong> — what it's for and how Claude should behave</li>
+        <li>Upload your <strong style="color:var(--text);">knowledge base docs</strong> — brand guides, playbooks, competitive intel, templates</li>
+        <li>Start a conversation — Claude references everything automatically</li>
+      </ol>
+      <span class="use-label">BigID project ideas</span>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-card-title">📝 BigID Content</div>
+          <p>Instructions: brand voice rules, banned words, audience. Upload: brand guide, messaging framework, press releases. Result: every email, post, and blog always sounds like BigID — no re-explaining the voice.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-card-title">💼 BigID Sales</div>
+          <p>Instructions: competitive differentiators, common objections, deal framework. Upload: pitch deck, objection handling guide, ICP definition. Result: pre-call prep, outreach, and competitive positioning on demand.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-card-title">📊 Pipeline Reports</div>
+          <p>Instructions: stage definitions, forecast categories, MEDDPICC framework, risk flags. Result: weekly pipeline briefs, forecast scrubs, territory snapshots — all with the same analytical lens every time.</p>
+        </div>
+      </div>
+      <div class="mode-tell"><strong>The tell that Projects is right:</strong> you keep pasting the same document or re-explaining the same context at the start of every conversation. That's a Project waiting to be built.</div>
+    </div>
+  </div>
+
+  <!-- COWORK -->
+  <div class="mode-card">
+    <div class="mode-header">
+      <div class="mode-icon">🤖</div>
+      <div>
+        <div class="mode-name">Cowork</div>
+        <div class="mode-tagline">Describe a task. Claude plans and executes it autonomously on your computer — reading files, generating documents, running steps in order.</div>
+      </div>
+      <span class="mode-badge badge-cowork">Cowork</span>
+    </div>
+    <div class="mode-body">
+      <div class="callout callout-tip" style="margin-bottom:14px;">
+        <span class="callout-icon">ℹ️</span>
+        <div><strong>Requirements</strong>Cowork requires the Claude Desktop app (Mac or Windows) and a paid plan. Find it in the mode selector at the top of Claude Desktop.</div>
+      </div>
+      <span class="use-label">Best for</span>
+      <ul class="use-list">
+        <li>Multi-step tasks that involve your actual files and applications</li>
+        <li>Tasks where the output is a finished file — a report, an organized folder, a spreadsheet</li>
+        <li>Recurring workflows you want to hand off entirely with <code style="font-family:'DM Mono';font-size:11px;color:var(--purple);">/schedule</code></li>
+      </ul>
+      <span class="use-label">Example prompts</span>
+      <div class="prompt-block orange">
+        <span class="plabel">File organization</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>In my Downloads folder, find all BigID PDFs from the last 30 days. Sort into subfolders by type — competitive intel, product docs, press releases, and event materials. Rename each with a clear name and the date.</code>
+      </div>
+      <div class="prompt-block orange">
+        <span class="plabel">Scheduled weekly report</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.prompt-block').querySelector('code').innerText);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+        <code>/schedule every Monday at 8am
+
+Pull pipeline data from my Salesforce exports folder, run the standard analysis, and create a formatted weekly pipeline brief in my Reports folder. Use the same template as last week.</code>
+      </div>
+      <div class="mode-tell"><strong>The tell that Cowork is right:</strong> the task involves your actual files or apps, has multiple steps you'd do manually, and ends with a finished deliverable — not a conversation.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Quick decision table</h2>
+  <div class="table-wrap">
+    <table class="decision-table">
+      <thead><tr><th>Situation</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td>Quick one-off task, all context in the prompt</td><td><span class="mode-pill mp-chat">Chat</span></td></tr>
+        <tr><td>Recurring task with the same context every time</td><td><span class="mode-pill mp-projects">Projects</span></td></tr>
+        <tr><td>Need consistent voice or style across all content</td><td><span class="mode-pill mp-projects">Projects</span></td></tr>
+        <tr><td>Team needs shared context and instructions</td><td><span class="mode-pill mp-projects">Projects</span></td></tr>
+        <tr><td>Multi-step task involving your files or apps</td><td><span class="mode-pill mp-cowork">Cowork</span></td></tr>
+        <tr><td>Finished document as the output</td><td><span class="mode-pill mp-cowork">Cowork</span></td></tr>
+        <tr><td>Recurring workflow you want to fully hand off</td><td><span class="mode-pill mp-cowork">Cowork</span></td></tr>
+        <tr><td>Experimenting with a new prompt or workflow</td><td><span class="mode-pill mp-chat">Chat</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="guide-nav">
+    <a href="how-to-guides.html" class="nav-card">
+      <div class="nav-direction">← Back</div>
+      <div class="nav-title">All guides</div>
+    </a>
+    <a href="guide-polish-presentation.html" class="nav-card next">
+      <div class="nav-direction">Next →</div>
+      <div class="nav-title">Polish and Format a Presentation</div>
+    </a>
+  </div>
+
+</main>
+
+<div class="grad-bar"></div>
+
+</body>
+</html>
